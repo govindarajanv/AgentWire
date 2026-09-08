@@ -7,6 +7,8 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
   digest:
@@ -16,6 +18,8 @@ jobs:
       - uses: actions/setup-python@v5.1.0
         with:
           python-version: '3.x'
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
       - name: Install parser
         run: python -m pip install --disable-pip-version-check PyYAML
       - name: Generate digest
@@ -32,3 +36,14 @@ jobs:
           done
           git diff --cached --quiet || git commit -m 'Publish AI digest'
           git push
+      - name: Build Pages site
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: .
+          destination: ./_site
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
+      - name: Deploy Pages site
+        uses: actions/deploy-pages@v4
