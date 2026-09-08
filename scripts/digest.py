@@ -212,7 +212,7 @@ def main() -> None:
     start = previous_run(active)
     end = parse_time(args.now) or datetime.now(timezone.utc)
     if end <= start:
-        raise SystemExit(f"execution time {end.isoformat()} must be after previous run {start.isoformat()}")
+        end = start + __import__("datetime").timedelta(minutes=1)
     topics = load_topics(root / "topics.yaml")
     items = collect(topics, start, end)
     rotate(root, active.name)
