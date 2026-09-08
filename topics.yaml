@@ -1,0 +1,26 @@
+topics:
+  - name: AI and LLMs
+    keywords:
+      - artificial intelligence
+      - AI
+      - LLM
+      - large language model
+      - generative AI
+      - Opencode
+      - Antigravity
+      - Gemini
+      - Claude
+      - Anthropic
+      - DeepSeek
+      - GLM
+      - Agent Harness
+      - Loop Engineering
+    feeds:
+      - https://hnrss.org/newest?q=AI
+    arxiv_queries: [cat:cs.AI]
+    github_repos: []
+  - name: Agents and Automation
+    keywords: [AI agent, agentic, autonomous agent, MCP, automation]
+    feeds: []
+    arxiv_queries: [cat:cs.MA]
+    github_repos: []
