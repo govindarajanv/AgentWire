@@ -25,7 +25,7 @@ try:
 except ImportError as exc:
     raise SystemExit("PyYAML is required: python -m pip install PyYAML") from exc
 
-VERSION = "v1.1.0"
+VERSION = "v1.1.1"
 ROOT = Path(__file__).resolve().parents[1]
 USER_AGENT = "curl/7.81.0 (compatible; AgentWire/1.1; +https://github.com/govindarajanv/AgentWire)"
 CACHE_FILE = ROOT / "collected_items.json"

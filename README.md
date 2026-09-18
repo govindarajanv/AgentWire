@@ -1,7 +1,7 @@
 # Weekly AI World Summary
 
 [![Live Site](https://img.shields.io/badge/site-github_pages-blue.svg)](https://govindarajanv.github.io/AgentWire/)
-[![Version](https://img.shields.io/badge/version-v1.1.0-green.svg)](https://github.com/govindarajanv/AgentWire)
+[![Version](https://img.shields.io/badge/version-v1.1.1-green.svg)](https://github.com/govindarajanv/AgentWire)
 [![Workflow](https://github.com/govindarajanv/AgentWire/actions/workflows/digest.yml/badge.svg)](https://github.com/govindarajanv/AgentWire/actions/workflows/digest.yml)
 
 Automated weekly summary and curated intelligence of major developments happening in the AI world, published as a modern, professional GitHub Pages static publication using the free [Kilo Gateway](https://kilo.ai/) inference action ([`govindarajanv/inference`](https://github.com/govindarajanv/inference)).

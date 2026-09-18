@@ -20,7 +20,7 @@ This file is the single source of truth for the Weekly AI World Summary pipeline
 ## Versioning
 
 - Follows Semantic Versioning: `v[major].[minor].[patch]`.
-- Current release: `v1.1.0` (redesigned professional magazine layout, responsive CSS, and 3-line skimmable gists).
+- Current release: `v1.1.1` (concurrency guard, fetch-depth: 0, and remote rebase to eliminate git push rejections; 3-line skimmable gists and responsive magazine styling).
 - The live version badge is always displayed directly below the main page title so it is visible to users.
 
 ## Item Schema

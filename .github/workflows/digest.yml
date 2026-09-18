@@ -5,6 +5,10 @@ on:
     - cron: '30 3 * * 0' # Every Sunday at 9:00 AM IST (03:30 AM UTC)
   workflow_dispatch:
 
+concurrency:
+  group: weekly-summary
+  cancel-in-progress: false
+
 permissions:
   contents: write
   pages: write
@@ -16,6 +20,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4.2.0
+        with:
+          fetch-depth: 0
 
       - name: Setup Python
         uses: actions/setup-python@v5.1.0
@@ -60,8 +66,12 @@ jobs:
           for archive in archive-*.md; do
             [ -e "$archive" ] && git add "$archive"
           done
-          git diff --cached --quiet || git commit -m 'Publish Weekly AI World Summary'
-          git push
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish Weekly AI World Summary'
+            git fetch origin "${GITHUB_REF_NAME:-master}"
+            git rebase -X theirs "origin/${GITHUB_REF_NAME:-master}" || (git rebase --abort && git merge --strategy-option=theirs -m "Merge remote changes into published summary" "origin/${GITHUB_REF_NAME:-master}")
+            git push origin "HEAD:${GITHUB_REF_NAME:-master}"
+          fi
 
       - name: Build Pages site
         uses: actions/jekyll-build-pages@v1
