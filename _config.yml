@@ -1,0 +1,8 @@
+title: "AgentWire | Weekly AI World Summary"
+description: "Curated weekly intelligence of major developments across AI, LLMs, and autonomous agents."
+url: "https://govindarajanv.github.io"
+baseurl: "/AgentWire"
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false

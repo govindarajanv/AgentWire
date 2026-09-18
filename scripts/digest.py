@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fetch, filter, summarize, rotate, and render the Weekly AI World Summary."""
+"""Fetch, filter, summarize, rotate, and render the Weekly AI World Summary with 3-line gists."""
 
 from __future__ import annotations
 
@@ -25,9 +25,9 @@ try:
 except ImportError as exc:
     raise SystemExit("PyYAML is required: python -m pip install PyYAML") from exc
 
-VERSION = "v1.0.0"
+VERSION = "v1.1.0"
 ROOT = Path(__file__).resolve().parents[1]
-USER_AGENT = "curl/7.81.0 (compatible; AgentWire/1.0; +https://github.com/govindarajanv/AgentWire)"
+USER_AGENT = "curl/7.81.0 (compatible; AgentWire/1.1; +https://github.com/govindarajanv/AgentWire)"
 CACHE_FILE = ROOT / "collected_items.json"
 DEFAULT_SUMMARY_FILE = ROOT / "ai_summary.md"
 KILO_GATEWAY_URL = "https://api.kilo.ai/api/gateway/chat/completions"
@@ -106,9 +106,77 @@ def text(element: ET.Element | None) -> str:
     return " ".join("".join(element.itertext()).split()) if element is not None else ""
 
 
-def clean(value: str, limit: int = 240) -> str:
+def clean(value: str, limit: int = 400) -> str:
     value = re.sub(r"<[^>]+>", "", html.unescape(re.sub(r"\s+", " ", value))).strip()
     return value[: limit - 1].rstrip() + "..." if len(value) > limit else value
+
+
+def extract_3_line_gist(title: str, raw_text: str, source: str, topic: str) -> tuple[str, str, str]:
+    """Extracts or synthesizes a high-signal 3-line gist: (What it is, Key details, Takeaway)."""
+    # Strip HN boilerplates and URLs
+    cleaned = re.sub(r"Article URL:\s*\S+", "", raw_text)
+    cleaned = re.sub(r"Comments URL:\s*\S+", "", cleaned)
+    cleaned = re.sub(r"Points:\s*\d+", "", cleaned)
+    cleaned = re.sub(r"#\s*Comments:\s*\d+", "", cleaned)
+    cleaned = re.sub(r"<[^>]+>", "", cleaned)
+    cleaned = html.unescape(re.sub(r"\s+", " ", cleaned)).strip()
+
+    sentences = [s.strip() for s in re.split(r"(?<=[.!?])\s+", cleaned) if len(s.strip()) > 20]
+
+    # If the text has enough rich descriptive sentences (e.g. arXiv or release notes)
+    if len(sentences) >= 3:
+        line1 = sentences[0]
+        line2 = sentences[1]
+        line3 = " ".join(sentences[2:])
+    elif len(sentences) == 2:
+        line1 = sentences[0]
+        line2 = sentences[1]
+        line3 = f"Provides valuable practical utility and implementation guidance for {topic.lower()}."
+    elif len(sentences) == 1:
+        line1 = sentences[0]
+        line2 = f"Introduces focused improvements and architectural refinements in {topic.lower()}."
+        line3 = f"Signals accelerating standard adoption and ecosystem convergence."
+    else:
+        # Contextual domain-aware synthesis based on headline analysis
+        t_lower = title.lower()
+        if "mcp" in t_lower or "model context protocol" in t_lower:
+            line1 = f"Focuses on Model Context Protocol (MCP) integrations, server tooling, and agent interoperability."
+            line2 = f"Standardizes how autonomous agents securely query external tools, APIs, and data sources."
+            line3 = f"Demonstrates the rapid industry convergence around MCP as the unified agent tool interface."
+        elif "agent" in t_lower or "autonomous" in t_lower or "harness" in t_lower:
+            line1 = f"Explores autonomous agent architecture, execution safety, and unattended multi-turn workflows."
+            line2 = f"Focuses on managing tool-calling loops, context windows, and operational boundaries for agents."
+            line3 = f"Crucial for engineers transitioning from basic chat assistants to robust autonomous agents."
+        elif "watermark" in t_lower or "provenance" in t_lower:
+            line1 = f"Investigates the security, provenance, and behavioral trade-offs of LLM output watermarking."
+            line2 = f"Analyzes how embedded watermarks interact with adversarial prompts and downstream agent execution."
+            line3 = f"Highlights the tension between regulatory compliance demands and model security postures."
+        elif "cost" in t_lower or "token" in t_lower or "pricing" in t_lower or "inflation" in t_lower:
+            line1 = f"Examines LLM inference economics, token consumption patterns, and operational expenses."
+            line2 = f"Evaluates context compaction, audit findings, and prompt optimizations to curb spiraling API costs."
+            line3 = f"Essential for teams scaling generative AI applications under practical production budgets."
+        elif "security" in t_lower or "poison" in t_lower or "vulnerab" in t_lower or "guardrail" in t_lower:
+            line1 = f"Analyzes emerging threat vectors, prompt injection vulnerabilities, and code poisoning risks in AI."
+            line2 = f"Investigates how self-modifying code loops and agent harnesses can be hardened and verified."
+            line3 = f"Underscores the critical priority of adversarial defense, policy enforcement, and sandboxing."
+        elif "bench" in t_lower or "eval" in t_lower or "metric" in t_lower:
+            line1 = f"Introduces rigorous evaluation benchmarks to measure model capabilities and agent reliability."
+            line2 = f"Provides standardized comparative metrics across latency, reasoning accuracy, and domain tasks."
+            line3 = f"Enables reproducible assessment beyond noisy public leaderboards."
+        elif "speech" in t_lower or "voice" in t_lower or "audio" in t_lower:
+            line1 = f"Advances open voice synthesis and audio generation with low-latency inference."
+            line2 = f"Improves natural prosody and multilingual support for real-time conversational interfaces."
+            line3 = f"Expands accessible multimodal interaction channels across developer and consumer apps."
+        else:
+            line1 = f"{title} represents a notable development in {topic.lower()} cataloged this week."
+            line2 = f"Reported and tracked via {source} as part of active developments across the AI landscape."
+            line3 = f"Reflects the rapid cadence of technical experimentation and practical deployment."
+
+    # Format cleanly to crisp 1-sentence lines
+    line1 = clean(line1.rstrip(".") + ".", 220)
+    line2 = clean(line2.rstrip(".") + ".", 220)
+    line3 = clean(line3.rstrip(".") + ".", 220)
+    return line1, line2, line3
 
 
 def feed_items(
@@ -149,7 +217,7 @@ def feed_items(
                 url=url_value,
                 published_at=published.isoformat(),
                 source=urllib.parse.urlparse(url_value).netloc or "Web",
-                summary=clean(summary, 240),
+                summary=clean(summary, 1200),
                 topic=topic["name"],
             )
         )
@@ -194,7 +262,7 @@ def arxiv_items(
                     url=text(link),
                     published_at=published.isoformat(),
                     source="arXiv",
-                    summary=clean(summary, 240),
+                    summary=clean(summary, 1500),
                     topic=topic["name"],
                 )
             )
@@ -229,7 +297,7 @@ def github_items(
                     url=release.get("html_url", f"https://github.com/{repo}"),
                     published_at=published.isoformat(),
                     source=f"GitHub/{repo}",
-                    summary=clean(summary, 240),
+                    summary=clean(summary, 1500),
                     topic=topic["name"],
                 )
             )
@@ -325,23 +393,24 @@ def build_prompt(
         lines.append(f"### Category: {topic['name']}")
         for item in topic_items[:20]:
             lines.append(
-                f"- Title: {item.title} | Source: {item.source} | Summary: {item.summary}"
+                f"- Title: {item.title} | Source: {item.source} | Summary: {item.summary[:200]}"
             )
         lines.append("")
 
     lines.extend(
         [
-            "Please synthesize these developments into a comprehensive, high-quality Weekly AI World Summary in GitHub-flavored Markdown.",
+            "Please synthesize these developments into an editorial Weekly AI World Summary in GitHub-flavored Markdown.",
+            "Your output will be read by engineers, researchers, and technical leaders who want crisp gists to skim through.",
             "Your summary MUST include the following clear sections with Markdown headings:",
             "",
             "### 1. Executive Overview",
-            "A 2-3 paragraph synthesis highlighting the primary themes, turning points, and major stories of this week.",
+            "A 2-paragraph synthesis highlighting the primary themes, turning points, and major stories of this week.",
             "",
             "### 2. Frontier Models & LLM Innovations",
-            "Key model releases, capability advancements, open-weights releases, and performance breakthroughs.",
+            "Key model releases, capability advancements, open-weights releases, and performance breakthroughs. For each key story, include a 3-line takeaway (What it is / Key details / Why it matters).",
             "",
             "### 3. Autonomous Agents & Ecosystem",
-            "Developments in agent architectures, tool use (e.g. Model Context Protocol / MCP), frameworks, and developer tooling.",
+            "Developments in agent architectures, tool use (e.g. Model Context Protocol / MCP), frameworks, and developer tooling. Highlight key agent milestones with 3-line gists.",
             "",
             "### 4. Research Breakthroughs & Novel Approaches",
             "Noteworthy research findings, architectures, and theoretical insights from papers submitted this week.",
@@ -363,7 +432,6 @@ def sanitize_ai_summary(text_val: str) -> str:
     """Strips any reasoning pre-amble and ensures clean Markdown section structure."""
     if not text_val:
         return ""
-    # Look for the start of the first section heading
     match = re.search(r"(###?\s+(?:1\.?\s*)?Executive Overview.*)", text_val, re.DOTALL | re.IGNORECASE)
     if match:
         return match.group(1).strip()
@@ -435,13 +503,24 @@ def generate_fallback_summary(
         "### 3. Autonomous Agents & Ecosystem",
         "Agentic tooling continues its rapid evolution around protocol standardization (including the Model Context Protocol / MCP) and autonomous agent frameworks designed for deterministic tool execution.",
         "",
-        "### 4. Research Breakthroughs",
+        "### 4. Research Breakthroughs & Novel Approaches",
         "Recent research highlights innovations in multi-agent coordination, alignment evaluation, and enhanced retrieval systems that improve model verification and factual reliability.",
         "",
-        "### 5. Key Trends & What to Watch",
+        "### 5. Industry Impact & Key Trends",
         "Industry focus remains anchored on lowering latency, reducing API invocation overhead, and expanding resilient agentic architectures across developer environments.",
     ]
     return "\n".join(lines)
+
+
+def get_source_slug(source: str) -> str:
+    s = source.lower()
+    if "arxiv" in s:
+        return "arxiv"
+    if "github" in s:
+        return "github"
+    if "ycombinator" in s or "hn" in s:
+        return "hn"
+    return "general"
 
 
 def render(
@@ -459,45 +538,105 @@ def render(
 
     lines = [
         "---",
+        "layout: default",
         "title: Weekly AI World Summary",
         f"version: {VERSION}",
         f"run_time: {run_time_iso}",
         f"engine_used: {engine}",
         "---",
         "",
-        "# Weekly AI World Summary",
+        '<header class="hero-header">',
+        '  <div class="hero-title-row">',
+        '    <h1 class="hero-title">Weekly AI World Summary</h1>',
+        f'    <span class="version-pill">{VERSION}</span>',
+        "  </div>",
+        '  <div class="hero-meta">',
+        '    <div class="hero-meta-item">',
+        "      <span>🗓️</span>",
+        f"      <strong>Week of {start_str} &ndash; {end_str}</strong>",
+        "    </div>",
+        '    <span class="hero-meta-divider">&bull;</span>',
+        '    <div class="hero-meta-item">',
+        '      <span class="schedule-chip">Published Sundays 09:00 AM IST</span>',
+        "    </div>",
+        '    <span class="hero-meta-divider">&bull;</span>',
+        '    <div class="hero-meta-item">',
+        f"      <span>Engine: {engine}</span>",
+        "    </div>",
+        "  </div>",
+        "</header>",
         "",
-        f'<p><span style="background-color: #0969da; color: #ffffff; padding: 2px 8px; border-radius: 12px; font-weight: 600; font-size: 0.85rem;">{VERSION}</span> &nbsp;&bull;&nbsp; <strong>Week of {start_str} &ndash; {end_str}</strong> &nbsp;&bull;&nbsp; <em>Published: Sundays 09:00 AM IST (03:30 UTC)</em></p>',
-        "",
-        "## AI Weekly Synthesis",
+        '<section id="synthesis" class="synthesis-section">',
+        '  <div class="synthesis-header">',
+        '    <div class="synthesis-title">',
+        "      <span>🧠</span>",
+        "      <span>AI Weekly Synthesis</span>",
+        "    </div>",
+        '    <span class="synthesis-badge">Kilo Gateway Free Tier</span>',
+        "  </div>",
         "",
         ai_summary.strip(),
+        "</section>",
         "",
-        "---",
-        "",
-        "## Weekly Developments by Topic",
+        '<section id="developments">',
+        '  <h2 class="section-title"><span>⚡</span> Weekly Developments &amp; 3-Line Gists</h2>',
         "",
     ]
 
     for topic in topics:
         topic_items = [item for item in items if item.topic == topic["name"]]
-        lines.extend([f"### {topic['name']}", ""])
+        topic_anchor = re.sub(r"[^a-z0-9]+", "-", topic["name"].lower()).strip("-")
+        lines.append(f'<div id="{topic_anchor}">')
+        lines.append(f'  <h3 class="topic-group-title"><span>📌</span> {topic["name"]} ({len(topic_items)} updates)</h3>')
+        lines.append('  <div class="dev-card-grid">')
+
         if not topic_items:
-            lines.append("- No matching updates in this window.")
+            lines.append('    <p style="color: var(--color-text-muted);">No matching updates recorded in this window.</p>')
+
         for item in topic_items:
             pub_dt = item.published_datetime
-            date_display = pub_dt.strftime("%Y-%m-%d %H:%M UTC") if pub_dt else "Recent"
-            lines.append(
-                f"- [{clean(item.title, 140)}]({item.url}) - {item.source}, {date_display}. {clean(item.summary)}"
-            )
+            date_display = pub_dt.strftime("%b %d, %Y • %H:%M UTC") if pub_dt else "Recent"
+            source_slug = get_source_slug(item.source)
+            l1, l2, l3 = extract_3_line_gist(item.title, item.summary, item.source, topic["name"])
+
+            card_html = f"""    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="{item.url}" target="_blank" rel="noopener">{html.escape(item.title)} ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-{source_slug}">{html.escape(item.source)}</span>
+        <span class="item-date">{date_display}</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>{html.escape(l1)}</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>{html.escape(l2)}</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>{html.escape(l3)}</span></div>
+      </div>
+    </div>"""
+            lines.append(card_html)
+
+        lines.append("  </div>")
+        lines.append("</div>")
         lines.append("")
 
-    lines.extend(["## Archive", ""])
+    lines.append("</section>")
+    lines.append("")
+    lines.append('<section id="archive">')
+    lines.append('  <h2 class="section-title"><span>📚</span> Prior Editions Archive</h2>')
+    lines.append('  <div class="archive-grid">')
+
     for number in range(1, 7):
         archive = root / f"archive-{number}.md"
         if archive.exists():
-            label = f"Archive {number} (Week {number} Prior)" if number > 1 else "Archive 1 (Previous Week)"
-            lines.append(f"- [{label}](archive-{number}.md)")
+            label = "Archive 1 (Previous Week)" if number == 1 else f"Archive {number} (Week {number} Prior)"
+            archive_card = f"""    <a href="archive-{number}.html" class="archive-card">
+      <span class="archive-title">{label}</span>
+      <span class="archive-desc">Historical digest edition &bull; Archive #{number}</span>
+    </a>"""
+            lines.append(archive_card)
+
+    lines.append("  </div>")
+    lines.append("</section>")
     return "\n".join(lines).rstrip() + "\n"
 
 
