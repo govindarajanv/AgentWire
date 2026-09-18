@@ -6,6 +6,8 @@ topics:
       - LLM
       - large language model
       - generative AI
+      - frontier model
+      - reasoning model
       - Opencode
       - Antigravity
       - Gemini
@@ -13,14 +15,42 @@ topics:
       - Anthropic
       - DeepSeek
       - GLM
+      - OpenAI
+      - Meta AI
+      - Llama
+      - Mistral
       - Agent Harness
       - Loop Engineering
     feeds:
       - https://hnrss.org/newest?q=AI
-    arxiv_queries: [cat:cs.AI]
-    github_repos: []
+      - https://hnrss.org/newest?q=LLM
+      - https://hnrss.org/frontpage?q=AI
+    arxiv_queries:
+      - cat:cs.AI
+      - cat:cs.CL
+      - cat:cs.LG
+    github_repos:
+      - huggingface/transformers
+      - vllm-project/vllm
+      - ollama/ollama
   - name: Agents and Automation
-    keywords: [AI agent, agentic, autonomous agent, MCP, automation]
-    feeds: []
-    arxiv_queries: [cat:cs.MA]
-    github_repos: []
+    keywords:
+      - AI agent
+      - agentic
+      - autonomous agent
+      - MCP
+      - Model Context Protocol
+      - automation
+      - agent harness
+      - tool use
+      - multi-agent
+      - LangGraph
+    feeds:
+      - https://hnrss.org/newest?q=AI+agent
+      - https://hnrss.org/newest?q=MCP
+    arxiv_queries:
+      - cat:cs.MA
+      - cat:cs.AI
+    github_repos:
+      - modelcontextprotocol/servers
+      - langchain-ai/langgraph

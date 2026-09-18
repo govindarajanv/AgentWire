@@ -24,6 +24,14 @@ htmlcov/
 dist/
 build/
 *.egg-info/
+_site/
+.jekyll-cache/
+.jekyll-metadata
+
+# Pipeline intermediate artifacts
+prompt.txt
+ai_summary.md
+collected_items.json
 
 # Editor and operating-system files
 .vscode/*
