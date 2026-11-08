@@ -20,7 +20,7 @@ This file is the single source of truth for the Weekly AI World Summary pipeline
 ## Versioning
 
 - Follows Semantic Versioning: `v[major].[minor].[patch]`.
-- Current release: `v1.1.1` (concurrency guard, fetch-depth: 0, and remote rebase to eliminate git push rejections; 3-line skimmable gists and responsive magazine styling).
+- Current release: `v1.1.2` (concurrency guard, fetch-depth: 0, remote rebase, updated README GitHub Pages publication link, and responsive magazine styling).
 - The live version badge is always displayed directly below the main page title so it is visible to users.
 
 ## Item Schema
@@ -38,7 +38,7 @@ Each item contains:
 
 Generated pages follow this layout:
 1. **Front Matter:** YAML containing `layout: default`, `title`, `version`, `run_time`, and `engine_used`.
-2. **Hero Header:** Main title, live version badge (`v1.1.0`), week date range, and edition metadata.
+2. **Hero Header:** Main title, live version badge (`v1.1.2`), week date range, and edition metadata.
 3. **AI Weekly Synthesis:** Highlight section powered by Kilo Gateway:
    - `### 1. Executive Overview`
    - `### 2. Frontier Models & LLM Innovations`
