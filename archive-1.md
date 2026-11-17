@@ -1,20 +1,20 @@
 ---
 layout: default
 title: Weekly AI World Summary
-version: v1.1.1
-run_time: 2026-11-08T10:43:35.652912Z
-engine_used: Kilo Gateway (reflection/beam-free)
+version: v1.1.2
+run_time: 2026-11-15T11:24:56.952513Z
+engine_used: Kilo Gateway (nvidia/nemotron-3.5-super-vl:free)
 ---
 
 <header class="hero-header">
   <div class="hero-title-row">
     <h1 class="hero-title">Weekly AI World Summary</h1>
-    <span class="version-pill">v1.1.1</span>
+    <span class="version-pill">v1.1.2</span>
   </div>
   <div class="hero-meta">
     <div class="hero-meta-item">
       <span>🗓️</span>
-      <strong>Week of November 01, 2026 &ndash; November 08, 2026</strong>
+      <strong>Week of November 08, 2026 &ndash; November 15, 2026</strong>
     </div>
     <span class="hero-meta-divider">&bull;</span>
     <div class="hero-meta-item">
@@ -22,7 +22,7 @@ engine_used: Kilo Gateway (reflection/beam-free)
     </div>
     <span class="hero-meta-divider">&bull;</span>
     <div class="hero-meta-item">
-      <span>Engine: Kilo Gateway (reflection/beam-free)</span>
+      <span>Engine: Kilo Gateway (nvidia/nemotron-3.5-super-vl:free)</span>
     </div>
   </div>
 </header>
@@ -37,95 +37,245 @@ engine_used: Kilo Gateway (reflection/beam-free)
   </div>
 
 ### 1. Executive Overview
+2 paragraphs. Synthesize primary themes: MCP fragmentation vs consolidation, inference efficiency enabling edge/local deployment, geopolitical hardware tensions, AI crossing into regulated professions. Mention turning point: move from "can we build agents" to "how do we govern/connect them safely at scale."
 
-This week’s AI landscape was defined by a tension between accelerating capability and the infrastructure needed to safely operationalize it. Anthropic’s warning that it is close to “RSI” or self-building AI capability stood out as the clearest signal that frontier labs are approaching a new threshold of recursive improvement, while parallel discussions around what AI can actually hack, how to defend models from backdoor attacks, and how to price inference all pointed to a maturing focus on security, economics, and control. At the same time, the market for proprietary workflow data continued to heat up, with labs reportedly paying six- and seven-figure sums for internal company files and emails, reinforcing that real-world operational data is becoming a strategic asset.
+### 2. Frontier Models & LLM Innovations
+Key stories:
+- DeepSeek v4.1 Flash running on 8x V100 at 4-bit NF4 (80% of model). What: local inference on aging enterprise hardware. Key: 4-bit NF4 quantization, lawyer's private server. Why: demonstrates frontier model accessibility without H100s, quantization maturity.
+- Vantage-V-AI: 2-bit ternary KV-cache with attention sinks. What: inference memory optimization. Key: extreme quantization of KV cache. Why: reduces memory bandwidth, enables longer contexts on commodity hardware.
+- IBM Spyre AI Accelerator Card: 75W PCIe, 128GB LPDDR5. What: new AI hardware. Key: low power, high memory capacity card. Why: targets edge/enterprise inference, alternative to GPU-centric architecture.
+- LLM architecture retrospective (every change since 2020). What: technical survey. Key: evolution of architectures. Why: context for current frontier design choices.
+- Maybe mention Anthropic biotech acquisition? That's more industry/M&A, but could fit under models if it's AI-powered biotech. Probably better in Industry Impact.
 
-The agent ecosystem also moved decisively from demos toward practical systems. MCP-based tooling expanded across image generation, task leasing, browser automation, animation, and finance, while new
+I should pick 4-5 key stories. Let's do:
+1. DeepSeek v4.1 Flash on V100s (NF4 quantization)
+2. Vantage-V-AI (2-bit ternary KV-cache)
+3. IBM Spyre Accelerator
+4. LLM Architecture retrospective (research/innovation)
+5. Maybe the AI-authored font or dance edit? Those are more generative media, less frontier models. I'll skip or briefly mention in industry.
+
+Actually, "Frontier Models & LLM Innovations" should focus on models and core LLM tech. So:
+- DeepSeek v4.1 Flash local deployment
+- Vantage-V-AI KV-cache innovation
+- IBM Spyre hardware (enables model deployment)
+- Architecture retrospective (Nikita Pavlichenko)
+
+### 3. Autonomous Agents & Ecosystem
+Key stories:
+- MCP proliferation: 37,000 servers tested, "A Pile of MCP Connectors Is Not a Context Engine" critique, CtxWise, Port of Context. Theme: MCP is everywhere but facing scaling/context bloat issues.
+- Agent browsers: Browserr, BrowserDo Embody, Browser Hands, Turbo-Browser-MCP. Theme: web as agent interface.
+- LangGraph 1.2.22 + checkpoint updates. Theme: framework maturation, persistence improvements.
+- Specialized MCPs: Mac Health, Copper-KiCad, RedHands (security), Webcrawl, CloudHike, Railyard (SQL). Theme: vertical MCP expansion.
+
+I'll group these into 3-4 gists:
+1. MCP Ecosystem Maturation & Growing Pains (37k servers tested, context engine critique, CtxWise/Port of Context optimizations)
+2. Agent-First Browsers & Web Automation (Browserr, Embody, Browser Hands, Turbo-Browser-MCP)
+3. LangGraph Framework Updates (1.2.22, checkpoint-postgres/prebuilt)
+4. Vertical MCP Expansion (KiCad, Mac Health, RedHands, SQL, etc.)
+
+Each needs 3-line gist: What it is / Key details / Why it matters.
+
+### 4. Research Breakthroughs & Novel Approaches
+From the list:
+- Vantage-V-AI (2-bit ternary KV-cache with attention sinks) - could go here or frontier models. It's more of a systems research/innovation.
+- ShadowDiff - shadow testing/SQL diffing for AI-migrated backends. Research/tooling for migration validation
 </section>
 
 <section id="developments">
   <h2 class="section-title"><span>⚡</span> Weekly Developments &amp; 3-Line Gists</h2>
 
 <div id="ai-and-llms">
-  <h3 class="topic-group-title"><span>📌</span> AI and LLMs (105 updates)</h3>
+  <h3 class="topic-group-title"><span>📌</span> AI and LLMs (107 updates)</h3>
   <div class="dev-card-grid">
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="https://dorcohen.dev/posts/what-can-ai-actually-hack/" target="_blank" rel="noopener">What Can AI Hack? Inside Frontier Labs&#x27; Tests ↗</a></div>
+        <div class="item-title"><a href="https://borretti.me/article/taking-ai-seriously" target="_blank" rel="noopener">Taking AI Seriously ↗</a></div>
       </div>
       <div class="item-meta">
-        <span class="badge-source source-general">dorcohen.dev</span>
-        <span class="item-date">Nov 08, 2026 • 09:42 UTC</span>
+        <span class="badge-source source-general">borretti.me</span>
+        <span class="item-date">Nov 15, 2026 • 10:36 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>What Can AI Hack? Inside Frontier Labs&#x27; Tests represents a notable development in ai and llms cataloged this week.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via dorcohen.dev as part of active developments across the AI landscape.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Taking AI Seriously represents a notable development in ai and llms cataloged this week.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via borretti.me as part of active developments across the AI landscape.</span></div>
         <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
       </div>
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="https://news.ncsu.edu/2026/11/new-techniques-to-prevent-backdoor-attacks/" target="_blank" rel="noopener">Researchers unveiled new techniques to protect AI from backdoor attacks ↗</a></div>
+        <div class="item-title"><a href="https://adlrocha.substack.com/p/adlrocha-most-of-ai-moats-are-just" target="_blank" rel="noopener">Most of AI moats are just fuel ↗</a></div>
       </div>
       <div class="item-meta">
-        <span class="badge-source source-general">news.ncsu.edu</span>
-        <span class="item-date">Nov 08, 2026 • 09:32 UTC</span>
+        <span class="badge-source source-general">adlrocha.substack.com</span>
+        <span class="item-date">Nov 15, 2026 • 10:06 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Researchers unveiled new techniques to protect AI from backdoor attacks represents a notable development in ai and llms cataloged this week.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via news.ncsu.edu as part of active developments across the AI landscape.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Most of AI moats are just fuel represents a notable development in ai and llms cataloged this week.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via adlrocha.substack.com as part of active developments across the AI landscape.</span></div>
         <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
       </div>
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="https://thinkstream.app/" target="_blank" rel="noopener">ThinkStream – AI generates the work. We still need to understand it ↗</a></div>
+        <div class="item-title"><a href="https://github.com/khoadev-vn/VANTAGE-V-AI" target="_blank" rel="noopener">Show HN: Vantage-V-AI – 2-bit ternary KV-cache with attention sinks ↗</a></div>
       </div>
       <div class="item-meta">
-        <span class="badge-source source-general">thinkstream.app</span>
-        <span class="item-date">Nov 08, 2026 • 09:20 UTC</span>
+        <span class="badge-source source-github">github.com</span>
+        <span class="item-date">Nov 15, 2026 • 09:50 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>ThinkStream – AI generates the work. We still need to understand it represents a notable development in ai and llms cataloged this week.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via thinkstream.app as part of active developments across the AI landscape.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Show HN: Vantage-V-AI – 2-bit ternary KV-cache with attention sinks represents a notable development in ai and llms cataloged this week.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via github.com as part of active developments across the AI landscape.</span></div>
         <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
       </div>
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="https://www.wired.com/story/ai-companies-really-really-want-to-buy-your-work-files-and-emails/" target="_blank" rel="noopener">AI Companies Want to Buy Your Work Files and Emails ↗</a></div>
+        <div class="item-title"><a href="https://inlevel9.com/en/issues/top-score-under-suspicion" target="_blank" rel="noopener">Korea&#x27;s top tax accountant exam scorer confesses to cheating with AI ↗</a></div>
       </div>
       <div class="item-meta">
-        <span class="badge-source source-general">www.wired.com</span>
-        <span class="item-date">Nov 08, 2026 • 09:15 UTC</span>
+        <span class="badge-source source-general">inlevel9.com</span>
+        <span class="item-date">Nov 15, 2026 • 09:18 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>AI Companies Want to Buy Your Work Files and Emails represents a notable development in ai and llms cataloged this week.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via www.wired.com as part of active developments across the AI landscape.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Korea&#x27;s top tax accountant exam scorer confesses to cheating with AI represents a notable development in ai and llms cataloged this week.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via inlevel9.com as part of active developments across the AI landscape.</span></div>
         <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
       </div>
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="https://knhash.in/no-ai-line-cook/" target="_blank" rel="noopener">Being a line cook without talking to AI ↗</a></div>
+        <div class="item-title"><a href="https://www.thebanner.com/education/k-12-schools/county-schools-artificial-intelligence-453DCFYJL5CDBAM4AY3NYY4ILU/" target="_blank" rel="noopener">Baltimore County schools phase out AI reading program ↗</a></div>
       </div>
       <div class="item-meta">
-        <span class="badge-source source-general">knhash.in</span>
-        <span class="item-date">Nov 08, 2026 • 08:16 UTC</span>
+        <span class="badge-source source-general">www.thebanner.com</span>
+        <span class="item-date">Nov 15, 2026 • 07:40 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Being a line cook without talking to AI represents a notable development in ai and llms cataloged this week.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via knhash.in as part of active developments across the AI landscape.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Baltimore County schools phase out AI reading program represents a notable development in ai and llms cataloged this week.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via www.thebanner.com as part of active developments across the AI landscape.</span></div>
         <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
       </div>
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="https://usdt-kit-production.up.railway.app/ramen" target="_blank" rel="noopener">Show HN: Ramen – an AI agent that has to earn its own rent ↗</a></div>
+        <div class="item-title"><a href="https://medium.com/@wangjiayiliuyan/i-tested-an-ai-dance-edit-on-five-seconds-of-footage-then-i-tried-the-whole-clip-2e733305eee1" target="_blank" rel="noopener">I tested an AI dance edit on five seconds of footage, then tried the whole clip ↗</a></div>
       </div>
       <div class="item-meta">
-        <span class="badge-source source-general">usdt-kit-production.up.railway.app</span>
-        <span class="item-date">Nov 08, 2026 • 07:38 UTC</span>
+        <span class="badge-source source-general">medium.com</span>
+        <span class="item-date">Nov 15, 2026 • 06:58 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>I tested an AI dance edit on five seconds of footage, then tried the whole clip represents a notable development in ai and llms cataloged this week.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via medium.com as part of active developments across the AI landscape.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://github.com/vishalrajofficial/ShadowDiff" target="_blank" rel="noopener">Show HN: ShadowDiff – Shadow testing and SQL diffing for AI-migrated back ends ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-github">github.com</span>
+        <span class="item-date">Nov 15, 2026 • 06:54 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Show HN: ShadowDiff – Shadow testing and SQL diffing for AI-migrated back ends represents a notable development in ai and llms cataloged this week.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via github.com as part of active developments across the AI landscape.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://chromewebstore.google.com/detail/jaab-ai-job-hunt-copilot/anpjlacmlihooopakbogefcdffpibpll" target="_blank" rel="noopener">Jaab – AI Job Hunt Copilot ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-general">chromewebstore.google.com</span>
+        <span class="item-date">Nov 15, 2026 • 06:34 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Jaab – AI Job Hunt Copilot represents a notable development in ai and llms cataloged this week.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via chromewebstore.google.com as part of active developments across the AI landscape.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://www.troutman.com/insights/the-coming-patent-storm-in-ai-hardware-what-the-capital-flows-the-memory-wall-and-the-optical-interconnect-race-mean-for-your-ip-strategy/" target="_blank" rel="noopener">The Coming Patent Storm in AI Hardware ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-general">www.troutman.com</span>
+        <span class="item-date">Nov 15, 2026 • 06:32 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>The Coming Patent Storm in AI Hardware represents a notable development in ai and llms cataloged this week.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via www.troutman.com as part of active developments across the AI landscape.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/lawyer-upgrades-eight-v100-private-ai-server-to-run-80-percent-of-deepseek-v4-1-flash-at-4-bit-nvfp4-precision-adds-1tb-of-ram-an-nvidia-rtx-3090-and-fixes-crashes-caused-by-a-bad-psu" target="_blank" rel="noopener">Lawyer upgrades eight-V100 private AI server to run 80% of DeepSeek v4.1 Flash ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-general">www.tomshardware.com</span>
+        <span class="item-date">Nov 15, 2026 • 06:19 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Lawyer upgrades eight-V100 private AI server to run 80% of DeepSeek v4.1 Flash represents a notable development in ai and llms cataloged this week.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via www.tomshardware.com as part of active developments across the AI landscape.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://swordcoastmap.com/font" target="_blank" rel="noopener">Stonebrook Quill: full-featured AI-authored fantasy font ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-general">swordcoastmap.com</span>
+        <span class="item-date">Nov 15, 2026 • 06:16 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Stonebrook Quill: full-featured AI-authored fantasy font represents a notable development in ai and llms cataloged this week.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via swordcoastmap.com as part of active developments across the AI landscape.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://www.ibm.com/docs/en/systems-hardware/zsystems/9175-ME1?topic=introduction-spyre-accelerator" target="_blank" rel="noopener">IBM Spyre AI Accelerator Card (75W PCIe Card with 128GB of LPDDR5) ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-general">www.ibm.com</span>
+        <span class="item-date">Nov 15, 2026 • 06:13 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>IBM Spyre AI Accelerator Card (75W PCIe Card with 128GB of LPDDR5) represents a notable development in ai and llms cataloged this week.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via www.ibm.com as part of active developments across the AI landscape.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://play.google.com/store/apps/details?id=com.beau.aiboyfriend&hl=en_US" target="_blank" rel="noopener">Beau – An AI boyfriend app focused on everyday conversations ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-general">play.google.com</span>
+        <span class="item-date">Nov 15, 2026 • 05:54 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Beau – An AI boyfriend app focused on everyday conversations represents a notable development in ai and llms cataloged this week.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via play.google.com as part of active developments across the AI landscape.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://embiody.com/blog/embiody-0-9-preview/" target="_blank" rel="noopener">BrowserDo·Embiody – a browser built for AI agents ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-general">embiody.com</span>
+        <span class="item-date">Nov 15, 2026 • 05:47 UTC</span>
       </div>
       <div class="gist-box">
         <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Explores autonomous agent architecture, execution safety, and unattended multi-turn workflows.</span></div>
@@ -135,67 +285,165 @@ The agent ecosystem also moved decisively from demos toward practical systems. M
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="https://news.ycombinator.com/item?id=50411036" target="_blank" rel="noopener">Ask HN: LLM-Resistant Publishing Strategies ↗</a></div>
+        <div class="item-title"><a href="https://daniel-azuma.com/blog/2026-11-12-ai-skeptic/" target="_blank" rel="noopener">Confessions of an AI Skeptic ↗</a></div>
       </div>
       <div class="item-meta">
-        <span class="badge-source source-hn">news.ycombinator.com</span>
-        <span class="item-date">Nov 08, 2026 • 06:57 UTC</span>
+        <span class="badge-source source-general">daniel-azuma.com</span>
+        <span class="item-date">Nov 15, 2026 • 05:20 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>As has been discussed at length, LLM companies carried out the most egregious theft of labor [0] and intellectual property [1] in human history.I am one among the many (artists, musicians, writers, developers), who cont...</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>As such, I have mostly ceased publishing original content online, while I wait for effective defenses to emerge.The two industry-standards are `robots.txt` and captchas.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Neither works: the former is simply ignored, even by industry heavyweights [3]; the latter is trivial to bypass (using AI itself [4], remote solving services [5], or anti-detect browsers/impersonators [6] + residential...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="https://www.rxcode.dev/" target="_blank" rel="noopener">Show HN: I built an AI code editor that for teams ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-general">www.rxcode.dev</span>
-        <span class="item-date">Nov 08, 2026 • 06:12 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>I built an open-source AI code editor for team collaboration, featuring a built-in sprint board and the ability to assign tasks to different agents.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>I’d love to get your feedback and suggestions!.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>PR and issues are very welcome.</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="https://calendly.com/d/d3ss-w9w-7vs" target="_blank" rel="noopener">AI labs are paying $100K–$2M for internal company workflow data ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-general">calendly.com</span>
-        <span class="item-date">Nov 08, 2026 • 06:03 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>AI labs are paying $100K–$2M for internal company workflow data represents a notable development in ai and llms cataloged this week.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via calendly.com as part of active developments across the AI landscape.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Confessions of an AI Skeptic represents a notable development in ai and llms cataloged this week.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via daniel-azuma.com as part of active developments across the AI landscape.</span></div>
         <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
       </div>
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="https://www.techradar.com/pro/70-percent-of-brits-say-please-or-thank-you-when-speaking-to-ai-and-some-even-apologize" target="_blank" rel="noopener">70% of Brits say please or thank you when speaking to AI, some even apologize ↗</a></div>
+        <div class="item-title"><a href="https://www.wsj.com/tech/jensen-huang-backdoor-ai-data-centers-a5e4499d" target="_blank" rel="noopener">How Jensen Huang Built the Backdoor Route That Keeps Beijing in the AI Race ↗</a></div>
       </div>
       <div class="item-meta">
-        <span class="badge-source source-general">www.techradar.com</span>
-        <span class="item-date">Nov 08, 2026 • 05:58 UTC</span>
+        <span class="badge-source source-general">www.wsj.com</span>
+        <span class="item-date">Nov 15, 2026 • 04:42 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>70% of Brits say please or thank you when speaking to AI, some even apologize represents a notable development in ai and llms cataloged this week.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via www.techradar.com as part of active developments across the AI landscape.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>How Jensen Huang Built the Backdoor Route That Keeps Beijing in the AI Race represents a notable development in ai and llms cataloged this week.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via www.wsj.com as part of active developments across the AI landscape.</span></div>
         <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
       </div>
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="https://codend.dev" target="_blank" rel="noopener">Show HN: Codend – Build and publish web apps with AI agents ↗</a></div>
+        <div class="item-title"><a href="https://www.nature.com/articles/d41586-026-03640-9" target="_blank" rel="noopener">Anthropic bought a one-person, AI-powered biotech ↗</a></div>
       </div>
       <div class="item-meta">
-        <span class="badge-source source-general">codend.dev</span>
-        <span class="item-date">Nov 08, 2026 • 05:49 UTC</span>
+        <span class="badge-source source-general">www.nature.com</span>
+        <span class="item-date">Nov 15, 2026 • 04:01 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Anthropic bought a one-person, AI-powered biotech represents a notable development in ai and llms cataloged this week.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via www.nature.com as part of active developments across the AI landscape.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://linux.slashdot.org/story/26/11/14/0827227/linus-torvalds-wonders-if-linuxs-ai-prompted-patch-flood-has-peaked" target="_blank" rel="noopener">Linus Torvalds Wonders If Linux&#x27;s AI-Prompted Patch Flood Has Peaked ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-general">linux.slashdot.org</span>
+        <span class="item-date">Nov 15, 2026 • 03:56 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Linus Torvalds Wonders If Linux&#x27;s AI-Prompted Patch Flood Has Peaked represents a notable development in ai and llms cataloged this week.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via linux.slashdot.org as part of active developments across the AI landscape.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://www.youtube.com/watch?v=MspRSCAb6uI" target="_blank" rel="noopener">ChatMate: Remote Prompt Execution on AI Assistants Through Sandbox Escaping [video] ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-general">www.youtube.com</span>
+        <span class="item-date">Nov 15, 2026 • 02:49 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>ChatMate: Remote Prompt Execution on AI Assistants Through Sandbox Escaping [video] represents a notable development in ai and llms cataloged this week.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via www.youtube.com as part of active developments across the AI landscape.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://www.nikita-pavlichenko.com/blog/every-llm-architecture-change" target="_blank" rel="noopener">I Tried Every LLM Architecture Change Since 2020 ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-general">www.nikita-pavlichenko.com</span>
+        <span class="item-date">Nov 14, 2026 • 18:41 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>I Tried Every LLM Architecture Change Since 2020 represents a notable development in ai and llms cataloged this week.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via www.nikita-pavlichenko.com as part of active developments across the AI landscape.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://arxiv.org/abs/2610.28259" target="_blank" rel="noopener">Use LLM for direct robot control ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arxiv.org</span>
+        <span class="item-date">Nov 14, 2026 • 17:55 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Use LLM for direct robot control represents a notable development in ai and llms cataloged this week.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via arxiv.org as part of active developments across the AI landscape.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://py-code.org/blog/new-pypi-packages-imports/" target="_blank" rel="noopener">What new PyPI packages import: LLM, httpx, pydantic v2 ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-general">py-code.org</span>
+        <span class="item-date">Nov 14, 2026 • 13:28 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>What new PyPI packages import: LLM, httpx, pydantic v2 represents a notable development in ai and llms cataloged this week.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via py-code.org as part of active developments across the AI landscape.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://waldo.vanderlore.de/blog/whatyousay-privacy-voice-pipeline/" target="_blank" rel="noopener">Write the eval before the fix: building a WhatsApp transcriber with LLM-TDD ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-general">waldo.vanderlore.de</span>
+        <span class="item-date">Nov 14, 2026 • 12:43 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Introduces rigorous evaluation benchmarks to measure model capabilities and agent reliability.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Provides standardized comparative metrics across latency, reasoning accuracy, and domain tasks.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Enables reproducible assessment beyond noisy public leaderboards.</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://posthog.com/newsletter/decision-models" target="_blank" rel="noopener">Not Everything Needs an LLM ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-general">posthog.com</span>
+        <span class="item-date">Nov 14, 2026 • 06:25 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Not Everything Needs an LLM represents a notable development in ai and llms cataloged this week.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via posthog.com as part of active developments across the AI landscape.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://ycao.net/posts/llm-comprehension-acceptance" target="_blank" rel="noopener">We Dislike LLM Output, Not Because of Comprehension ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-general">ycao.net</span>
+        <span class="item-date">Nov 13, 2026 • 23:45 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>We Dislike LLM Output, Not Because of Comprehension represents a notable development in ai and llms cataloged this week.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via ycao.net as part of active developments across the AI landscape.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://www.researchgate.net/publication/417439900_Cooperation_Between_Autonomous_LLM_Agents_in_the_Repeated_Prisoner%27s_Dilemma_Exploitation_Cheap_Talk_and_Reputation" target="_blank" rel="noopener">Cooperation Between Autonomous LLM Agents in the Prisoner&#x27;s Dilemma ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-general">www.researchgate.net</span>
+        <span class="item-date">Nov 13, 2026 • 20:46 UTC</span>
       </div>
       <div class="gist-box">
         <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Explores autonomous agent architecture, execution safety, and unattended multi-turn workflows.</span></div>
@@ -205,11 +453,165 @@ The agent ecosystem also moved decisively from demos toward practical systems. M
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="https://patentlyze.com/patent/microsoft-live-ai-video-rewrites-speech/" target="_blank" rel="noopener">AI Live Speech Rewriting Patent ↗</a></div>
+        <div class="item-title"><a href="https://spacechem.wincon.dev/" target="_blank" rel="noopener">LLM&#x27;s Play Zachtronics&#x27; SpaceChem ↗</a></div>
       </div>
       <div class="item-meta">
-        <span class="badge-source source-general">patentlyze.com</span>
-        <span class="item-date">Nov 08, 2026 • 05:41 UTC</span>
+        <span class="badge-source source-general">spacechem.wincon.dev</span>
+        <span class="item-date">Nov 13, 2026 • 19:59 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>LLM&#x27;s Play Zachtronics&#x27; SpaceChem represents a notable development in ai and llms cataloged this week.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via spacechem.wincon.dev as part of active developments across the AI landscape.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://nathan.rs/posts/detllm/" target="_blank" rel="noopener">Eliminating Nondeterminism in LLM Inference with Integer-Only Arithmetic ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-general">nathan.rs</span>
+        <span class="item-date">Nov 13, 2026 • 16:32 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Eliminating Nondeterminism in LLM Inference with Integer-Only Arithmetic represents a notable development in ai and llms cataloged this week.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via nathan.rs as part of active developments across the AI landscape.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://github.com/langfuse/langfuse/tree/main/ai-gateway" target="_blank" rel="noopener">Show HN: Langfuse AI Gateway, open source rust gateway to trace every LLM call ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-github">github.com</span>
+        <span class="item-date">Nov 13, 2026 • 15:10 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Hi HN, this is Max, Marc and Clemens, co-founders of Langfuse, the open source tool for agent &amp; observability &amp; evals (https://github.com/langfuse/langfuse).It’s been a minute since our last Show HN in August 2023 (http...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Today, we are happy to show the beta of Langfuse AI Gateway: https://github.com/langfuse/langfuse/tree/main/ai-gateway.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>You may ask, why an AI Gateway as our second product: it’s been one our community’s strongest asks + integration pattern that we’ve seen. We want to offer a scalable, reliable and secure way to solve for the gateway use...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://github.com/huggingface/transformers/releases/tag/v5.23.0" target="_blank" rel="noopener">Release v5.23.0 ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-github">GitHub/huggingface/transformers</span>
+        <span class="item-date">Nov 13, 2026 • 14:10 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span># Release v5.23.0 ## New Model additions ### Inkling2 Inkling 2 Small is a multimodal model from Thinking Machines Lab that accepts text and image inputs and generates text outputs, and it is intended for use in English...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Its language backbone has 48 mixture-of-experts decoder layers, each routing tokens to 8 of 384 experts, for 594B total and 17B active parameters.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>It keeps the Inkling decoder (learned relative attention, short causal convolutions, mixture-of-experts layers) and adds block attention residuals, gated attention with a learned sink, and dynamic key/value convolutions...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://github.com/torinriley/alpaca" target="_blank" rel="noopener">Im 17, Built a Swift-native LLM inference engine for Apple Silicon ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-github">github.com</span>
+        <span class="item-date">Nov 13, 2026 • 14:02 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Im 17, Built a Swift-native LLM inference engine for Apple Silicon represents a notable development in ai and llms cataloged this week.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via github.com as part of active developments across the AI landscape.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://machinelearningmastery.com/the-complete-guide-to-llm-evaluation/" target="_blank" rel="noopener">The Complete Guide to LLM Evaluation ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-general">machinelearningmastery.com</span>
+        <span class="item-date">Nov 13, 2026 • 12:02 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Introduces rigorous evaluation benchmarks to measure model capabilities and agent reliability.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Provides standardized comparative metrics across latency, reasoning accuracy, and domain tasks.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Enables reproducible assessment beyond noisy public leaderboards.</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://chatpanel.net/" target="_blank" rel="noopener">Show HN: Chap – Meeting notes from live captions (no bot) with any LLM or agent ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-general">chatpanel.net</span>
+        <span class="item-date">Nov 13, 2026 • 06:31 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Chap is an AI Agent that is botless in capturing meeting notes (zoom, google meet, teams, webex) and a linked notebook (AI note taking), on any model or agent (claude code, codex and any CLI agents(opencode, hermes etc....</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>its much more once you start looking into it.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Provides valuable practical utility and implementation guidance for ai and llms.</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://github.com/con-dog/clingon" target="_blank" rel="noopener">I let an LLM use my TUI like a user. It found multiple UX bugs ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-github">github.com</span>
+        <span class="item-date">Nov 13, 2026 • 06:05 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>I let an LLM use my TUI like a user. It found multiple UX bugs represents a notable development in ai and llms cataloged this week.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via github.com as part of active developments across the AI landscape.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://distdebug.com/" target="_blank" rel="noopener">DistDebug-Bench: Can LLM Agents Diagnose Bugs in Distributed Systems? ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-general">distdebug.com</span>
+        <span class="item-date">Nov 13, 2026 • 05:19 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Explores autonomous agent architecture, execution safety, and unattended multi-turn workflows.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Focuses on managing tool-calling loops, context windows, and operational boundaries for agents.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Crucial for engineers transitioning from basic chat assistants to robust autonomous agents.</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://blog.comfy.org/p/doubling-llm-token-rates-in-comfyui" target="_blank" rel="noopener">Doubling LLM token rates in ComfyUI ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-general">blog.comfy.org</span>
+        <span class="item-date">Nov 13, 2026 • 02:52 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Examines LLM inference economics, token consumption patterns, and operational expenses.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Evaluates context compaction, audit findings, and prompt optimizations to curb spiraling API costs.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Essential for teams scaling generative AI applications under practical production budgets.</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://github.com/Privatris/AgentLeak" target="_blank" rel="noopener">Show HN: AgentLeak – open-source privacy testing for multi-agent LLM systems ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-github">github.com</span>
+        <span class="item-date">Nov 13, 2026 • 01:36 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Explores autonomous agent architecture, execution safety, and unattended multi-turn workflows.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Focuses on managing tool-calling loops, context windows, and operational boundaries for agents.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Crucial for engineers transitioning from basic chat assistants to robust autonomous agents.</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://github.com/saystreet/demo" target="_blank" rel="noopener">Show HN: SayStreet – Voice shopping for blind users; the LLM never touches money ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-github">github.com</span>
+        <span class="item-date">Nov 13, 2026 • 00:35 UTC</span>
       </div>
       <div class="gist-box">
         <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Advances open voice synthesis and audio generation with low-latency inference.</span></div>
@@ -219,1319 +621,983 @@ The agent ecosystem also moved decisively from demos toward practical systems. M
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="https://github.com/tinyBigGAMES/VindexLLM" target="_blank" rel="noopener">VindexLLM – Windows Vulkan GPU GGUF LLM inference engine written in Delphi 12 ↗</a></div>
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17334v1" target="_blank" rel="noopener">Unbundling Multimodal Vision Encoding ↗</a></div>
       </div>
       <div class="item-meta">
-        <span class="badge-source source-github">github.com</span>
-        <span class="item-date">Nov 08, 2026 • 05:25 UTC</span>
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 18:59 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>VindexLLM – Windows Vulkan GPU GGUF LLM inference engine written in Delphi 12 represents a notable development in ai and llms cataloged this week.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via github.com as part of active developments across the AI landscape.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>How multimodal language models should encode visual input remains up for debate.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Most models use a pretrained vision encoder, while some recent recipes train the encoder from scratch with the language model or remove it entirely.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Vision encoders bundle together three design choices: a visual prior from upstream pretraining, dedicated vision capacity, and pre-fusion placement of that capacity (i.e., before the multimodal backbone). Because publis...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17332v1" target="_blank" rel="noopener">ArchSpace: Recording, Reviewing, and Referencing LLM Architecture Research ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 18:59 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Model architecture shapes the scaling behavior, training efficiency, and inference cost of LLMs, making it a central focus of both industry and academia.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>In industry, teams such as those behind DeepSeek, Qwen, and Kimi routinely introduce architectural innovations, yet public reports rarely document which ideas succeeded, which were abandoned, and why.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>In academia, limited compute and inconsistent baselines often restrict evaluations to small-scale, single-point comparisons, making it difficult to establish whether improvements hold at larger scales or translate into...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17329v1" target="_blank" rel="noopener">Internalizing Investment Mandates: A Neurosymbolic RL Approach to Portfolio Allocation ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 18:59 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Institutional portfolios operate under investment policy statements that specify asset allocation constraints, often conditioned on market regime information.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Deep reinforcement learning has been shown to optimize financial performance but typically does not enforce rule compliance, making it unsuitable for real-world deployment.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Existing neurosymbolic methods such as Probabilistic Logic Policy Gradient (PLPG) offer constraint-satisfying reinforcement learning (RL) via differentiable symbolic supervision but assume a finite, discrete action spac...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17323v1" target="_blank" rel="noopener">AgentSSL: Can MLE Agents Leverage Unlabeled Data? ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 18:59 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Applying machine learning systems to new domains introduces bottlenecks in both labeled data acquisition and manual pipeline engineering.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>While recent MLE agents show promise in automating pipeline design, they have been studied almost exclusively in fully supervised settings, leaving them untested in realistic regimes where labeled data is scarce but unl...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>In this work, we introduce Agentic Semi-Supervised Learning (AgentSSL), framing SSL as a program search problem and studying how agents navigate this space under limited supervision. We find that even under weak feedbac...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17320v1" target="_blank" rel="noopener">Learning When Diffusion Language Models Should Regenerate ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 18:58 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Remasking allows diffusion language models to revisit generated text, but effective correction requires knowing when and what to revise.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Our diagnosis on Sudoku reveals two gaps.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Hidden states contain error information that token confidence does not reliably expose, and remasking an isolated error usually reproduces it when the surrounding context remains fixed. These findings motivate DiVR , a...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17316v1" target="_blank" rel="noopener">CoReMem: Cost-Internalizing Memory for Successive Coding Tasks with Prospective Valuation ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 18:58 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Coding agents tackle successive tasks on an evolving repository, carrying forward edits and writing memory before the next task is known.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Selecting memory for unknown next tasks requires balancing future usefulness against the costs of writing and reading it.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>The actor must also decide when acting on available memory saves effort as the task unfolds. We introduce Coding-Repository Memory (CoReMem), a cost-internalizing framework that guides memory design and actor adaptation...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17314v1" target="_blank" rel="noopener">Linking Rapid Learning to Compositional Structure in Neural Networks: Evidence from Additive Analogies in Meta-Learned Parameter Spaces ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 18:57 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Humans can learn rapidly from limited experience, while neural networks typically require extensive training.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>In this work, we investigate what properties of a neural network can enable it to learn rapidly.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We study neural networks that have been optimized via meta-learning, a technique that exposes a network to many related functions to facilitate its subsequent learning of similar functions. Prior work has shown that the...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17309v1" target="_blank" rel="noopener">Classical Energies Learn to Reason 1,000x Faster than Looped Models ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 18:56 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Looped models have emerged as a prominent paradigm for reasoning, with successes on simple reasoning puzzles such as Sudoku-Extreme and Maze-Unique.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>However, these models can be unstable, slow to train, and use many parameters and FLOPs to solve simple puzzles.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Descent on an energy not only mitigates these issues but also offers advantages: built-in early stopping, compute that adapts to problem difficulty, fast training without differentiating through a solver, and interpreta...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17308v1" target="_blank" rel="noopener">Quantifying structural stability of transparent models for general insurance pricing ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 18:56 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>The short duration of general insurance contracts leads to rapid distributional shifts in the data, warranting regular model updates.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>This process may yield a post-update model that differs considerably from the pre-update model in both predictions and structure.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Structural stability is upstream of predictive stability, yet existing structural stability metrics are mostly restricted to simple decision trees. Thus, we first introduce the notion of functional transparency, charact...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17303v1" target="_blank" rel="noopener">Towards a Theory of Learnability via Debate ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 18:55 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Debate has been recently proposed as a training protocol that is hoped to produce more aligned models even as model capabilities scale.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>The idea is that the human, instead of providing supervision in the form of labels, judges a debate between two models that compete to prove the correctness of opposite labels.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>It can be shown that functions of a much higher computational complexity can be correctly judged in this way, compared to the complexity of functions that can be directly evaluated using a computationally weak evaluator...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17302v1" target="_blank" rel="noopener">FLEX-LBP: Learning Local Binary Patterns with Exact Binary Inference for Texture Classification ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 18:55 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Local Binary Patterns (LBP) remain among the most widely used texture descriptors, from industrial inspection to medical imaging.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Yet their radius, sampling angles, color transform and thresholds are fixed by hand for each dataset.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We present FLEX-LBP, which learns these parameters by backpropagation while every forward pass computes exact binary codes and hard histogram counts. A straight-through estimator acts only in the backward pass, so the d...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17298v1" target="_blank" rel="noopener">Consistent Video-to-Video Translation via Explicit Correspondences ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 18:55 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Interactive video-to-video applications require real-time generation while maintaining long-range temporal consistency.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>However, recent methods achieve speed by restricting attention to a fixed-length causal window.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>This limits long-range consistency whenever relevant history falls outside the context window. To address this limitation, we introduce vid2vid-long, a correspondence-based approach grounded in a simple observation. Vid...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17297v1" target="_blank" rel="noopener">Goal Encoding in LLMs ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 18:55 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>We investigate whether and how LLMs encode goals: internal neural representations that precede and guide action, and that are flexible enough to be realized through many different execution paths.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>We construct a coding setting with multiple sub-tasks that allows us to evaluate goal-seeking behavior and the selection of sub-goals.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>In this setting, we localize an encoding of the next sub-goal in the outputs of a sparse set of attention heads. The same heads can be used to decode the LM&#x27;s future actions in natural language (e.g., &quot;I&#x27;m checking if a...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17294v1" target="_blank" rel="noopener">Metal Sandbox: Isolated Execution and Command Scheduling for GPU Coding Agents on Apple Silicon ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 18:54 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>On-device inference requires kernels that make effective use of local accelerators.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Efficient training and evaluation of models that generate Apple Metal kernels benefit from native macOS tools and concurrent agent sessions.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>These sessions alternate between model requests, development commands, and GPU execution, leaving GPU capacity idle for much of a rollout. We present Metal Sandbox, infrastructure that combines restricted per-instance f...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17287v1" target="_blank" rel="noopener">Negative-Only Policy Optimization for One-Sided Verifiable Rewards ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 18:52 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Reinforcement learning with verifiable rewards (RLVR) typically relies on a verifier that can reliably judge whether sampled solutions are correct.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>However, in many realistic settings, complete verification is generally unavailable, while cheap checks can only falsify failures.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We formalize this regime as one-sided verifiability (OSV): verified negatives are reliable counterexamples, but verified positives are merely non-falsified candidates and may contain many false positives. This asymmetry...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17280v1" target="_blank" rel="noopener">Synthesis Smuggling: Maliciously Hiding Inferred Personal Attributes in LLM Outputs ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 18:51 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>We propose Synthesis Smuggling, a novel threat model in which an adversarial LLM infers sensitive information about a user from routine assistance-seeking interactions and steganographically encodes that into innocuous-...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>The user may then unknowingly transmit that information by sharing the generated artifact, say as an email, social-media post, or message, through ordinary communication channels.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>An adversary monitoring these channels can discover this information. We demonstrate this threat by training two open-weight models to infer gender and age-group labels from conversational cues and encode their predicti...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17267v1" target="_blank" rel="noopener">LiveGeo: Benchmarking Geographic Agents in Continuously Evolving Worlds ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 18:45 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>We introduce GeoWorld, a controllable and continuously evolving geographic environment platform for LLM agents, and LiveGeo, a benchmark for evaluating reliable decision-making in real-world geographic environments usin...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Unlike existing evaluations that largely reason and plan over fixed geographic states, GeoWorld is grounded in real-world geographic structure and allows external world states to evolve along their own temporal processe...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>LiveGeo places geographic tasks within this evolving environment, requiring agents to actively acquire task-relevant information, verify whether the evidence supporting prior decisions remains valid, and revise their pl...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17246v1" target="_blank" rel="noopener">Programming Quantum Circuit Parameters with Large Language Models ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 18:34 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Large language models (LLMs) have recently demonstrated the ability to generate parameters for variational quantum circuits without conventional optimization.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>However, the conditions under which this approach is effective remain unclear.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Here, we investigate a frozen, general-purpose LLM that generates complete circuit parameter vectors from symbolic circuit and Hamiltonian descriptions, with optional iterative energy feedback. We evaluate the approach...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17241v1" target="_blank" rel="noopener">Ballad: Bandit-Based LLM Routing for Automated Heuristic Discovery ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 18:28 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Modern automated heuristic discovery (AHD) systems increasingly rival hand-crafted heuristics by leveraging Large Language Models (LLMs) to iteratively mutate and refine solutions.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>A natural assumption is that more powerful and more expensive models consistently yield better heuristics.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We challenge this empirically: across multiple NP-hard combinatorial optimization problems, we find no consistent advantage for larger, costlier models. This raises a deeper question: given a pool of LLMs spanning front...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17239v1" target="_blank" rel="noopener">When Both Sides Adapt: The Challenges of Evaluating Interactive LLM Systems ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 18:26 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>In interactive systems where users engage with LLMs, users are adaptive and, after observing LLM responses, can change their prompting strategy, as well as the type and difficulty of subsequent tasks.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Thus model responses can influence the set of prompts on which the model is subsequently evaluated.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We study the implications of this user adaptivity and prompt endogeneity for the evaluation of LLMs. We define two classes of estimands for comparing models: the common-distribution effect, which compares model performa...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17235v1" target="_blank" rel="noopener">Al-Ghasali: A Computational Framework for Simulating Islamic Jurisprudential Rulings via Finite State Automata and Large Language Models ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 18:23 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>This paper presents Al Ghasali, a computational framework designed to formalize and simulate Islamic jurisprudential (Fiqh) rulings.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Building upon recent set theoretic formalizations of al sabr wa al Taqsim that extract minimal operational rules as simple Horn clause logical programs, this work proves that the semantics of closed Fiqh chapters collap...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We establish a formal computational hierarchy, demonstrating that restricting formalization to finite propositional Horn theories guarantees decidability and constant time (O(1)) verdict extraction after offline compila...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17230v1" target="_blank" rel="noopener">Two mathematical models of knowledge distillation ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 18:21 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Many hypotheses compete to explain the successes of knowledge distillation.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>To help address this, we propose and analyze a mathematical model of distillation, which suggests that distillation&#x27;s performance comes not from obtaining better models but from easier to optimize landscapes.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>For generalized linear models trained with stochastic gradient descent, we prove that distillation fits performant student models asymptotically more quickly than non-distilled models. In rank-1 matrix approximation, we...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17228v1" target="_blank" rel="noopener">Linear Regression with Self-Selection Bias in Polynomial Time ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 18:21 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>We revisit the problem of estimating $k$ linear regressors with self-selection bias in $n$ dimensions up to error $\varepsilon$ with the maximum self-selection criterion, as introduced by Cherapanamjeri, Daskalakis, Ily...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Our main result is a $\mathrm{poly}(n,k,1/\varepsilon)$ time algorithm for the unknown-index variant of this problem, thereby improving upon the running times of the best known algorithms due to Gaitonde and Mossel [GM2...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Our algorithm succeeds in the presence of correlated noise between regressors, which captures the related setting of max-affine regression. Consequently, we also give the first polynomial-time algorithm for this problem...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17226v1" target="_blank" rel="noopener">Sheaf-Inspired Structured Scoring Extensions of LightGCN for Collaborative Filtering ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 18:20 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Graph-based collaborative filtering learns user and item representations by propagating embeddings over a user--item interaction graph.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>We investigate a modular, sheaf-inspired scoring extension placed on top of a three-layer LightGCN backbone.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>The motivation comes from cellular sheaves, where local vector spaces are related by linear restriction maps; here, this idea motivates structured, pair-dependent transformations of user and item embeddings rather than...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17220v1" target="_blank" rel="noopener">Scalable Conversational Assessment: Chat-Based Exams with a Two-Agent LLM Pipeline ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 18:16 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Oral exams are compelling because (1) students can be asked to provide their reasoning for an answer and (2) their interactive nature permits follow-up questions to resolve ambiguous answers.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>But oral exams scale poorly.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>In this paper, we present scalable conversational assessment, an LLM-based system that conducts interactive text-based conversations with students to assess their ability to make and support an argument. We use a two-ag...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://arxiv.org/abs/2610.00465" target="_blank" rel="noopener">Air-LLM: Broadcasting AI Weights for Edge LLM Inference via RF Computing ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arxiv.org</span>
+        <span class="item-date">Nov 12, 2026 • 18:16 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Air-LLM: Broadcasting AI Weights for Edge LLM Inference via RF Computing represents a notable development in ai and llms cataloged this week.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via arxiv.org as part of active developments across the AI landscape.</span></div>
         <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
       </div>
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="https://www.businessinsider.com/ai-human-slop-software-security-vulnerabilities-internet-2026-10" target="_blank" rel="noopener">The internet has a human slop problem, and AI is exposing it ↗</a></div>
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17214v1" target="_blank" rel="noopener">Introducing Feedback Delays to Non-Delayed Adversarial MDPs: Optimal $\sqrt S$ and $\sqrt K$ Dependencies in Tabular and Linear AMDPs ↗</a></div>
       </div>
       <div class="item-meta">
-        <span class="badge-source source-general">www.businessinsider.com</span>
-        <span class="item-date">Nov 08, 2026 • 05:09 UTC</span>
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 18:10 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>The internet has a human slop problem, and AI is exposing it represents a notable development in ai and llms cataloged this week.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via www.businessinsider.com as part of active developments across the AI landscape.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>We study regret minimization in episodic Adversarial Markov Decision Processes (AMDPs) with unknown transitions and bandit feedback.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>In tabular AMDPs with $S$ states, $A$ actions, and horizon $H$, the best known $K$-episode regret is $\tilde O(HS\sqrt{AK})$, whose $\sqrt S$ gap to the $Ω(H\sqrt{SAK})$ lower bound has long remained open.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>In linear AMDPs with $d$-dimensional features, after a five-year line of improvements starting from $K^{14/15}$, computationally efficient algorithms without a simulator or exploratory assumptions still only attain $\ti...</span></div>
       </div>
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="https://regescode.com/" target="_blank" rel="noopener">Show HN: Reges Code – a free AI code editor that runs on local models ↗</a></div>
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17212v1" target="_blank" rel="noopener">Theoretical and Empirical Analysis of Sparse Convolution ↗</a></div>
       </div>
       <div class="item-meta">
-        <span class="badge-source source-general">regescode.com</span>
-        <span class="item-date">Nov 08, 2026 • 04:32 UTC</span>
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 18:10 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Show HN: Reges Code – a free AI code editor that runs on local models represents a notable development in ai and llms cataloged this week.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via regescode.com as part of active developments across the AI landscape.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Deep neural networks for image processing are increasingly deployed on resource-constrained edge devices such as drones, medical systems, and smartphones, where limited computational resources and memory bandwidth pose...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Pruning during training often produces highly sparse convolutional kernels, offering the potential to significantly reduce computation and memory requirements.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>However, exploiting this sparsity efficiently at runtime remains challenging due to irregular memory access patterns and workload imbalance across processing elements. In this work, we investigate the standard convoluti...</span></div>
       </div>
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="https://www.mirastacklabs.ai/" target="_blank" rel="noopener">Is &quot;GPU-hour per user&quot; a sane way to price LLM inference? ↗</a></div>
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17199v1" target="_blank" rel="noopener">MALNISI-Infused Graph Construction and Weighted Contrastive Loss based GAT for Unsupervised Representation Learning in HSI ↗</a></div>
       </div>
       <div class="item-meta">
-        <span class="badge-source source-general">www.mirastacklabs.ai</span>
-        <span class="item-date">Nov 08, 2026 • 04:15 UTC</span>
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 18:02 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Is &quot;GPU-hour per user&quot; a sane way to price LLM inference? represents a notable development in ai and llms cataloged this week.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via www.mirastacklabs.ai as part of active developments across the AI landscape.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Hyperspectral images (HSI) possess discriminating spectral characteristics with respect to land utilization due to high-dimensional information.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Recently, unsupervised representation learning using graph neural networks has unveiled these utilization-specific complex spectral relations.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>This article has three main contributions. First, it proposes an index, the Mean Absolute Local Neighborhood Inverse Spectral Index (MALNISI), which measures the similarity between two pixels based on their neighborhood...</span></div>
       </div>
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="https://regestown.com" target="_blank" rel="noopener">Show HN: Reges Town – a 3D city run by AI citizens, in the browser ↗</a></div>
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17196v1" target="_blank" rel="noopener">Physically Interpretable Basin Selection in Discrete-Variable Origami Design ↗</a></div>
       </div>
       <div class="item-meta">
-        <span class="badge-source source-general">regestown.com</span>
-        <span class="item-date">Nov 08, 2026 • 03:44 UTC</span>
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 17:59 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Show HN: Reges Town – a 3D city run by AI citizens, in the browser represents a notable development in ai and llms cataloged this week.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via regestown.com as part of active developments across the AI landscape.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Automatic differentiation has enabled rapid progress on continuous-variable mechanical design problems, but gradient-based optimization still struggles with discrete variables.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>The standard approach is to optimize using a continuous relaxation of the choices, then commit to the nearest discrete design at the end.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Why this procedure selects unfavorable basins is poorly understood. Here, we introduce a practical, interpretable design problem inspired by origami, in which automatic differentiation is used to design shapes with a ta...</span></div>
       </div>
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="https://medium.com/@wangjiayiliuyan/i-love-the-smiths-ai-a-familiar-elevator-scene-with-you-in-it-51e69e0711e6" target="_blank" rel="noopener">I Love the Smiths AI: A Familiar Elevator Scene, with You in It ↗</a></div>
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17191v1" target="_blank" rel="noopener">Maximizing Capacity Utilization of LoRA Adapters for Mitigating the Learning-Forgetting Trade-off ↗</a></div>
       </div>
       <div class="item-meta">
-        <span class="badge-source source-general">medium.com</span>
-        <span class="item-date">Nov 08, 2026 • 03:35 UTC</span>
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 17:55 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>I Love the Smiths AI: A Familiar Elevator Scene, with You in It represents a notable development in ai and llms cataloged this week.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via medium.com as part of active developments across the AI landscape.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Low-Rank Adaptation (LoRA) often underperforms full fine-tuning, especially in heterogeneous and continual-learning settings in which substantial forgetting occurs.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>In general, it suffers from an undesirable learning-forgetting trade-off across diverse fine-tuning settings.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We identify a potential contributor: LoRA adapters, especially high-rank ones, frequently fail to realize the available capacity afforded by the configured rank. Specifically, we find that standard LoRA updates have eff...</span></div>
       </div>
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="https://rpallas.xyz/good-night-and-good-luck/" target="_blank" rel="noopener">Good Night, and Good Luck: AI, fear and what the job data says ↗</a></div>
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17186v1" target="_blank" rel="noopener">Cortex-FL: Agent-Mediated Collaboration for Federated Learning ↗</a></div>
       </div>
       <div class="item-meta">
-        <span class="badge-source source-general">rpallas.xyz</span>
-        <span class="item-date">Nov 08, 2026 • 03:14 UTC</span>
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 17:52 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Good Night, and Good Luck: AI, fear and what the job data says represents a notable development in ai and llms cataloged this week.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via rpallas.xyz as part of active developments across the AI landscape.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Federated learning (FL) enables independent data owners to train models collaboratively without centralizing raw data.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>However, identifying collaborators, preparing training tasks, and coordinating execution and incentives hinder its practical adoption by organizations without specialized expertise.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We present Cortex-FL, an agent-native FL system that enables users to express learning objectives in natural language and delegate the collaboration required to train a model. Agents translate these objectives into shar...</span></div>
       </div>
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="https://techcrunch.com/2026/11/02/anthropic-warns-that-its-very-close-to-rsi-capability-aka-self-building-ai/" target="_blank" rel="noopener">Anthropic warns that it&#x27;s close to RSI capability, a.k.a. self-building AI ↗</a></div>
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17169v1" target="_blank" rel="noopener">Parsed, Plausible, Wrong: Output Format Controls Silent Errors in Small-Model Semantic Parsing ↗</a></div>
       </div>
       <div class="item-meta">
-        <span class="badge-source source-general">techcrunch.com</span>
-        <span class="item-date">Nov 08, 2026 • 02:39 UTC</span>
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 17:43 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Anthropic warns that it&#x27;s close to RSI capability, a.k.a. self-building AI represents a notable development in ai and llms cataloged this week.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via techcrunch.com as part of active developments across the AI landscape.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>A small fine-tuned parser that emits a well-formed but wrong tree fails silently: nothing downstream can tell.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>We ask whether the output format, a free design choice, controls how often this happens.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>On the PIZZA ordering benchmark we fine-tune two sub-billion models (Qwen3.5-0.8B and LFM2.5-350M) with LoRA on six lossless encodings of the same target tree, from 44.3 down to 10.9 tokens per order, including two matc...</span></div>
       </div>
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="https://github.com/Miyamoto-Renya/LaplacesScissors" target="_blank" rel="noopener">Show HN: LLM weight editing tool made by a 15-year-old ↗</a></div>
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17167v1" target="_blank" rel="noopener">Actor, Judge, or Teacher? Understanding Decision Models in Long-Horizon Agents ↗</a></div>
       </div>
       <div class="item-meta">
-        <span class="badge-source source-github">github.com</span>
-        <span class="item-date">Nov 08, 2026 • 02:37 UTC</span>
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 17:42 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Show HN: LLM weight editing tool made by a 15-year-old represents a notable development in ai and llms cataloged this week.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via github.com as part of active developments across the AI landscape.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Decision models answer a question with a typed output, such as a choice among options with a probability for each, so one model can choose an agent&#x27;s actions, evaluate actions already taken, or score every action to tea...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Prior work has studied them mainly as actors, judging their usefulness by how well they act.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We ask whether a decision model that acts poorly can still teach well. We compare three decision models and three general LLMs as actors and judges on ALFWorld, and use JEV as a teacher on ALFWorld and WebShop. As actor...</span></div>
       </div>
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="https://www.msn.com/en-us/news/other/why-mandating-ai-use-in-the-workplace-can-backfire/ar-AA2gAwkW" target="_blank" rel="noopener">Why mandating AI use in the workplace can backfire ↗</a></div>
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17162v1" target="_blank" rel="noopener">Symmetry in Time: A Representation Theory of Linear Recurrent Memory ↗</a></div>
       </div>
       <div class="item-meta">
-        <span class="badge-source source-general">www.msn.com</span>
-        <span class="item-date">Nov 08, 2026 • 02:31 UTC</span>
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 17:39 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Why mandating AI use in the workplace can backfire represents a notable development in ai and llms cataloged this week.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via www.msn.com as part of active developments across the AI landscape.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>State space models (SSMs) are an emerging alternative to Transformers.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>SSMs offer linear-time inference and parallel training, but most implementations make the parallel scan efficient by making the recurrence diagonal: each channel of the hidden state is multiplied by an input-dependent r...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>These numbers commute, so the state records which inputs occurred but not their order. We formalize this with representation theory, which explains and fixes the state-tracking failures previously reported for SSMs. The...</span></div>
       </div>
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="https://lucaskostka.com/posts/building-trust-llm-thought-experiment" target="_blank" rel="noopener">Building trust, an LLM thought experiment ↗</a></div>
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17161v1" target="_blank" rel="noopener">Cited but Unused: Parametric Provenance in Retrieval-Augmented Generation ↗</a></div>
       </div>
       <div class="item-meta">
-        <span class="badge-source source-general">lucaskostka.com</span>
-        <span class="item-date">Nov 08, 2026 • 01:27 UTC</span>
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 17:39 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Building trust, an LLM thought experiment represents a notable development in ai and llms cataloged this week.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via lucaskostka.com as part of active developments across the AI landscape.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Retrieval-augmented generation systems attach citations to attribute claims to their sources.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>These citations frequently misstate provenance, and standard verification cannot detect this.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We measure provenance by counterfactual value substitution: a fact in the retrieved passages is replaced with a false variant and the model re-queried. We find that across five sizes of one model family and a second com...</span></div>
       </div>
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="https://research.checkpoint.com/2026/hacking-on-autopilot-inside-artex-cybercrime-campaigns/" target="_blank" rel="noopener">AI agents stole 190k gaming credentials for under $400 in model costs ↗</a></div>
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17152v1" target="_blank" rel="noopener">AeroZoo: A Benchmark of Well-Posed Flow Problems for Foundation Models of Aerodynamics ↗</a></div>
       </div>
       <div class="item-meta">
-        <span class="badge-source source-general">research.checkpoint.com</span>
-        <span class="item-date">Nov 08, 2026 • 01:24 UTC</span>
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 17:36 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Explores autonomous agent architecture, execution safety, and unattended multi-turn workflows.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Focuses on managing tool-calling loops, context windows, and operational boundaries for agents.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Crucial for engineers transitioning from basic chat assistants to robust autonomous agents.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Neural surrogates for computational fluid dynamics (CFD) are trained and ranked on datasets that each vary one design family in one flow domain.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Such datasets cannot test the least that an aerodynamic foundation model must do: predict CFD-quality incompressible flow in seconds for new shapes in new enclosures.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>On DrivAerML, larger models and longer training barely lower Transolver&#x27;s error; doubling the training cases cuts it by about 12% up to 400 cases, exhausting the dataset. We introduce AeroZoo, a benchmark and training c...</span></div>
       </div>
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="https://www.forbes.com/sites/timkeary/2026/11/05/zip-finds-ai-spend-is-increasing-but-isnt-causing-a-saaspocalypse/" target="_blank" rel="noopener">AI Spend Is Increasing but Isn&#x27;t Causing a SaaSpocalypse ↗</a></div>
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17145v1" target="_blank" rel="noopener">Enhancing Preference Detection using Eye Movement Cascade and Multilayer Combinatorial Fusion ↗</a></div>
       </div>
       <div class="item-meta">
-        <span class="badge-source source-general">www.forbes.com</span>
-        <span class="item-date">Nov 08, 2026 • 01:22 UTC</span>
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 17:31 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>AI Spend Is Increasing but Isn&#x27;t Causing a SaaSpocalypse represents a notable development in ai and llms cataloged this week.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via www.forbes.com as part of active developments across the AI landscape.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Understanding how visual attention influences human preference formation is a fundamental problem in consumer behavior and cognitive science.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>In this work, we investigate how eye movement patterns can be used to predict preference decisions when subjects compare two alternatives.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>To address this problem, we analyze an eye-tracking dataset, where subjects view pairs of face images and their gaze behavior is recorded throughout the decision process. We model this problem using multiple machine lea...</span></div>
       </div>
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="https://github.com/lhadzic377-netizen/TokiRecur" target="_blank" rel="noopener">TokiRecur – llama.cpp LLM launcher with KV-cache recycling ↗</a></div>
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17143v1" target="_blank" rel="noopener">A Convex-Analytic Reformulation for Poisoning Attacks on Logistic Regression ↗</a></div>
       </div>
       <div class="item-meta">
-        <span class="badge-source source-github">github.com</span>
-        <span class="item-date">Nov 07, 2026 • 18:08 UTC</span>
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 17:30 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>TokiRecur – llama.cpp LLM launcher with KV-cache recycling represents a notable development in ai and llms cataloged this week.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via github.com as part of active developments across the AI landscape.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>We study data poisoning attacks on logistic regression with $\ell_2$-regularization, where an attacker chooses the features of a fixed number of injected observations with prescribed labels to maximize the logistic loss...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Strong convexity of the defender&#x27;s problem yields an exact reformulation through its first-order optimality conditions.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Using convex conjugacy of the softplus function, we replace the sigmoid relations by a single convex optimality-gap inequality and express the attacker&#x27;s objective as a concave function. A change of variables makes the...</span></div>
       </div>
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="https://hunch.net/?p=13764006" target="_blank" rel="noopener">The end of Microsoft Research&#x27;s AI Frontiers group ↗</a></div>
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17141v1" target="_blank" rel="noopener">ISLA: A Coordinate-Free, Measure-Weighted Transformer for Boundary-Driven PDEs ↗</a></div>
       </div>
       <div class="item-meta">
-        <span class="badge-source source-general">hunch.net</span>
-        <span class="item-date">Nov 07, 2026 • 18:02 UTC</span>
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 17:30 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>https://archive.is/AaY5Ohttps://businessexaminer.ca/victoria-articles/item/microsoft.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>A foundational principle of physics is that all coordinate systems are equally valid: the behavior of a PDE-governed system does not depend on the origin or orientation of the frame, nor on the units or mesh used to wri...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Yet the neural surrogates with the lowest errors on today&#x27;s aerodynamics benchmarks lack these invariances and fail under simple transformations of the same problem: for models trained on PDEs of cars in one pose (i.e.,...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We introduce ISLA (Invariant Slice Attention), a slice-attention transformer for steady, boundary-driven PDEs in which no learned operation receives a coordinate and every sum over the boundary is a quadrature. Position...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17128v1" target="_blank" rel="noopener">Parameter-Efficient Conciseness Adaptation: Differentiable Length Control for Concise Clinical Reasoning in Smaller Language Models ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 17:21 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Smaller language models (SLMs) make it feasible to deploy clinical natural language processing where large proprietary models are too costly, and parameter-efficient fine-tuning allows them to be specialised on commodit...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>One obstacle persists after training: on medical tasks these models answer at far greater length than the clinical question requires.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>In clinical decision support and point-of-care use, where time is short, such verbosity is hard to act on even when the underlying reasoning is sound. Existing length-control methods depend on preference optimisation, r...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17115v1" target="_blank" rel="noopener">CapLite: Prompt-Injection Defense for Small Language Model Agents without Model-Written Security Artifacts ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 17:07 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Enforcement defenses against prompt injection, such as CaMeL, Progent, IPIGuard and DRIFT, ask the agent&#x27;s own model to write a security artifact (a program, a privilege policy, a dependency graph or a constraint list)...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>We ask whether small language model (SLM) agents can be trusted to write these artifacts.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Across 15 open-weight models, 13 of them between 1.7B and 12B parameters, they cannot: the policies, graphs and constraints that the agent&#x27;s model writes admit attacks on 14 (Progent), 13 (IPIGuard) and 11 (DRIFT) of th...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17114v1" target="_blank" rel="noopener">Designing Institutions for Autonomous AI ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 17:06 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>As autonomous AI agents increasingly interact in persistent populations, their collective capabilities and alignment depend not only on individual models, but also on the institutions governing their interactions.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Yet AI research has largely focused on individual agents.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>In this Perspective, we argue that institutional design must become a distinct focus of AI research. Drawing on institutional political economy, social epistemology and organizational theory, we develop seven principles...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17110v1" target="_blank" rel="noopener">SALA: Semantically Aligned Latent Actions Enable Dual-Axis Scaling of Embodied Foundation Models ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 17:04 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Embodied foundation models hinge on diverse robot interaction data, which are costly to collect.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Egocentric human videos offer a complementary source of experience, and latent action models (LAMs) provide a popular means of leveraging these videos for policy supervision.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Compared with world-action models (WAMs), LAMs can offer greater training efficiency and potentially lower inference costs by avoiding explicit pixel prediction during policy learning and execution. However, most existi...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17108v1" target="_blank" rel="noopener">LazyWeights: Decode-on-Demand Edge LLMs ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 17:03 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Memory decides which LLMs an edge device runs, and how fast: capacity on a $4$ GB Jetson Nano, bandwidth on an $8$ GB Jetson Orin Nano Super.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Deployed formats (GPTQ, AWQ, $\texttt{llama.cpp}$&#x27;s K- and I-quants) spend equal bits on every integer code of a matrix, although the codes are far from uniform.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>$\texttt{LazyWeights}$ keeps these formats but tunes GPTQ so the codes compress, Huffman-codes them losslessly in interleaved lanes, and decodes them on demand in a small unit between DRAM and L2, so GPU kernels run unc...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17107v1" target="_blank" rel="noopener">Disentangling Spurious Correlations: How IRM Handles Diverse Shortcuts in Text Classification ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 17:03 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>In NLP, models trained via Empirical Risk Minimization (ERM) often exploit spurious correlations, such as dialectal markers, at the expense of robust linguistic features, thereby degrading their out-of-distribution (OOD...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Invariant Risk Minimization (IRM) aims to suppress such shortcuts by identifying predictive relationships that remain stable across environments, but its practical utility for NLP remains debated.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We use a causality-driven framework to evaluate IRM under three shortcut-generating mechanisms: label-generated features, confounding, and selection bias. Our results show that IRM successfully rejects shortcuts across...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17105v1" target="_blank" rel="noopener">Predicting Ethanol Drinking Status from Nonhuman Primate Liver Histology: A Proof of Concept for Parameter-efficient Fine-tuning in Few-Sho... ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 17:02 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Combining vision-language models (VLMs) with parameter-efficient fine-tuning (PEFT) offers a promising approach to few-shot whole-slide image (WSI) classification in computational pathology.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>This study evaluates this approach for predicting ethanol drinking status from nonhuman primate liver histology.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Adapters are evaluated against non-PEFT configurations on a subset of the Monkey Alcohol Tissue Research Resource (MATRR). All evaluated PEFT configurations achieve higher mean balanced accuracy than the non-PEFT baseli...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17101v1" target="_blank" rel="noopener">A Compact xDAWN-Guided Spatio-Temporal Network with Filter-Bank Convolution for P300 Detection ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 17:00 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>P300-based brain-computer interfaces (BCIs) enable communication by decoding stimulus-evoked EEG responses into character selections without requiring voluntary motor output.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reliable P300 detection remains difficult because of low response amplitude and signal-to-noise ratio, while practical spellers require accurate character selection with few stimulus repetitions and low computational co...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We propose a compact deep learning architecture that combines xDAWN spatial filtering for event-related potential enhancement and dimensionality reduction, a fixed frequency-selective filter bank, and convolutional feat...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17098v1" target="_blank" rel="noopener">Speed-to-Power Dominates Energy Costs for AI Data Centers: Technoeconomic Analysis of Powering AI in the Continental United States ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 16:58 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>The rapid growth of artificial intelligence is driving demand for new data centers at large scale and on short deployment timelines.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>To power them, firms connect to the commercial grid or contract generation directly, but interconnection and gas-turbine delays now incentivize on-site generation.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We compare grid-connected and off-grid data center energy infrastructure (AC- and DC-coupled solar-plus-storage, islanded natural gas, and grid interconnection) across the continental U.S. Using an open-source technoeco...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17091v1" target="_blank" rel="noopener">Optimal Single-History Tokenization Disambiguation for Provably Secure Linguistic Steganography ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 16:54 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Provably secure linguistic steganography assumes that the receiver recovers the sender&#x27;s tokens, but a text channel delivers only text, and ambiguous tokenizations break extraction.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Existing fixes change the distribution, synchronize whole pools of tokens at a capacity that collapses with large vocabularies, or track several token histories.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We prove that if extraction is exact and error-free across full-support language models, a single-history receiver is confined to a prefix-free candidate set at every step -- even if it reads the entire future text and...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17072v1" target="_blank" rel="noopener">Reasoning Supervision and Capability Retention in LoRA Domain Adaptation ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 16:45 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Fine-tuning foundation models on financial data has a wide range of applications, including identifying event types from news, monitoring risk and compliance language, and answering questions over filings and earnings c...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>In this setting, the main challenge is to improve task performance without degrading the generalization capabilities of the model.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>In this paper, we present an extensive set of ablations for fine-tuning Qwen3-8B with low-rank adaptation (LoRA). We compare three training regimes: (1) response-only LoRA, where the supervised response is the label alo...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17068v1" target="_blank" rel="noopener">Discovering Effective Agent Memory Designs through Program Evolution ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 16:42 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Program evolution provides a promising approach to discover agent memory designs and study the choices underlying their effectiveness.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>We introduce MAPE, a framework that evolves whole memory programs from minimal seeds through a standardized lifecycle interface and an iterative diagnosis-proposal loop.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Experiments on LoCoMo and LongMemEval yield an absolute accuracy gain of up to 12% over manually designed baselines at 35% of the serving cost, with further evaluations supporting transfer across serving backbones and b...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17053v1" target="_blank" rel="noopener">Evaluating Pretrained Language Semantics for Structured EHR Prediction Tasks ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 16:34 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Structured Electronic Health Records (EHR) models typically treat each clinical concept as a dataset-specific token, discarding the natural-language semantics associated with the event.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>As a result, relationships between concepts must largely be learned from EHR co-occurrence, without directly exploiting any prior semantic knowledge.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We investigate how pretrained causal language models can be adapted for longitudinal EHR prediction by developing tEHR. Here, we represent events with their natural language description and use this text stream to apply...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17052v1" target="_blank" rel="noopener">Auditing AI peer reviewers: a benchmark on real scientific papers ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 16:33 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>LLM-based peer review is now used at production scale, but its evaluation remains limited.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>We introduce a benchmark that injects objective, localisable errors of four types (general issues, mathematics, numerics, citations) at three severity levels into real papers and measures each reviewer&#x27;s detection rate...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We also present Skepthical, a multi-agent reviewer that verifies citation-backed claims by retrieving the cited papers, mathematics with computer algebra, and numerical claims with executed code. We apply the benchmark...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17048v1" target="_blank" rel="noopener">AURA 2.0: From User-Driven Responses to Model-Initiated Conversations in Streaming Video ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 16:31 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Most AI assistants respond only when prompted, remaining silent even when events in the video stream offer meaningful opportunities for conversation.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>To move beyond purely user-driven interaction, we present AURA 2.0, a streaming video large language model that introduces three core upgrades to AURA.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>The key advance is Model-Initiated Conversation (MIC), which enables the model to identify topics worth discussing in the evolving visual stream and initiate conversations at appropriate moments without a user query. St...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17041v1" target="_blank" rel="noopener">From Delegation to Coordination: Learning Efficient Multi-Agent Deep Research ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 16:26 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Multi-agent deep-research systems use delegation to parallelize search and keep long tool traces out of the main agent&#x27;s context.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Yet delegation helps only when task allocation and subtask execution are coordinated: the main agent must issue useful subtasks, while subagents must return reliable evidence.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Existing training either optimizes only the main agent or broadcasts the same team advantage to all agents, which can reward misleading subagent reports and penalize useful ones. We introduce LEAD-RL (Learning Effective...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17035v1" target="_blank" rel="noopener">Prevalence Bounds for Edited Watermarked Text: Power Envelopes and Calibration Sensitivity ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 16:21 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Watermark detectors decide whether one document came from a watermarked language model.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Auditors often need a different number: the share of a corpus that did.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We study this share for Gumbel-max and green-list (KGW) watermarks when every document may have been edited by an unknown amount. Without restrictions on the edits, the upper end of the identified set is 1. Combining a...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.17030v1" target="_blank" rel="noopener">Similar but Not Redundant: Embedding-Gated Refinement for High-Granularity Topic Models ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 16:17 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>High-granularity topic modelling extracts hundreds of niche topics from a corpus, yet this regime is rarely studied and is more commonly framed as a failure mode: &quot;over-clustering,&quot; in which coherent themes fragment int...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>We argue that this framing conflates genuine redundancy with topics that are semantically similar but meaningfully distinct, and that the central challenge in high-granularity modelling is separating the two.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Recent post-hoc refinement methods address topic redundancy through either embedding-based similarity thresholding or LLM-guided merging. We show that neither suffices in high-granularity settings and propose embedding-...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.16968v1" target="_blank" rel="noopener">Morphological Simplification in Alzheimer&#x27;s Disease: Computational Analysis and Identification From Connected Speech ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 15:36 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Purpose: Morphology is often regarded as relatively spared in Alzheimer&#x27;s disease (AD) and is rarely modeled in connected speech.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>This study asked which morphological features distinguish speakers with AD from healthy controls, how well morphology classifies AD compared with other linguistic levels and BERT-based models, and whether the signal exc...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Method: Fifty-five automatic measures in eight families, seven of them new and theory-motivated, were computed from participant speech in the ADReSS Cookie Theft descriptions (78 AD, 78 controls) and analyzed with group...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.16956v1" target="_blank" rel="noopener">Lara Mini Base: Language Diversity as a Resource, Not a Trade-off ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 15:28 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>General-purpose language models are trained mostly on English: over open models we review, at most, non-English pretraining data makes up only a 12% share.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Models built for European languages give them far more, but score well below general-purpose models of the same size.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>A common concern is that, in small models, languages compete for capacity. We present Lara Mini base, a model trained from scratch on 6T tokens in English and 44 other languages, which together cover all 24 official lan...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.16929v1" target="_blank" rel="noopener">SPADE: Soft Prompts for Ai-text DEtection ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 15:16 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>The easy access to Large Language Models (LLMs) has made AI-generated texts on the web increasingly ubiquitous, making AI-text detection a crucial task.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Prompts greatly influence the generation process, but existing detectors focus solely on the generated texts --- supervised methods learn from labeled texts only, and zero-shot methods rely on the text&#x27;s probability dis...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We introduce SPADE: Soft Prompts for Ai-text DEtection, a novel framework for detecting AI-generated text that transfers better across datasets. Specifically, we measure the prompt&#x27;s influence and use it as a discrimina...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.16919v1" target="_blank" rel="noopener">Beyond Word Error Rate: A Failure Taxonomy of Streaming Dictation ASR ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 15:09 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Speech recognition (ASR) systems are usually compared by word error rate (WER) on recorded files, after punctuation, capital letters and number format are removed.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>In dictation, the audio is streamed live and the text goes into the user&#x27;s message as written, so what matters is which mistakes the user has to fix.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>The test set, streamed to eleven ASR systems, comprises 106 scripted English dictations from one speaker (read in a quiet room, with a fan on, and whispered), 20 clips in each of eleven other language and dialect sets,...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.16895v1" target="_blank" rel="noopener">Human or Synthetic? What a Fixed Budget Buys for Post-Training ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 14:51 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Post-training of large language models typically combines supervised fine-tuning (SFT) with preference-based fine-tuning such as Direct Preference Optimization (DPO).</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Human-annotated and synthetically generated preference data differ substantially in per-sample cost, but prior work typically holds sample count fixed when comparing the two.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>In this work, we explicitly study the interplay between cost and performance by comparing the effect of post-training with human and synthetic preference data under a fixed, dollar-matched annotation budget. We train an...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.16890v1" target="_blank" rel="noopener">Look It Up: Multi-bit LLM Watermarking via Codebook Search ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 14:49 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Attributing short LLM-generated texts to a specific source remains challenging for existing multi-bit watermarking methods, which often require long generations or costly decoding to recover payloads reliably.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>We propose a codebook-based watermarking scheme that maps an $n$-bit payload to a longer $u$-bit codeword and embeds it during generation through token-level logit biasing.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>During extraction, the received bit sequence is matched to the nearest codeword in a precomputed secret codebook using Hamming or Levenshtein distance. Experiments show that our method achieves near-perfect recovery for...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.16882v1" target="_blank" rel="noopener">Pretraining Data Statistics Shape the Phases of Learning Entity Comparison in Language Models ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 14:45 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>How does data shape language model (LM) behavior throughout pretraining?.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>We investigate this question through a case study on entity comparison, e.g., Between France and Brazil, which country is larger?, across nine comparison tasks spanning five entity types.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We begin with controlled experiments in which we train small LMs (163M parameters) on mixtures of natural text from pretraining corpora and synthetic task data. Our analysis identifies three distinct phases of learning:...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.16843v1" target="_blank" rel="noopener">Shortcuts or Memorisation? Revisiting Data Corruption in Natural Language Understanding with Large Language Models ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 14:18 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Pre-trained encoders fine-tuned on natural language inference (NLI) and other language understanding tasks keep much of their accuracy after the input is perturbed, e.g.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>by removing all nouns or shuffling the words.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Does the same hold for large language models (LLMs), and if so, is it because they have seen the benchmarks during pre-training? In this paper we revisit these perturbation experiments with eight LLMs alongside fine-tun...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://github.com/ollama/ollama/releases/tag/v0.40.17-rc0" target="_blank" rel="noopener">v0.40.17 ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-github">GitHub/ollama/ollama</span>
+        <span class="item-date">Nov 10, 2026 • 22:25 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>## What&#x27;s Changed * Improve ChatGPT CLI restore and graceful restart by @hoyyeva in https://github.com/ollama/ollama/pull/19583 * cmd/launch: use thinking metadata for OpenCode settings by @hoyyeva in https://github.com...</span></div>
         <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Introduces focused improvements and architectural refinements in ai and llms.</span></div>
         <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Signals accelerating standard adoption and ecosystem convergence.</span></div>
       </div>
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="https://github.com/jundot/omlx/releases/tag/v0.7.4.dev1" target="_blank" rel="noopener">OMLX: Use a second Mac to speed up local LLM prefill 2.9x ↗</a></div>
+        <div class="item-title"><a href="https://news.umich.edu/generative-ai-uses-more-energy-on-non-english-text/" target="_blank" rel="noopener">Generative AI uses more energy on non-English text ↗</a></div>
       </div>
       <div class="item-meta">
-        <span class="badge-source source-github">github.com</span>
-        <span class="item-date">Nov 07, 2026 • 10:15 UTC</span>
+        <span class="badge-source source-general">news.umich.edu</span>
+        <span class="item-date">Nov 10, 2026 • 15:07 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>OMLX: Use a second Mac to speed up local LLM prefill 2.9x represents a notable development in ai and llms cataloged this week.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via github.com as part of active developments across the AI landscape.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Generative AI uses more energy on non-English text represents a notable development in ai and llms cataloged this week.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via news.umich.edu as part of active developments across the AI landscape.</span></div>
         <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
       </div>
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="https://www.youtube.com/watch?v=5D7QPOIZ7gY" target="_blank" rel="noopener">Code Matters: Reflections on Rust in the LLM Age – Bryan Cantrill – Rust NYC [video] ↗</a></div>
+        <div class="item-title"><a href="https://github.com/ollama/ollama/releases/tag/v0.40.16" target="_blank" rel="noopener">v0.40.16 ↗</a></div>
       </div>
       <div class="item-meta">
-        <span class="badge-source source-general">www.youtube.com</span>
-        <span class="item-date">Nov 07, 2026 • 04:54 UTC</span>
+        <span class="badge-source source-github">GitHub/ollama/ollama</span>
+        <span class="item-date">Nov 09, 2026 • 18:21 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Code Matters: Reflections on Rust in the LLM Age – Bryan Cantrill – Rust NYC [video] represents a notable development in ai and llms cataloged this week.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via www.youtube.com as part of active developments across the AI landscape.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="https://zenodo.org/records/23686384" target="_blank" rel="noopener">Turns with an LLM: coherence isn&#x27;t the same as accuracy ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-general">zenodo.org</span>
-        <span class="item-date">Nov 06, 2026 • 23:02 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Turns with an LLM: coherence isn&#x27;t the same as accuracy represents a notable development in ai and llms cataloged this week.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via zenodo.org as part of active developments across the AI landscape.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="https://github.com/rtk-ai/rtk" target="_blank" rel="noopener">CLI proxy that reduces LLM token consumption by 60-90% on dev commands ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-github">github.com</span>
-        <span class="item-date">Nov 06, 2026 • 19:00 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Examines LLM inference economics, token consumption patterns, and operational expenses.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Evaluates context compaction, audit findings, and prompt optimizations to curb spiraling API costs.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Essential for teams scaling generative AI applications under practical production budgets.</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="https://airbnb.tech/ai-ml/frontier-quality-at-1-of-the-cost-a-production-benchmark-of-llm-classifiers/" target="_blank" rel="noopener">Frontier quality at 1% of the cost: a production benchmark of LLM classifiers ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-general">airbnb.tech</span>
-        <span class="item-date">Nov 06, 2026 • 12:42 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Examines LLM inference economics, token consumption patterns, and operational expenses.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Evaluates context compaction, audit findings, and prompt optimizations to curb spiraling API costs.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Essential for teams scaling generative AI applications under practical production budgets.</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="https://blog.devgenius.io/the-correspondence-theory-of-llm-truth-2abdc200474f?sk=9417bcb4ca9c7abc361f336b369e9cf4" target="_blank" rel="noopener">The Correspondence Theory of LLM Truth ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-general">blog.devgenius.io</span>
-        <span class="item-date">Nov 06, 2026 • 12:04 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>The Correspondence Theory of LLM Truth represents a notable development in ai and llms cataloged this week.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via blog.devgenius.io as part of active developments across the AI landscape.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="https://github.com/paoloviviani/Cerea" target="_blank" rel="noopener">Show HN: Cerea – yet another self-hosted LLM chat front end ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-github">github.com</span>
-        <span class="item-date">Nov 05, 2026 • 21:11 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Here is Cerea, a self-hostable, open-source (Apache 2.0) chat+agent frontend for LLMs.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>It works alone with any OpenAI-compatible inference provider, but it&#x27;s way better when coupled with the model gateway I&#x27;m also developing, Pystino (https://github.com/paoloviviani/Pystino).I came to this after strugglin...</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>In particular, I was looking for something that could provide the smooth and integrated user experience of commercial products for the tasks needed by family (e.g., document editing, form filling, notes and knowledge ma...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08487v1" target="_blank" rel="noopener">User Embeddings are Superpositions of Interpretable Behavioral Modes ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 18:59 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>User embeddings are central components of modern recommendation, personalization, and behavioral modeling systems.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Though these embeddings can compactly encode rich behavioral information, they are inherently dense and opaque, limiting interpretability.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>To address this gap, we argue that user embeddings can be understood as sparse superpositions of interpretable behavioral modes. This structure is directly predicted by generative models of user behavior for linear embe...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08483v1" target="_blank" rel="noopener">SwarmEvolve: Latent Agent Swarms for Evolutionary Discovery and Optimization ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 18:59 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>LLM-guided evolutionary search uses AI agents to improve programs for mathematical and computational problems by iteratively refining solutions and combining high-scoring methods.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>However, the process is often slow because the LLM generates a long textual chain of thought for each round and must repeat this generation many times to maintain population diversity.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We present SwarmEvolve, a framework in which hundreds of low-cost agents per round work in swarms, reason in latent space without decoding to text, and share information by passing KV caches. Each swarm studies the prob...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08478v1" target="_blank" rel="noopener">Scientist World: Grow a Research World for AI-Scientists ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 18:58 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>AI-Scientists arrived, but a world for them to grow in did not.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Human scientists take theirs for granted $-$ centuries of open problems and shared ideas, waiting in the scientific literature.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>To AI-Scientists, that world is readable but not runnable, so we build Scientist World for them: every research paper becomes an executable environment. Our autonomous pipeline extracts each paper&#x27;s open-ended research...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08472v1" target="_blank" rel="noopener">XStack: A Benchmark for ML Repo Migration ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 18:55 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>ML code should run where researchers choose, not where it was first written.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Today, machine learning code mainly lives in two ecosystems, PyTorch on NVIDIA GPUs and JAX on Google TPUs.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Migrating repositories between them means building and testing across frameworks and hardware. This migration is (1) a practical need, since it unlocks different hardware for researchers, and (2) a natural benchmark: it...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08469v1" target="_blank" rel="noopener">Same Behavior, Different Mechanism: What Finite Experiments Can Certify About Integrated Information ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 18:55 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Interpretability, AI auditing and assessments of machine consciousness increasingly rest on mechanism-level quantities: functionals of a system&#x27;s causal transition law that describe how it computes, not what it outputs.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Experiments see that law only through finite, partial and noisy interventions.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We ask when such a quantity is identifiable from an experiment&#x27;s access, continuous in the mechanism and certifiable from finite data, and answer exactly for a deliberately demanding case - the integrated information $\...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08465v1" target="_blank" rel="noopener">Towards interpreting any residual stream direction by scaling activation inversion ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 18:54 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>To interpret a direction in a language model&#x27;s residual stream, we can look for text that strongly activates it.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>But when such text is found by scanning a corpus, it is limited to what that corpus contains.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We develop Maximally-Activating Example Metamodels (MAEMs), language models which map residual stream directions from a subject model to text exemplars that strongly activate those directions. Our objective is to maximi...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08457v1" target="_blank" rel="noopener">Adversarial Training with Large Step Sizes: Implicit Bias, Optimization, and Sharpness ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 18:48 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Adversarial Training (AT) is an important method for improving model robustness.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>We study the dynamics of deterministic Gradient Descent (GD) in AT.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Most existing works in this direction focus on the small or vanishing step sizes regime, where GD resembles a continuous-time flow. However, such step sizes can make training inefficient and are rarely used in practice....</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08453v1" target="_blank" rel="noopener">Unpacking the Compute Efficiency of Strong-to-Weak OPD against GRPO ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 18:47 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>On-policy distillation (OPD) trains a student on its own rollouts under a frozen teacher&#x27;s per-token supervision.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Does this dense signal reduce the training FLOPs needed to reach a target accuracy compared with reinforcement learning?.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We systematically compare vanilla reverse-KL OPD with Group Relative Policy Optimization (GRPO) across task difficulty, student and teacher size, domain, and optimization choices, measuring held-out accuracy against tra...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08452v1" target="_blank" rel="noopener">ReproBridge: Building Reproducibility into ML Research Artifacts ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 18:45 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Reproducing machine learning experiments requires reconstructing procedures from information scattered across papers, released code, and supporting artifacts.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>For coding agents, reproduction success can therefore depend on their ability to fill in missing details, rather than on the released artifacts alone.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We ask whether preserving recovered procedures and decisions improves subsequent independent reproduction. We define a standardized artifact design comprising a refined codebase, environment setup, experiment launchers,...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08445v1" target="_blank" rel="noopener">A Hidden Markov Preference Model for Online Prediction of Adversary Actions ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 18:37 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>A defender anticipating an attacker needs a probability distribution over the attacker&#x27;s next action from information available before that action occurs.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Two structures complicate this: the attacker&#x27;s behavioral regime persists and can switch within an episode, and each action combines an operation with state-dependent arguments whose feasible values change over time.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We capture both with a hidden Markov model whose latent state is the active regime and whose regime-conditioned action law is defined on a feasibility-masked tree of executable actions. The same likelihood forms the nex...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08439v1" target="_blank" rel="noopener">Label-Wording Augmentation in a Typed-Decision Encoder: Gains on Unfamiliar Words, Not on Abbreviations or Codes ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 18:31 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Typed-decision models score options that the caller supplies at request time, so their accuracy depends on label wording that the model&#x27;s developer does not control.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>We compare two releases of a 307M-parameter multilingual cross-encoder, Ru-Jev, trained on thirteen Russian-language tasks; the later release adds an augmentation that presents labels in several surface forms.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Holding questions fixed and varying only how eighteen routing labels are worded, we evaluate ten label vocabularies, produced by three separate processes and checked for overlap with the training data, with five candida...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08438v1" target="_blank" rel="noopener">Understanding AI from the Inside: The State of Mechanistic Interpretability for AI Safety ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 18:30 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Neural networks are likely to be among the most consequential artefacts in human history.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>As these systems become more capable and autonomous, their potential to cause societal harm also grows, making AI safety one of the defining challenges of our time.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Yet we continue to build increasingly powerful systems without fully understanding how they work, how they will behave in unfamiliar situations, or how to reliably control them. Mechanistic interpretability offers a pat...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08433v1" target="_blank" rel="noopener">MedGraph: Maintaining Patient State with Graph Memory for Long-Term Medical Dialogue ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 18:27 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>LLM-based medical assistants that follow a patient across visits need a memory that keeps the patient&#x27;s clinical state correct as it changes.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>We examine the errors of five memory systems on longitudinal medical dialogue and find three recurring causes: the retrieved evidence gives an outdated state, includes another person&#x27;s health facts, or lacks a safety fa...</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We present MedGraph, a graph memory built for these three cases. Construction extracts dated facts from each session, attributes each fact to the person it describes, and links medication, diagnosis, and measurement rec...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08428v1" target="_blank" rel="noopener">The Power of Meta Access in the Software of the Future --- Demonstrated on LLM Chat UIs and Chat AI ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 18:22 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Chat remains the default surface for many large language model (LLM) tasks, even as agentic tools such as OpenCode excel at coding and automation.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Yet the model sees the current dialogue but not the workspace around it.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We explore meta access---giving the assistant a structured, permissioned view of the interface itself and propose a ladder of levels: feature tutoring; metadata, settings, and preference access; retrieval over summaries...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08425v1" target="_blank" rel="noopener">Failure Prediction and Classification in Vision-Language-Action Models Via Calibrated Latent Probing ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 18:21 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Vision-Language-Action models (VLAs) enable general-purpose embodied intelligence, but their performance is brittle under distribution shift, where unanticipated failures can damage equipment or endanger people.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Deploying VLAs in real-world systems therefore requires a runtime monitor that is timely, calibrated, and informative while being efficient enough to run on the edge.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Existing methods fail to fulfill these requirements. We present VLA-Tug, a lightweight probe over the latent layers of a VLA backbone that improves early failure detection and bounds the missed-detection and false-alarm...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08421v1" target="_blank" rel="noopener">Data-driven discovery of intrinsic Lie point symmetries of differential equation systems ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 18:19 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Discovering continuous symmetries directly from differential-equation data can reveal geometric structure for model reduction and scientific machine learning without symbolic determining equations or a closed-form repre...</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>We formulate intrinsic Lie point-symmetry discovery as an operator-theoretic problem on sampled jet-space data.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Admissible generators are identified from a sampled determining operator and separated from redundant, solution-dependent, and geometrically trivial directions. The framework combines prolongation, sequential subspace r...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08417v1" target="_blank" rel="noopener">Benchmarks as Software: Terminal-Bench and the Case for Continuous Benchmarks ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 18:18 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Coding agents are among the most economically consequential deployments of LLMs to date, making reliable evaluation increasingly important.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Yet even benchmarks that are carefully validated at release can become stale.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>As models improve, they can discover valid solutions that existing verifiers reject, while changes to evaluation infrastructure can invalidate assumptions embedded in tasks and tests. We call the resulting accumulation...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08414v1" target="_blank" rel="noopener">Spectral and Subspace Dynamics of LoRA in Supervised Fine-Tuning and Reinforcement Learning ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 18:17 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Low-rank adaptation (LoRA) is commonly used in both supervised fine-tuning (SFT) and reinforcement learning (RL), often under similar optimizer settings.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Yet, how the different dynamics of the two stages manifest in the low-rank increment that LoRA optimizes remains unclear.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Tracking the singular spectrum and subspaces of LoRA updates on mathematical reasoning tasks, we find that RL concentrates the spectrum at every learning rate, while SFT expands it at moderate learning rates; moreover,...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08412v1" target="_blank" rel="noopener">The Gold Rush in AI4Math, II: What are signatures of AI-assisted Proofs? ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 18:17 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>The growing use of AI in mathematics raises a question: can we detect AI involvement in proofs, separately from AI assistance with writing?.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Historical arXiv papers, recent papers disclosing substantive AI use, and manuscripts released by OpenAI provide a rich empirical basis for studying this question.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>However, several challenges remain: lack of matched case-control pairs; potential incompleteness of disclosure; and lack of ready-to-use features designed to capture signals of AI involvement in proofs. To address these...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08409v1" target="_blank" rel="noopener">Conformal Prediction for Time-Dependent PDEs ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 18:15 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Uncertainty quantification is crucial in scientific machine learning, where models inform safety-critical tasks such as flood forecasting, financial risk management, and thermal control in machines.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Conformal prediction provides distribution-free coverage guarantees, but in time-dependent settings common to physics and engineering, these guarantees can break down, leading to systematic undercoverage.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We study this problem in the context of surrogate models for time-dependent physical systems described by partial differential equations. We prove that in a function space setting, distributions at arbitrarily close tim...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08407v1" target="_blank" rel="noopener">Social Humanoid: Socially Responsive Human-Humanoid Interaction ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 18:14 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Humanoid robots are typically trained as solitary agents, leaving them unable to coordinate physically with human partners who naturally anticipate and adjust to one another.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>To bridge this gap, we present Social Humanoid, a hierarchical system that generates and executes socially responsive whole-body motion on a 29-DoF Unitree G1 conditioned on a human partner&#x27;s motion.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Its high-level policy performs flexible sequence modeling of human and humanoid motion through a shared tokenized representation, generating reactive humanoid motion and anticipating the partner&#x27;s motion when they are o...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08403v1" target="_blank" rel="noopener">StepBack: Step-Level Error-Localized Resampling for Efficient Test-Time Reasoning ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 18:12 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Self-consistency (SC) is a widely used decoding strategy for improving chain-of-thought reasoning, but it requires sampling many complete reasoning trajectories with a preset budget.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Its efficient variants reduce the cost mainly by stopping full-trajectory sampling early or distributing the number of samples across questions.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>In this paper, we propose StepBack, a step-level error-localized resampling method for efficient test-time reasoning. Given a small set of draft trajectories, StepBack localizes likely first error positions using lightw...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08394v1" target="_blank" rel="noopener">Synthesis of Ovarian Cancer Multi-Omics Datasets: A Biology-Informed Evaluation Framework ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 18:07 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Paired multi-omic cancer cohorts are costly to assemble and difficult to share, motivating synthetic cohorts as a complementary resource.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>As generative model development accelerates, we shift the focus from proposing yet another architecture to defining evaluation criteria that determine whether synthetic data preserve biologically relevant structure.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We introduce a biology-informed and patient-disjoint framework for evaluating the generation of paired RNA expression and copy-number variation (CNV) profiles, and apply it to the longitudinal DECIDER high-grade serous...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08392v1" target="_blank" rel="noopener">Learning a patient world model for health system simulation in intensive care ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 18:06 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Designing healthcare strategies requires anticipating their clinical and operational consequences before implementation, a task that often relies on health system simulation.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Such a simulation necessitates modeling how patient states evolve and generate care demands.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>However, conventional approaches typically tailor compact state transitions to a single policy question and omit history-dependent dynamics, thus requiring the redefinition of states and transitions when there is a new...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08386v1" target="_blank" rel="noopener">Hybrid Machine Learning for Imbalanced Landing-Phase Safety Event Prediction from Flight Data ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 18:04 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Landing-phase safety-event prediction requires the detection of rare abnormal approaches within strongly imbalanced multivariate flight data.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Capturing coupled temporal behavior while distinguishing event-specific signatures across airport operating contexts remains a central modeling challenge.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>This study proposes an interpretable hybrid feature-fusion framework for multiclass landing-phase safety-event prediction. A long short-term memory (LSTM) autoencoder trained on nominal flight windows characterizes devi...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08383v1" target="_blank" rel="noopener">FedReason: Large Language Models as Weight-Space Meta-Aggregators for Heterogeneous Federated Learning ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 18:00 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Federated learning servers combine client models with a fixed aggregation rule, and each rule in common use is designed for one kind of heterogeneity.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>We study whether a large language model (LLM) that inspects the client models can choose the rule itself, without any training on the server.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>In FedReason, the LLM is called every ten rounds. It analyses the weights by running code in a restricted server-side sandbox, sees only the printed results, may score a few candidates on a 500-image proxy set, and subm...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08379v1" target="_blank" rel="noopener">Module-Aware Optimization for Graph Neural Networks ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 17:56 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Different optimizers impose different geometries on parameter updates.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Adaptive methods such as Adam and AdamW use coordinate-wise updates, while matrix-aware optimizers such as Muon utilize weight-matrix structure through orthogonalized updates.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>For Graph Neural Networks (GNNs), however, the effective geometry of its weight matrices is shaped not only by its learned channel-mixing weights, but also by the graph-propagated representations it acts on. Thus, even...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08376v1" target="_blank" rel="noopener">Muir: Linear Attention with Sensitivity-Allocated Gating and Matched-Filter Readout ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 17:53 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Linear attention compresses context into a fixed-size key-value state for linear-time training and constant-memory inference.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Gated delta-rule models decay this state and erase its prediction for an incoming key before writing a new value; Gated DeltaNet-2 (GDN-2) generalizes this with channel-wise decay and decoupled, full-rank erase and writ...</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>However, we show that state updates are far less sensitive to erasure than to writes: key activation and unit normalization concentrate key energy onto a sparse subset of channels, whereas value writes scale all channel...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08372v1" target="_blank" rel="noopener">MOMASPLAT: Dynamic Novel-View Demonstration Augmentation for Mobile Manipulation ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 17:50 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Visuomotor policies trained through imitation learning are highly sensitive to changes in camera viewpoint.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>This is particularly problematic for mobile manipulation (MoMa), where robots rarely execute manipulation from the exact same base pose used during demonstration collection due to navigation uncertainty, localization dr...</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Recent approaches use novel-view synthesis (NVS) to augment demonstrations with unseen viewpoints, but they assume static scenes and therefore fail to re-render the manipulated object during the post-contact interaction...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08369v1" target="_blank" rel="noopener">NPCBench: A Clinical Apprenticeship Benchmark for Multimodal Care-Pathway Reasoning in Nasopharyngeal Carcinoma ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 17:48 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Current medical benchmarks typically break down clinical competence into isolated factual questions, single-image tasks, or static case vignettes.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>These tests score individual answers, but reveal less about whether a model can integrate subspecialty knowledge with multimodal evidence and track a patient&#x27;s condition throughout a course of care.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>To close this gap, we introduce NPCBench, a clinical apprenticeship benchmark for nasopharyngeal carcinoma (NPC). NPCBench mirrors specialist training, from guideline and foundational knowledge to case planning, longitu...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08368v1" target="_blank" rel="noopener">VisionSIM: Beyond Idealized Sensors - A Multi-Modal Simulator for Robot Perception ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 17:48 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Robotic perception increasingly relies on heterogeneous sensor suites combining cameras with emerging modalities (event, SPAD, iToF/dToF, and thermal).</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Yet existing simulators idealize these sensors, hiding critical modality-specific failure modes that limit real-world deployment.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We present VisionSIM, a unified, physically grounded simulation platform that elevates sensor realism to a first-class concern by modeling the raw physical measurement process for diverse conventional and emerging modal...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="https://testflight.apple.com/join/Z51G6g5G" target="_blank" rel="noopener">Show HN: Sanctuary – Offline LLM Running on Apple Silicon Metal (iOS) ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-general">testflight.apple.com</span>
-        <span class="item-date">Nov 05, 2026 • 17:44 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Show HN: Sanctuary – Offline LLM Running on Apple Silicon Metal (iOS) represents a notable development in ai and llms cataloged this week.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via testflight.apple.com as part of active developments across the AI landscape.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08364v1" target="_blank" rel="noopener">SHORE: Stability-Hybrid On-Policy Reinforcement Learning for Online Bin Packing ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 17:42 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Online 3D bin packing with a processing buffer requires choosing which box to pack, its orientation, and its placement while keeping the stack stable under unknown future arrivals.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>A collapse ends the episode and forfeits the remaining volume.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Existing methods use geometric rules or hard stability masks, limiting how risk can influence the joint choice of box, orientation, and placement. We propose Stability-Hybrid On-Policy Reinforcement Learning (SHORE), wh...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08363v1" target="_blank" rel="noopener">StrataFlux: Memory-Hierarchy-Native Low-Bit LLM Inference ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 17:42 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Quantization reduces the memory and bandwidth demands of large language model (LLM) inference but can degrade accuracy; offloading higher-precision data can instead stall generation.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>We introduce StrataFlux, a framework that challenges this tradeoff by recovering accuracy lost to low-bit weight and key-value (KV) cache quantization while retaining quantization&#x27;s memory and speed advantages.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>StrataFlux co-designs refinement representation, selection, and delivery to make host RAM and solid-state drives useful sources of additional precision. Its selective precision streaming reduces transfer volume, overlap...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08362v1" target="_blank" rel="noopener">SpecCTMC: Exact Speculative Simulation of Diffusion Language Model Continuous-Time Markov Chains ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 17:41 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Masked diffusion language models offer parallel text generation, but independently sampling multiple tokens can disrupt their dependencies and change the output distribution.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Exact continuous-time sampling avoids this approximation, yet typically requires one sequential model evaluation per token.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We introduce SpecCTMC, a training-free speculative sampler that reduces this sequential bottleneck without a separate draft model. SpecCTMC proposes successive token updates using previously computed model predictions,...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08358v1" target="_blank" rel="noopener">Unifying Central Flow, Rod Flow, and the Edge Coupling ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 17:37 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>At the edge of stability, the iterates of gradient descent oscillate along the sharp directions of the Hessian.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>This poses a significant challenge for continuous-time models as the usual continuous-time approximation -- the gradient flow -- admits no oscillations.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Several continuous-time models have been proposed to capture the behavior at the edge of stability, among them central flow and rod flow. Although both models can be interpreted as performing a coarse-graining in time,...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08352v1" target="_blank" rel="noopener">USB Gym: A Gymnasium Testbed for Closed-Loop Ultrasound View Matching ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 17:34 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Background and Objective: Our main goal is ultrasound guidance: moving a probe until its image matches a target view.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Published methods for each part of a guide are evaluated in separate simulators.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We asked whether these methods, combined into one guide, are good enough. Methods: We built USB Gym, a testbed whose standard engine simulates ultrasound from public patient CT, with a network drawing organ textures fro...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08342v1" target="_blank" rel="noopener">4D Point Splatting for mmWave Radar Micro-Doppler Differentiable Rendering ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 17:27 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Millimeter-wave radar resolves the micrometer displacements of a moving body as micro-Doppler, enabling gait, gesture, activity, pose and vital-sign sensing.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Each task relies on a downstream model trained on real data, yet radar datasets lag orders of magnitude behind vision and language.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Brute-force collection will not close that gap, and existing synthesis methods (forward-only simulators, learned generators and static-scene inverse renderers) cannot fit a real capture of a moving body, leaving a sim2r...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08341v1" target="_blank" rel="noopener">Enhancing Local and Global Structure in Compressed AI Agent Memory ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 17:27 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>AI agents store text as embedding vectors and compress them at scale.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>A compression is accepted when each item&#x27;s nearest neighbors survive, but agents also consolidate, delete, and compare memories, tasks that depend on which items lie far apart.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We evaluate both ends with two label-free fidelities from our prior work: the local fidelity $L$ at 10 neighbors and the global fidelity $G$ at 30 to 50 percent of the memory. At 96 bytes per passage, rescored binary co...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08335v1" target="_blank" rel="noopener">Discovering Learning Rules that Shape Others ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 17:23 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>In general-sum games, self-interested learners can reach outcomes that are poor for everyone, which has motivated methods that shape the opponent&#x27;s learning.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Methods like Learning with Opponent-Learning Awareness (LOLA), which differentiates through the opponent&#x27;s learning process, and Model-Free Opponent Shaping (M-FOS), which uses model-free optimisation methods for long-h...</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>However, these methods require access to the opponent&#x27;s parameters, policy, rewards or learning rule during deployment. In single-agent reinforcement learning, update rules discovered by meta-learning have achieved stat...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08334v1" target="_blank" rel="noopener">Cultural Adaptation within Repeated Social Interactions ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 17:23 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Much of human culture is tacit and is typically learned through situated social interaction.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>As LLMs are deployed as interactive agents across diverse communities, assessing their cultural competence demands moving beyond existing question-answering approaches, shifting from what they know to how they adapt.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>In this work, we broaden the scope of cultural adaptation in NLP by investigating whether LLMs can adapt through repeated interactions via a sandbox environment. By reframing cultural adaptation as a continuous process...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08323v1" target="_blank" rel="noopener">Polarity Classification with Multitask Learning Syntax Augmentation ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 17:19 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Sentiment Analysis (SA) is a fundamental NLP task concerned with the identification and categorization of subjective information in text.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>While lexicon-based methods offer transparency, they often struggle with linguistic phenomena such as negation and intensification.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Syntactic parsing has been integrated into SA pipelines to address this, but conventional parsers introduce significant computational overhead. Recent work shows that reformulating dependency parsing as a Sequence Label...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08318v1" target="_blank" rel="noopener">Learning the Task or Learning the Verifier? Rethinking Criteria Exposure in Embodied Self-Improvement ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 17:14 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Self-improving embodied agents are increasingly being developed and compared on robot simulation benchmarks.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Several recent works expose the benchmark&#x27;s success criteria to the learning agent, a practice we call Criteria Exposure (CE).</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>These criteria, originally written to verify policies trained by imitation learning, often demand more than the corresponding language instructions, so a score from such a verifier may not faithfully reflect whether the...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08315v1" target="_blank" rel="noopener">Benchmarking Large Language Models on Heterogeneous Cognitive and Biomedical Knowledge Graphs: The Role of Graph Grounding in Multi-Hop Rea... ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 17:12 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Large language models (LLMs) are increasingly used in biomedical and cognitive neuroscience, but their ability to reason reliably over heterogeneous knowledge graphs (KGs) remains unclear.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>We benchmark five LLMs (GPT-5.1, Gemini 2.0 Pro, Llama 3, Qwen, and BioGPT) across five KGs: DrugBank, NeuroSynth, Cognitive Atlas, Brain Map, and GDPKG.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We introduce a multitier query dataset to evaluate reasoning depth and factual accuracy under KG-aware (graph-grounded) and KG-agnostic conditions. Inter-annotator agreement was substantial, with Cohen&#x27;s kappa of 0.781...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08314v1" target="_blank" rel="noopener">Interpretable many-body interaction laws for collective motion from few trajectories ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 17:12 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Models of collective motion usually reduce social interactions to pairwise forces, despite empirical evidence for many-body effects.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>We introduce the directional atomic cluster expansion (dACE), which adapts the atomic cluster expansion (ACE) of interatomic potentials to self-propelled agents.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>dACE provides a systematically improvable, exactly equivariant expansion of an agent&#x27;s acceleration that splits uniquely into 1-, 2-, 3-body and higher contributions, along with a self term for the agent&#x27;s own past moti...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08311v1" target="_blank" rel="noopener">LLM-Assisted Label Noise Correction for EEG-Based Sleep Stage Classification ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 17:12 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Automatic sleep stage classification from electroencephalography (EEG) signals is a critical task in clinical sleep medicine.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>While deep learning models have shown promising results in this domain, their performance is fundamentally constrained by the quality of training labels, which human experts manually annotate and that are subject to int...</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>In this paper, we propose a novel LLM-assisted label-noise filtering pipeline that operates exclusively during training to identify and remove unreliable sleep-stage annotations before retraining the classifier. Specifi...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08308v1" target="_blank" rel="noopener">RM-VLM: From Natural-Language Task Descriptions to Vision-Grounded Reward Machines ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 17:10 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Reward machines (RMs) have been proposed as a reward formulation in reinforcement learning (RL) to capture non-Markovian tasks where credit assignment depends on history.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>By representing reward functions as automata, RMs expose the task&#x27;s temporal structure and allow such rewards to be handled within a Markovian framework.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>However, they assume a labelling function, a proposition-grounding oracle for observations, which must be manually engineered for each environment, limiting their wider applicability. In this work, we address this limit...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08307v1" target="_blank" rel="noopener">Measured Coupling for Parallel Decoding in Diffusion Language Models ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 17:10 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Diffusion language models can write many tokens per step, but must choose which tokens are safe to commit together.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Mean-field decoding penalizes pairs of positions whose predictions look alike.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We replace this proxy with the coupling itself: how much committing one token changes the model&#x27;s confidence at another. Cheap probes inside the main forward pass measure it, with no training or extra model, and it plug...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="https://speakerdeck.com/bcantrill/code-matters" target="_blank" rel="noopener">Code Matters: Reflections on Rust in the LLM Age ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-general">speakerdeck.com</span>
-        <span class="item-date">Nov 05, 2026 • 17:08 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Code Matters: Reflections on Rust in the LLM Age represents a notable development in ai and llms cataloged this week.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Reported and tracked via speakerdeck.com as part of active developments across the AI landscape.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Reflects the rapid cadence of technical experimentation and practical deployment.</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08290v1" target="_blank" rel="noopener">AutoCompress: Automated Hardware-Guided Model Compression ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 16:53 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>LLM pruning must preserve quality while meeting hardware- and workload-specific constraints on latency, throughput, and memory.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Existing pruning workflows often target parameter counts, requiring practitioners to manually select model sizes that meet latency, throughput, and GPU memory limits.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>However, parameter count alone does not predict these metrics, which depend on the model architecture, workload, hardware, and serving engine. We introduce AutoCompress, a hardware-guided compression framework that dire...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08284v1" target="_blank" rel="noopener">A Generative Model of Contextual Integrity: Appropriate vs. Inappropriate Information Sharing ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 16:48 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Contextual integrity (CI) holds that appropriate information flow depends on context-specific norms.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>The same disclosure may be appropriate in one context and inappropriate in another.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We build a generative model of contextual integrity to study information sharing through simulated conversations. Two actors played by large language models exchange messages, with one holding private information and th...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08281v1" target="_blank" rel="noopener">Multimodal-SEA: Benchmarking AI Agent Security under Multimodal Social Engineering Attacks ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 16:46 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Personal AI agents face social engineering attacks supported by forged multimodal content, but existing evaluations mainly focus on text-based dialogue, leaving their intrinsic security under such attacks insufficiently...</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>We introduce Multimodal-SEA, an interactive benchmark comprising 608 expert-designed tasks grounded in real-world fraud cases, covering 14 domains and 152 attack scenarios with prepared multimodal content.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>The tasks span four difficulty levels and reflect the distinct social and cultural contexts of Chinese and English environments. Agents inspect content, verify requests, and execute actions in simulated applications, wi...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08277v1" target="_blank" rel="noopener">LeanContext: Disentangling Mathematical Resources from Local Formal Context in Lean Whole-Proof Generation ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 16:44 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Neural theorem proving increasingly uses retrieved premises and project context to support proof generation.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Evaluating these resources requires measuring the advantage of target-selected declarations over comparable alternatives and how this advantage depends on training.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We introduce LeanContext, a benchmark of 129,826 Lean whole-proof generation problems, to investigate these questions. We group selected complete preceding mathematical declarations as Mathematical Context (MC) and the...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08275v1" target="_blank" rel="noopener">Aligning Policy Encoders with a Shape Teacher ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 16:44 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>3D-aware representations can improve robotic manipulation by providing geometric information that is robust to changes in viewpoint, object position, and occlusion.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>However, using 3D inputs at deployment requires additional sensing and processing, making image-based policies more practical.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We ask whether an image-based policy can acquire 3D shape information during training while retaining a purely image-based interface at deployment. We propose shape-teacher alignment, a training-time mechanism that uses...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08262v1" target="_blank" rel="noopener">The Geometry of Simulated Perspectives: Dissociating Representation and Behaviour in a Multimodal Language Model ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 16:36 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Multimodal language models can simulate different observers, yet it remains unclear how assigned perspectives reshape their internal representations and whether these changes govern their judgements.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Here, we investigate the representational geometry of persona-conditioned visual interestingness in Qwen3-VL-8B-Instruct.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Across 100 images and 53 prompting conditions, we systematically vary persona content and the linguistic framing used to introduce it, while recording behavioural ratings and layer-wise hidden states. We observe a syste...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08237v1" target="_blank" rel="noopener">Terminal-style Mathematical Modeling Bench: The First Agentic and Verifiable Benchmark for Mathematical Modeling ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 16:18 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Mathematical modeling turns an open-ended real-world problem into assumptions, a model, a solution, and a defended recommendation, and its answers matter only if they are both close to a credible reference and physicall...</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>We introduce TB-MathModel (the Terminal-style Mathematical Modeling Bench), the first benchmark to make complete contest-style modeling problems agentic, verifiable, and terminal at once, over 18 real CUMCM and MCM prob...</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Each task ships the verbatim statement, official attachments, and figures in a containerized terminal; the agent returns one JSON artifact, scored on the numeric core of the final question against a reproduction of the...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08231v1" target="_blank" rel="noopener">From Twisted Facts to Rogue Agents: Can LLMs Reliably Detect Multi-Dimensional Hallucinations? ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 16:15 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Large language models (LLMs) are widely used for information access, content production, and agent-based task execution, but their outputs remain vulnerable to subtle, high-risk hallucinations.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>To systematically evaluate and advance post-generation hallucination detection, we introduce HaluCheck, a large-scale, bilingual benchmark comprising over 42k instances spanning both factual hallucinations in text and f...</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>HaluCheck features fine-grained, multi-level annotations for detection, localization, and correction, covering different tasks and perturbation degrees. Experiments on fourteen LLMs reveal that, while models show basic...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08226v1" target="_blank" rel="noopener">&quot;Blind Compliance&quot;: Coercive Control in AI Jailbreaking ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 16:11 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>The explosion of generative AI systems and concerns surrounding their rapidly scaling capabilities has led to an adversarial cycle between increasingly narrow content restrictions (&quot;guardrails&quot;) and increasingly sophist...</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Technological frameworks surrounding such jailbreaking remain largely focused on the system&#x27;s output: whether harmful or disallowed content is ultimately produced for the user.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>However, this approach, which draws largely from classical cybersecurity, does not address the uniquely relational dimension introduced by generative AI: in many cases the user is not just accessing a technology via an...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08219v1" target="_blank" rel="noopener">Agent-R$^2$: Scaling Agents for Realistic Productivity Work via Real-Source Data Synthesis ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 16:08 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Large language models have made rapid progress in agentic reasoning and tool use, raising expectations for agents that can take over realistic productivity work from humans.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>However, current agents still struggle to finish such tasks, where success requires following long-horizon professional workflows, understanding heterogeneous file contexts, and producing usable deliverables under fine-...</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>A key bottleneck is the lack of scalable post-training data that reflects real work intent, authentic file environments, and deliverable-level evaluation. To close this gap, we introduce Agent-R$^2$, a $\textbf{r}$eal-s...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08216v1" target="_blank" rel="noopener">ProQuant: Progressive Quantization-aware Training for Edge MLLMs ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 16:04 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Multi-modal large language models (MLLMs) with impressive perception and understanding capabilities will enable a range of downstream applications.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>However, their substantial computational and memory requirements hinder the real-world implementation, particularly for resource-constrained edge devices.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Quantization has emerged as an effective solution for deploying large models. While post-training quantization (PTQ) successfully retains the performance at moderate bit-width (e.g., W8A8), it suffers from severe perfor...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08196v1" target="_blank" rel="noopener">SMART: State-based Multi Agent Reasoning Traces for Verification-oriented Problem-Solving ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 15:51 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Complex problems with limited context, such as claims, require a means to obtain additional knowledge necessary for solution reasoning.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>We propose a multi-agent framework, SMART, to obtain knowledge through capturing the implicit state of participating entities in a problem context.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>SMART curates the state knowledge as diverse, complementary and solution-salient premises using a variety of LLMs and a structured role-based prompt strategy. Using knowledge from these real-world verified curated premi...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08179v1" target="_blank" rel="noopener">Knowing When to Teach: Learning from Teachable Prefixes in Multilingual Reasoning Distillation ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 15:34 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>On-Policy Self-Distillation (OPSD) improves reasoning by training a student on its own reasoning, using the same model conditioned on reference solutions as a teacher.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Applying OPSD to multilingual reasoning requires the teacher to provide useful feedback across languages, even when the student makes mistakes in intermediate steps.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We observe a phenomenon we call Teacher Drift: as these mistakes accumulate, the teacher may follow the student&#x27;s incorrect steps instead of correcting them. Our analysis shows that this shift tends to occur earlier in...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08162v1" target="_blank" rel="noopener">RouteAlign: Aligning Task Requirements with Model Profiles for LLM Service Selection ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 15:21 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>LLM service selection requires performance evidence that reflects the demands of the current task.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Aggregate scores obscure differences in capability and difficulty, while semantically related examples can involve different combinations of skills.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We present RouteAlign, which uses task requirements to structure both the measurement of model performance and the selection of services. Task requirements describe capability demand and difficulty, enabling alignment w...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08133v1" target="_blank" rel="noopener">Beyond K/V Caches: Cross-Model State Handoff in Hybrid Linear-Attention LLMs ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 15:00 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Production deployments often use different models to balance cost and quality through cascading, routing, and switching models during long conversations.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Context accumulates across turns.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Each switch requires the target to repeat prefill over this context. Existing methods transfer full-attention (FA) K/V caches across models. Hybrid linear-attention models also retain recurrent states (REC) and convolut...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08092v1" target="_blank" rel="noopener">Gabor Gabor: E-Gaborformer, a Strictly Causal Speech Recognizer with Gabor-Dictionary Convolutions and Delta-Rule Memory ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 14:36 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Real-time voice agents need a speech recognizer that never waits for future audio and whose memory per call does not grow with the length of the call.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>We present E-Gaborformer, a strictly causal encoder that combines Gated DeltaNet-2 recurrent layers with sliding-window attention in a 3:1 ratio, and builds every temporal convolution from a fixed dictionary of causal G...</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Its streaming state is constant, about 19 MB per call at production scale including the prediction network, where a causal-attention encoder of the same size accumulates over 1 GB after ten minutes. In a controlled caus...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08091v1" target="_blank" rel="noopener">ATHAAR: A Medieval Scientific Arabic Manuscript Dataset for Handwritten Text Recognition ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 14:36 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Despite recent progress in handwritten text recognition, medieval Arabic scientific manuscripts remain an open challenge for current vision-language models (VLMs) due to cursive ligatures, variable diacritization, and m...</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>This paper aims to address this gap, by proposing the first annotation guidelines dedicated to the transcription of scientific Arabic manuscripts inspired by textual criticism, a well-established approach to historical...</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We then propose, ATHAAR, a new dataset manually annotated following this guideline. Unlike previous resources in the field, ATHAAR varies both witnesses of the same text, calligraphic styles, and content to deal with te...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08085v1" target="_blank" rel="noopener">Linguistic boundaries emerge from pressure-constrained processing dynamics ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 14:33 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Human cognition organizes continuous experience into bounded units while maintaining continuity across them.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Linguistic elements are also organized into bounded structural units such as words and phrases, with sentence marking the final bound of a grammatical construction process.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>How do such boundaries emerge? We propose boundaries emerge from interacting demands to maintain unresolved dependencies, integrate completed relations, and update semantic context, with structural completion allowing b...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08016v1" target="_blank" rel="noopener">Learning Dynamics of On-Policy Distillation ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 13:38 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>On-policy distillation (OPD) is emerging as an important paradigm for language-model post-training, combining dense teacher supervision with training on student-generated trajectories.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>This creates a feedback loop where each update changes the student and thereby the training distribution that generates subsequent updates.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Yet, how this feedback shapes learning and generalization remains poorly understood. We conduct a mechanistic analysis of OPD&#x27;s learning dynamics, distinguishing the two feedback loop stages: conversion of the distillat...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08006v1" target="_blank" rel="noopener">Automatic keyphrase extraction and annotation: modern theoretical approaches and practical solutions for text and speech ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 13:31 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>The exponential growth of textual and audiovisual information has made the task of automatic keyphrase extraction (KE) increasingly significant.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>This article provides a comprehensive analysis of contemporary theoretical approaches and practical solutions for KE across both text and speech modalities.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>The primary contribution of this work is its systematic synthesis of these often-disparate research strands into a unified analytical framework, highlighting the evolution of the field from statistical methods towards l...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.07988v1" target="_blank" rel="noopener">Compression Through a Context Lens: Evaluating Adaptation, Quantization, and Distillation in Arabic Legal LLMs ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 13:15 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Model compression can facilitate the deployment of large language models in resource-constrained legal settings, but its effects on domain-specific performance may depend on the evaluation protocol.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>We investigate this issue using ArabLegalEval, a Saudi Arabic legal benchmark, under both with-context and no-context evaluation.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>The former provides supporting legal passages, while the latter assesses performance without external context. Removing the context produces accuracy gaps of up to 27 percentage points for the base model. We examine thr...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.07982v1" target="_blank" rel="noopener">How Far Can Lightweight LLMs Go in Intent-to-SLO Translation? ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 13:12 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Intent-based networking (IBN) promises QoS provisioning in which the network derives the configuration from operator-stated goals.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Its first step, translating a natural-language intent into enforceable service-level objectives (SLOs) grounded in a live snapshot of the network state, increasingly relies on large language models (LLMs).</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>These large models add cost and energy to the management loop and typically require multi-GPU, cloud-hosted infrastructure. Can lightweight open LLMs take over this step dependably? We answer this question with a five-d...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>## Ripple Preview [Ripple Preview](https://ollama.com/library/ripple-preview) from Ricursive Intelligence is a 65B dense model built for agentic coding.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>```sh ollama run ripple-preview ``` ## What&#x27;s Changed - Qwen3.8 Flash Next uses about 27 GiB less memory on Apple silicon - `ollama launch claude` always routes Claude Code to the selected model - `ollama launch` explai...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Provides valuable practical utility and implementation guidance for ai and llms.</span></div>
       </div>
     </div>
   </div>
 </div>
 
 <div id="agents-and-automation">
-  <h3 class="topic-group-title"><span>📌</span> Agents and Automation (62 updates)</h3>
+  <h3 class="topic-group-title"><span>📌</span> Agents and Automation (47 updates)</h3>
   <div class="dev-card-grid">
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="https://renderpixels.com" target="_blank" rel="noopener">Show HN: RenderPixels – Generate images from any AI via MCP, 50 free renders ↗</a></div>
+        <div class="item-title"><a href="https://getunblocked.com/blog/mcp-connectors-are-not-a-context-engine/" target="_blank" rel="noopener">A Pile of MCP Connectors Is Not a Context Engine ↗</a></div>
       </div>
       <div class="item-meta">
-        <span class="badge-source source-general">renderpixels.com</span>
-        <span class="item-date">Nov 08, 2026 • 01:12 UTC</span>
+        <span class="badge-source source-general">getunblocked.com</span>
+        <span class="item-date">Nov 15, 2026 • 10:00 UTC</span>
       </div>
       <div class="gist-box">
         <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Focuses on Model Context Protocol (MCP) integrations, server tooling, and agent interoperability.</span></div>
@@ -1541,67 +1607,11 @@ The agent ecosystem also moved decisively from demos toward practical systems. M
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="https://www.marqpm.com/" target="_blank" rel="noopener">MarQ – Project board where AI agents lease tasks over MCP ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-general">www.marqpm.com</span>
-        <span class="item-date">Nov 08, 2026 • 00:35 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Focuses on Model Context Protocol (MCP) integrations, server tooling, and agent interoperability.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Standardizes how autonomous agents securely query external tools, APIs, and data sources.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Demonstrates the rapid industry convergence around MCP as the unified agent tool interface.</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="https://rogermas05.github.io/agent-recap/" target="_blank" rel="noopener">An AI agent&#x27;s public attempt to get 5k GitHub stars in a month (it&#x27;s at 0) ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-github">rogermas05.github.io</span>
-        <span class="item-date">Nov 08, 2026 • 00:32 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Explores autonomous agent architecture, execution safety, and unattended multi-turn workflows.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Focuses on managing tool-calling loops, context windows, and operational boundaries for agents.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Crucial for engineers transitioning from basic chat assistants to robust autonomous agents.</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="https://www.mellonbot.app" target="_blank" rel="noopener">Initial submission of Mellonbot – an AI agent for Linux server diagnostics ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-general">www.mellonbot.app</span>
-        <span class="item-date">Nov 07, 2026 • 22:57 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Explores autonomous agent architecture, execution safety, and unattended multi-turn workflows.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Focuses on managing tool-calling loops, context windows, and operational boundaries for agents.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Crucial for engineers transitioning from basic chat assistants to robust autonomous agents.</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="https://github.com/Moonyeep/Infinix" target="_blank" rel="noopener">Infinix – Abandoned Local AI Agent Base Seeking Developers ↗</a></div>
+        <div class="item-title"><a href="https://github.com/Tthanh2k6/turbo-browser-mcp" target="_blank" rel="noopener">Show HN: Turbo-Browser-MCP – Batch forms, DOM deltas and submit guards for MCP ↗</a></div>
       </div>
       <div class="item-meta">
         <span class="badge-source source-github">github.com</span>
-        <span class="item-date">Nov 07, 2026 • 17:54 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Explores autonomous agent architecture, execution safety, and unattended multi-turn workflows.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Focuses on managing tool-calling loops, context windows, and operational boundaries for agents.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Crucial for engineers transitioning from basic chat assistants to robust autonomous agents.</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="https://maildignity.com/" target="_blank" rel="noopener">Show HN: I made a guardrail against AI outreach slop (API/MCP) ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-general">maildignity.com</span>
-        <span class="item-date">Nov 07, 2026 • 13:48 UTC</span>
+        <span class="item-date">Nov 15, 2026 • 04:09 UTC</span>
       </div>
       <div class="gist-box">
         <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Focuses on Model Context Protocol (MCP) integrations, server tooling, and agent interoperability.</span></div>
@@ -1611,25 +1621,11 @@ The agent ecosystem also moved decisively from demos toward practical systems. M
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="https://rungrid.space" target="_blank" rel="noopener">Show HN: Service for the parallel execution of AI agent tasks on remote devices ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-general">rungrid.space</span>
-        <span class="item-date">Nov 07, 2026 • 08:53 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>I&#x27;m building Rungrid, a platform for running and managing tasks across multiple remote devices from a single interface.The project is currently in the MVP stage.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>If you&#x27;re interested, you can join the waitlist to get notified when it launches.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Provides valuable practical utility and implementation guidance for agents and automation.</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="https://github.com/radwanalmsora/mcp-server-autocad-lisp-helper" target="_blank" rel="noopener">MCP-server-AutoCAD-Lisp-helper ↗</a></div>
+        <div class="item-title"><a href="https://github.com/yasindce1998/redhands" target="_blank" rel="noopener">Show HN: RedHands – MCP for multi-stage offensive security tools ↗</a></div>
       </div>
       <div class="item-meta">
         <span class="badge-source source-github">github.com</span>
-        <span class="item-date">Nov 07, 2026 • 04:31 UTC</span>
+        <span class="item-date">Nov 14, 2026 • 20:05 UTC</span>
       </div>
       <div class="gist-box">
         <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Focuses on Model Context Protocol (MCP) integrations, server tooling, and agent interoperability.</span></div>
@@ -1639,95 +1635,11 @@ The agent ecosystem also moved decisively from demos toward practical systems. M
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="https://getcinnamon.ai/" target="_blank" rel="noopener">Show HN: Cinnamon – a household AI agent with shared context and memories ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-general">getcinnamon.ai</span>
-        <span class="item-date">Nov 06, 2026 • 23:44 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Explores autonomous agent architecture, execution safety, and unattended multi-turn workflows.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Focuses on managing tool-calling loops, context windows, and operational boundaries for agents.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Crucial for engineers transitioning from basic chat assistants to robust autonomous agents.</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="https://ballast.to" target="_blank" rel="noopener">Ballast – cold email infrastructure with AI and MCP ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-general">ballast.to</span>
-        <span class="item-date">Nov 06, 2026 • 21:25 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Focuses on Model Context Protocol (MCP) integrations, server tooling, and agent interoperability.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Standardizes how autonomous agents securely query external tools, APIs, and data sources.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Demonstrates the rapid industry convergence around MCP as the unified agent tool interface.</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="https://github.com/3orionkings/ai-product-team" target="_blank" rel="noopener">AI Product Team – 64 specialized AI agent roles with executable CLI workflows ↗</a></div>
+        <div class="item-title"><a href="https://github.com/Swedishwizards/Mac-health-mcp" target="_blank" rel="noopener">Mac Health MCP – ask Claude why your Mac is slow ↗</a></div>
       </div>
       <div class="item-meta">
         <span class="badge-source source-github">github.com</span>
-        <span class="item-date">Nov 06, 2026 • 17:38 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Explores autonomous agent architecture, execution safety, and unattended multi-turn workflows.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Focuses on managing tool-calling loops, context windows, and operational boundaries for agents.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Crucial for engineers transitioning from basic chat assistants to robust autonomous agents.</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="https://stripe.dev/blog/your-ai-agent-can-move-money-in-stripe" target="_blank" rel="noopener">AI agent can move money in Stripe ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-general">stripe.dev</span>
-        <span class="item-date">Nov 06, 2026 • 16:20 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Explores autonomous agent architecture, execution safety, and unattended multi-turn workflows.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Focuses on managing tool-calling loops, context windows, and operational boundaries for agents.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Crucial for engineers transitioning from basic chat assistants to robust autonomous agents.</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="https://easyruncraft.com/" target="_blank" rel="noopener">Show HN: EasyRunCraft – An office and creative suite for your AI agent ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-general">easyruncraft.com</span>
-        <span class="item-date">Nov 06, 2026 • 14:58 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Explores autonomous agent architecture, execution safety, and unattended multi-turn workflows.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Focuses on managing tool-calling loops, context windows, and operational boundaries for agents.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Crucial for engineers transitioning from basic chat assistants to robust autonomous agents.</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="https://penguinbase.com/game-install?game=192471728&ref=hn" target="_blank" rel="noopener">Show HN: Grid – A Hold&#x27;em arena where your AI agent plays your strategy (Beta) ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-general">penguinbase.com</span>
-        <span class="item-date">Nov 06, 2026 • 13:57 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Hi HN, my friend&#x27;s team and I have been building a game called GRID, a dog poker game with an AI twist.Under the cute dog graphics, GRID is an arena where LLMs compete, with no-limit hold’em as the medium.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>You duke it out as a strategist, vibe coder, and bot maker.Why: models get compared on benchmarks all the time, but rarely as my agent against yours in its truest form.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>GRID is our attempt at creating that arena, because we believe this type of game will exist in the future, as AI becomes as common a tool as the browser.How it works:* Paste a prompt and an MCP config into Claude Code,...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="https://github.com/codie1982/chorono-editor" target="_blank" rel="noopener">Show HN: Chorono – Open-source 2D animation editor controllable via MCP ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-github">github.com</span>
-        <span class="item-date">Nov 06, 2026 • 11:56 UTC</span>
+        <span class="item-date">Nov 14, 2026 • 11:18 UTC</span>
       </div>
       <div class="gist-box">
         <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Focuses on Model Context Protocol (MCP) integrations, server tooling, and agent interoperability.</span></div>
@@ -1737,25 +1649,11 @@ The agent ecosystem also moved decisively from demos toward practical systems. M
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="https://prod.codes/blog/your-ai-agent-has-amnesia-mine-keeps-receipts/" target="_blank" rel="noopener">AI Agent Has Amnesia. Mine Keeps Receipts ↗</a></div>
+        <div class="item-title"><a href="https://stampdrill.com/" target="_blank" rel="noopener">Show HN: Language for API calls, load tests and MCP server ↗</a></div>
       </div>
       <div class="item-meta">
-        <span class="badge-source source-general">prod.codes</span>
-        <span class="item-date">Nov 06, 2026 • 07:51 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Explores autonomous agent architecture, execution safety, and unattended multi-turn workflows.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Focuses on managing tool-calling loops, context windows, and operational boundaries for agents.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Crucial for engineers transitioning from basic chat assistants to robust autonomous agents.</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="https://github.com/perzianhq/mantis" target="_blank" rel="noopener">Show HN: Mantis – AI agents browse 36% faster than with Playwright MCP ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-github">github.com</span>
-        <span class="item-date">Nov 06, 2026 • 06:38 UTC</span>
+        <span class="badge-source source-general">stampdrill.com</span>
+        <span class="item-date">Nov 14, 2026 • 08:05 UTC</span>
       </div>
       <div class="gist-box">
         <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Focuses on Model Context Protocol (MCP) integrations, server tooling, and agent interoperability.</span></div>
@@ -1765,632 +1663,590 @@ The agent ecosystem also moved decisively from demos toward practical systems. M
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="https://github.com/langchain-ai/langgraph/releases/tag/cli%3D%3D0.4.42" target="_blank" rel="noopener">langgraph-cli==0.4.42 ↗</a></div>
+        <div class="item-title"><a href="https://browserr.dev" target="_blank" rel="noopener">Show HN: Browserr – An MCP-first browser for AI agents (one Rust binary) ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-general">browserr.dev</span>
+        <span class="item-date">Nov 14, 2026 • 03:22 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Focuses on Model Context Protocol (MCP) integrations, server tooling, and agent interoperability.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Standardizes how autonomous agents securely query external tools, APIs, and data sources.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Demonstrates the rapid industry convergence around MCP as the unified agent tool interface.</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://github.com/langchain-ai/langgraph/releases/tag/1.2.22" target="_blank" rel="noopener">langgraph==1.2.22 ↗</a></div>
       </div>
       <div class="item-meta">
         <span class="badge-source source-github">GitHub/langchain-ai/langgraph</span>
-        <span class="item-date">Nov 06, 2026 • 03:04 UTC</span>
+        <span class="item-date">Nov 14, 2026 • 01:43 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Changes since cli==0.4.41 * release(cli): 0.4.42 (#9611) * feat(cli): add deploy metrics command (#9479) * chore(deps): bump filelock and langgraph-api for security fixes (#9606).</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Changes since 1.2.21 * release(langgraph): 1.2.22 (#9702) * release(checkpoint-postgres): 3.2.1 (#9700) * release(prebuilt): 1.1.2 (#9701) * release(checkpoint): 4.3.2 (#9699) * fix(langgraph): stream a child graph on i...</span></div>
         <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Introduces focused improvements and architectural refinements in agents and automation.</span></div>
         <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Signals accelerating standard adoption and ecosystem convergence.</span></div>
       </div>
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="https://github.com/langchain-ai/langgraph/releases/tag/sdk%3D%3D0.4.14" target="_blank" rel="noopener">langgraph-sdk==0.4.14 ↗</a></div>
+        <div class="item-title"><a href="https://github.com/langchain-ai/langgraph/releases/tag/checkpointpostgres%3D%3D3.2.1" target="_blank" rel="noopener">langgraph-checkpoint-postgres==3.2.1 ↗</a></div>
       </div>
       <div class="item-meta">
         <span class="badge-source source-github">GitHub/langchain-ai/langgraph</span>
-        <span class="item-date">Nov 06, 2026 • 03:03 UTC</span>
+        <span class="item-date">Nov 14, 2026 • 01:39 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Changes since sdk==0.4.13 * release(sdk-py): 0.4.14 (#9610) * feat(sdk-py): add strict_resume to runs.create, stream and wait (#9599) * feat(sdk-py): add tools and lifecycle to StreamMode (#9601).</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Changes since checkpointpostgres==3.2.0 * release(checkpoint-postgres): 3.2.1 (#9700) * release(checkpoint): 4.3.2 (#9699) * perf(checkpoint-postgres): run a lone store read outside a pipeline (#9635) * perf(checkpoint-...</span></div>
         <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Introduces focused improvements and architectural refinements in agents and automation.</span></div>
         <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Signals accelerating standard adoption and ecosystem convergence.</span></div>
       </div>
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="https://ergen.ai/" target="_blank" rel="noopener">World-Model MCP for Finance ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-general">ergen.ai</span>
-        <span class="item-date">Nov 06, 2026 • 01:24 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Focuses on Model Context Protocol (MCP) integrations, server tooling, and agent interoperability.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Standardizes how autonomous agents securely query external tools, APIs, and data sources.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Demonstrates the rapid industry convergence around MCP as the unified agent tool interface.</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="https://arxiv.org/abs/2609.30137" target="_blank" rel="noopener">Paper: Nubank cuts AI agent update cycles from 3 weeks to under 5 days ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arxiv.org</span>
-        <span class="item-date">Nov 06, 2026 • 00:43 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Explores autonomous agent architecture, execution safety, and unattended multi-turn workflows.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Focuses on managing tool-calling loops, context windows, and operational boundaries for agents.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Crucial for engineers transitioning from basic chat assistants to robust autonomous agents.</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="https://github.com/aliilyas/bruster" target="_blank" rel="noopener">Bruster – Rust browser automation tool and MCP ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-github">github.com</span>
-        <span class="item-date">Nov 05, 2026 • 23:38 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Focuses on Model Context Protocol (MCP) integrations, server tooling, and agent interoperability.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Standardizes how autonomous agents securely query external tools, APIs, and data sources.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Demonstrates the rapid industry convergence around MCP as the unified agent tool interface.</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="https://eunomia.dev/agentsight/" target="_blank" rel="noopener">AgentSight: System-wide AI agent profiling and monitoring with eBPF ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-general">eunomia.dev</span>
-        <span class="item-date">Nov 05, 2026 • 22:27 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Explores autonomous agent architecture, execution safety, and unattended multi-turn workflows.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Focuses on managing tool-calling loops, context windows, and operational boundaries for agents.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Crucial for engineers transitioning from basic chat assistants to robust autonomous agents.</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="https://opensource.posit.co/blog/2026-11-04_positron-mcp/" target="_blank" rel="noopener">Bring your own agent to Positron with the Positron MCP ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-general">opensource.posit.co</span>
-        <span class="item-date">Nov 05, 2026 • 22:09 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Focuses on Model Context Protocol (MCP) integrations, server tooling, and agent interoperability.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Standardizes how autonomous agents securely query external tools, APIs, and data sources.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Demonstrates the rapid industry convergence around MCP as the unified agent tool interface.</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="https://prax-labs.com/wallet-screening" target="_blank" rel="noopener">Wallet screening your AI agent can call over MCP ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-general">prax-labs.com</span>
-        <span class="item-date">Nov 05, 2026 • 20:33 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Focuses on Model Context Protocol (MCP) integrations, server tooling, and agent interoperability.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Standardizes how autonomous agents securely query external tools, APIs, and data sources.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Demonstrates the rapid industry convergence around MCP as the unified agent tool interface.</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="https://www.kapwing.com/mcp" target="_blank" rel="noopener">Show HN: Edit and Generate Videos, Audio, and Images from One MCP ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-general">www.kapwing.com</span>
-        <span class="item-date">Nov 05, 2026 • 19:44 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Focuses on Model Context Protocol (MCP) integrations, server tooling, and agent interoperability.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Standardizes how autonomous agents securely query external tools, APIs, and data sources.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Demonstrates the rapid industry convergence around MCP as the unified agent tool interface.</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="https://github.com/salahmakboul/call4agents" target="_blank" rel="noopener">Show HN: Replay three AI agent approval failures in five seconds, in Python ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-github">github.com</span>
-        <span class="item-date">Nov 05, 2026 • 18:17 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Explores autonomous agent architecture, execution safety, and unattended multi-turn workflows.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Focuses on managing tool-calling loops, context windows, and operational boundaries for agents.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Crucial for engineers transitioning from basic chat assistants to robust autonomous agents.</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="https://mcp.brydge-ai.com/paste.html" target="_blank" rel="noopener">Show HN: Paste your MCP config, see what each server does at startup ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-general">mcp.brydge-ai.com</span>
-        <span class="item-date">Nov 05, 2026 • 17:52 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Focuses on Model Context Protocol (MCP) integrations, server tooling, and agent interoperability.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Standardizes how autonomous agents securely query external tools, APIs, and data sources.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Demonstrates the rapid industry convergence around MCP as the unified agent tool interface.</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.08312v1" target="_blank" rel="noopener">Trilemma: How Agents choose between Honesty, Confidentiality, and Task Completion ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 17:12 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Personal AI agents often act on underspecified instructions and draw on context such as their user&#x27;s messages and calendar to decide how to proceed.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>This context can contain private preferences that interfere with the task, with other people&#x27;s interests, or with confidentiality norms.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Prior work has studied deception under goal conflicts and the leakage of private information, but largely as separate problems. We study both problems together in a simulated company Slack workspace in which four employ...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="https://www.godaddy.com/resources/news/building-an-ai-agent-for-data-pipeline-creation" target="_blank" rel="noopener">An AI agent for generating data pipelines from Slack requests ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-general">www.godaddy.com</span>
-        <span class="item-date">Nov 05, 2026 • 17:00 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Explores autonomous agent architecture, execution safety, and unattended multi-turn workflows.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Focuses on managing tool-calling loops, context windows, and operational boundaries for agents.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Crucial for engineers transitioning from basic chat assistants to robust autonomous agents.</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="https://github.com/kaushik333/MaidenRun" target="_blank" rel="noopener">Show HN: MaidenRun – Deploy an AI agent to your AWS and collect tester feedback ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-github">github.com</span>
-        <span class="item-date">Nov 05, 2026 • 14:59 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Explores autonomous agent architecture, execution safety, and unattended multi-turn workflows.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Focuses on managing tool-calling loops, context windows, and operational boundaries for agents.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Crucial for engineers transitioning from basic chat assistants to robust autonomous agents.</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="https://github.com/narkco-kang/agent-fleet" target="_blank" rel="noopener">AgentFleet – Cross-device AI agent fleet: 303 tasks/s, 0 lost on failover ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-github">github.com</span>
-        <span class="item-date">Nov 05, 2026 • 14:49 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Explores autonomous agent architecture, execution safety, and unattended multi-turn workflows.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Focuses on managing tool-calling loops, context windows, and operational boundaries for agents.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Crucial for engineers transitioning from basic chat assistants to robust autonomous agents.</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="https://mcp-explained.com/" target="_blank" rel="noopener">MCP Explained ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-general">mcp-explained.com</span>
-        <span class="item-date">Nov 05, 2026 • 14:08 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Focuses on Model Context Protocol (MCP) integrations, server tooling, and agent interoperability.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Standardizes how autonomous agents securely query external tools, APIs, and data sources.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Demonstrates the rapid industry convergence around MCP as the unified agent tool interface.</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.07996v1" target="_blank" rel="noopener">SEER: A Scalable Event-Driven Runtime for Parallel Execution of Multi-Agent Reinforcement Learning Environments ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 13:24 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Multi-agent reinforcement learning (MARL) is increasingly used in systems where many entities interact in a shared environment.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>In these workloads, policy inference can be batched on GPUs, but the CPU-side environment path still updates entity states, resolves local interactions, and builds observations inside each $\mathrm{env.step}$.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>This path can dominate latency in interaction-intensive workloads after policy batching. Existing vectorized environment interfaces and general event-driven runtimes do not directly address the fine-grained cross-entity...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="https://hookdeck.com/blog/designing-http-api-for-agents" target="_blank" rel="noopener">Building for agent use without MCP or skills ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-general">hookdeck.com</span>
-        <span class="item-date">Nov 05, 2026 • 11:11 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Focuses on Model Context Protocol (MCP) integrations, server tooling, and agent interoperability.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Standardizes how autonomous agents securely query external tools, APIs, and data sources.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Demonstrates the rapid industry convergence around MCP as the unified agent tool interface.</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.07683v1" target="_blank" rel="noopener">ReferClaw: Disambiguating User Intent for Egocentric Assistance ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 09:10 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Users of egocentric AI assistants often ask short, ambiguous questions whose intended referents cannot be uniquely resolved from video and dialogue history.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>For example, &quot;Where did I leave it?&quot; may refer to several previously handled objects.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Existing VideoQA systems typically commit to a single interpretation, risking plausible but intention-misaligned answers. We introduce ReferClaw, an agentic framework that formulates egocentric streaming QA as an intera...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.07618v1" target="_blank" rel="noopener">A Bilevel Neurodynamic Approach for Distributed SCAD-Regularized Sparse Least Squares ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 08:01 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>This paper proposes a bilevel particle swarm optimization (PSO)-neurodynamic method for solving the distributed sparse least-squares problem regularized by the smoothly clipped absolute deviation (SCAD) penalty to globa...</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>The SCAD penalty is nonsmooth and nonconvex, so existing distributed neurodynamic methods have not been extended to it directly.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Through two-time-scale singular perturbation analysis, a rigorous full-trajectory convergence theory with explicit convergence rates is established for the inner collaborative multi-agent neurodynamic system without req...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.07483v1" target="_blank" rel="noopener">Signed but Not Safe: Requirement Integrity in Multi-Agent LLM Handoffs ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 05:43 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Enterprise AI agents increasingly split a user&#x27;s request across subagents and merge their results, and each handoff can summarize away, alter or ignore a requirement.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>We report a preregistered study with synthetic, exactly scorable tasks comparing free-text, structured JSON and signed requirement-manifest handoffs: the orchestrator extracts each requirement as a verbatim quote plus a...</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>With Qwen3-8B (1,440 trajectories, five threats), signed manifests cut unsafe commits under attack from 69.4% to 9.0% (60.4 pp, 95% CI [51.4, 69.4]) with no net loss of conformant commits relative to structured handoffs...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="https://github.com/SunSinD/Sunlith" target="_blank" rel="noopener">Show HN: Sunlith, an Android calendar you can control through MCP ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-github">github.com</span>
-        <span class="item-date">Nov 05, 2026 • 05:33 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Focuses on Model Context Protocol (MCP) integrations, server tooling, and agent interoperability.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Standardizes how autonomous agents securely query external tools, APIs, and data sources.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Demonstrates the rapid industry convergence around MCP as the unified agent tool interface.</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="https://github.com/AlgoVesta/mcp" target="_blank" rel="noopener">Show HN: Hosted MCP server for 16 crypto exchanges and MetaTrader 5 ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-github">github.com</span>
-        <span class="item-date">Nov 05, 2026 • 05:27 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Focuses on Model Context Protocol (MCP) integrations, server tooling, and agent interoperability.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Standardizes how autonomous agents securely query external tools, APIs, and data sources.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Demonstrates the rapid industry convergence around MCP as the unified agent tool interface.</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.07461v1" target="_blank" rel="noopener">The Last Mile to the Real World: Agent-Native Primitives as Reusable Building Blocks for Solving Real-World Tasks ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 05:15 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>How can an agent handle a real-world task end to end?.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Frontier models with their own harnesses still fall short on real-world benchmarks: on Terminal-Bench 4.0, GPT-5.6 Sol with Codex resolves 37.3% of the tasks and Claude Opus 5 with Claude Code 51.8%.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>These tasks fail at the step from reaching a resource to applying it, which we call the last mile to the real world. Existing approaches put the resource within reach but leave the competence to apply it with the caller...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.07377v1" target="_blank" rel="noopener">Designing with Cinematic Language: An Intent-Driven Approach to Human-AI Video Clip Co-Creation ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 05, 2026 • 03:31 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Generative video models have made video creation more accessible, yet creators still struggle to translate high-level narrative intentions into coherent cinematic expressions.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Existing systems primarily rely on prompt refinement or expose isolated camera controls, leaving a gap between what to express and how to film it.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We present CineAssist, a human-AI co-creation system that treats cinematic language as an interactive design medium connecting creative intentions with executable video controls. We construct a Cinematic Language Design...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="https://github.com/langchain-ai/langgraph/releases/tag/cli%3D%3D0.4.41" target="_blank" rel="noopener">langgraph-cli==0.4.41 ↗</a></div>
+        <div class="item-title"><a href="https://github.com/langchain-ai/langgraph/releases/tag/prebuilt%3D%3D1.1.2" target="_blank" rel="noopener">langgraph-prebuilt==1.1.2 ↗</a></div>
       </div>
       <div class="item-meta">
         <span class="badge-source source-github">GitHub/langchain-ai/langgraph</span>
-        <span class="item-date">Nov 05, 2026 • 02:30 UTC</span>
+        <span class="item-date">Nov 14, 2026 • 01:33 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Changes since cli==0.4.40 * release(cli): 0.4.41 (#9596) * chore(deps): bump langgraph from 1.2.3 to 1.2.14 in /libs/cli (#9512) * chore(deps): bump the minor-and-patch group in /libs/cli/js-examples with 9 updates (#95...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Changes since prebuilt==1.1.1 * release(langgraph): 1.2.22 (#9702) * release(checkpoint-postgres): 3.2.1 (#9700) * release(prebuilt): 1.1.2 (#9701) * release(checkpoint): 4.3.2 (#9699) * perf(prebuilt): only format the...</span></div>
         <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Introduces focused improvements and architectural refinements in agents and automation.</span></div>
         <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Signals accelerating standard adoption and ecosystem convergence.</span></div>
       </div>
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="https://github.com/langchain-ai/langgraph/releases/tag/1.2.20" target="_blank" rel="noopener">langgraph==1.2.20 ↗</a></div>
+        <div class="item-title"><a href="https://github.com/langchain-ai/langgraph/releases/tag/checkpoint%3D%3D4.3.2" target="_blank" rel="noopener">langgraph-checkpoint==4.3.2 ↗</a></div>
       </div>
       <div class="item-meta">
         <span class="badge-source source-github">GitHub/langchain-ai/langgraph</span>
-        <span class="item-date">Nov 05, 2026 • 02:20 UTC</span>
+        <span class="item-date">Nov 14, 2026 • 01:31 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Changes since 1.2.19 * release(langgraph): 1.2.20 (#9595) * feat(langgraph): give each interrupt() in a task its own id (#9589) * fix(langgraph): point the multiple-interrupts error at the current docs (#9590) * feat(la...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Changes since checkpoint==4.3.1 * release(checkpoint): 4.3.2 (#9699) * perf(checkpoint): stop InMemoryStore search at the requested page (#9633) * perf(checkpoint): dedupe batched store reads with a dict (#9636) * chore...</span></div>
         <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Introduces focused improvements and architectural refinements in agents and automation.</span></div>
         <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Signals accelerating standard adoption and ecosystem convergence.</span></div>
       </div>
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="https://github.com/langchain-ai/langgraph/releases/tag/sdk%3D%3D0.4.13" target="_blank" rel="noopener">langgraph-sdk==0.4.13 ↗</a></div>
+        <div class="item-title"><a href="https://sayjot.xyz/blog/claude-code-mcp-notes" target="_blank" rel="noopener">Let Claude Code read your notes with MCP ↗</a></div>
       </div>
       <div class="item-meta">
-        <span class="badge-source source-github">GitHub/langchain-ai/langgraph</span>
-        <span class="item-date">Nov 05, 2026 • 02:16 UTC</span>
+        <span class="badge-source source-general">sayjot.xyz</span>
+        <span class="item-date">Nov 14, 2026 • 01:20 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Changes since sdk==0.4.12 * release(langgraph): 1.2.20 (#9595) * release(sdk-py): 0.4.13 (#9594) * feat(sdk-py): add cancel_reason to Run (#9571) * docs(sdk-py): show the run&#x27;s status in the stream example&#x27;s end event (...</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Introduces focused improvements and architectural refinements in agents and automation.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Signals accelerating standard adoption and ecosystem convergence.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Focuses on Model Context Protocol (MCP) integrations, server tooling, and agent interoperability.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Standardizes how autonomous agents securely query external tools, APIs, and data sources.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Demonstrates the rapid industry convergence around MCP as the unified agent tool interface.</span></div>
       </div>
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="https://github.com/bewithkhan/bansat" target="_blank" rel="noopener">Bansat – Make your AI agent write the blueprint before the code ↗</a></div>
+        <div class="item-title"><a href="https://github.com/claynicholson/copper-kicad-mcp" target="_blank" rel="noopener">Show HN: Copper-KiCad – MCP to design PCBs in KiCad better and cheaper ↗</a></div>
       </div>
       <div class="item-meta">
         <span class="badge-source source-github">github.com</span>
-        <span class="item-date">Nov 05, 2026 • 01:32 UTC</span>
+        <span class="item-date">Nov 13, 2026 • 20:59 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Explores autonomous agent architecture, execution safety, and unattended multi-turn workflows.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Focuses on managing tool-calling loops, context windows, and operational boundaries for agents.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Crucial for engineers transitioning from basic chat assistants to robust autonomous agents.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Focuses on Model Context Protocol (MCP) integrations, server tooling, and agent interoperability.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Standardizes how autonomous agents securely query external tools, APIs, and data sources.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Demonstrates the rapid industry convergence around MCP as the unified agent tool interface.</span></div>
       </div>
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="https://github.com/modelcontextprotocol/servers/releases/tag/v2.3.0" target="_blank" rel="noopener">v2.3.0 ↗</a></div>
+        <div class="item-title"><a href="https://portofcontext.com" target="_blank" rel="noopener">Show HN: Port of Context – Token efficient MCP context layer ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-general">portofcontext.com</span>
+        <span class="item-date">Nov 13, 2026 • 18:43 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Hi HN, I&#x27;m working on a context layer built on OSS and open standards that lets agents search your company knowledge and use MCP tools all through a single gateway with code mode.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Building this because we believe context can and should be portable across harnesses.The metric we are solving for here is &quot;cost to resolution&quot;.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Given any question or a task, how quickly and cheaply can we put an agent on the correct path. Context map: software to create and maintain a context map of people, teams, systems, relationships, etc. It&#x27;s built on OKF,...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://github.com/FramY2/ctxwise" target="_blank" rel="noopener">Show HN: CtxWise – Stop 8MB MCP crashes, schema bloat, and cache misses ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-github">github.com</span>
+        <span class="item-date">Nov 13, 2026 • 18:12 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Focuses on Model Context Protocol (MCP) integrations, server tooling, and agent interoperability.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Standardizes how autonomous agents securely query external tools, APIs, and data sources.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Demonstrates the rapid industry convergence around MCP as the unified agent tool interface.</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://github.com/EreoTorres/lore-cli" target="_blank" rel="noopener">Show HN: Lore, ADRs you can ask questions to (local hybrid search + MCP) ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-github">github.com</span>
+        <span class="item-date">Nov 13, 2026 • 17:59 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Focuses on Model Context Protocol (MCP) integrations, server tooling, and agent interoperability.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Standardizes how autonomous agents securely query external tools, APIs, and data sources.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Demonstrates the rapid industry convergence around MCP as the unified agent tool interface.</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://nestdaddy.com/blog/we-tested-37000-mcp-servers" target="_blank" rel="noopener">We tested 37,000 MCP servers ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-general">nestdaddy.com</span>
+        <span class="item-date">Nov 13, 2026 • 16:04 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Focuses on Model Context Protocol (MCP) integrations, server tooling, and agent interoperability.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Standardizes how autonomous agents securely query external tools, APIs, and data sources.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Demonstrates the rapid industry convergence around MCP as the unified agent tool interface.</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://github.com/214140846/browser-hands" target="_blank" rel="noopener">Show HN: Browser Hands – Claude in Chrome for Codex, Cursor and Any MCP Agent ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-github">github.com</span>
+        <span class="item-date">Nov 13, 2026 • 15:00 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Focuses on Model Context Protocol (MCP) integrations, server tooling, and agent interoperability.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Standardizes how autonomous agents securely query external tools, APIs, and data sources.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Demonstrates the rapid industry convergence around MCP as the unified agent tool interface.</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://railyard.run/blog/ai-agent-read-only-sql/" target="_blank" rel="noopener">Let an AI agent query your prodution database safely with read-only SQL over MCP ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-general">railyard.run</span>
+        <span class="item-date">Nov 13, 2026 • 14:36 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Focuses on Model Context Protocol (MCP) integrations, server tooling, and agent interoperability.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Standardizes how autonomous agents securely query external tools, APIs, and data sources.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Demonstrates the rapid industry convergence around MCP as the unified agent tool interface.</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://github.com/brainfish-ai/webcrawl-anything" target="_blank" rel="noopener">Show HN: Webcrawl, an open-source web crawling API and MCP server for agents ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-github">github.com</span>
+        <span class="item-date">Nov 13, 2026 • 13:33 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Focuses on Model Context Protocol (MCP) integrations, server tooling, and agent interoperability.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Standardizes how autonomous agents securely query external tools, APIs, and data sources.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Demonstrates the rapid industry convergence around MCP as the unified agent tool interface.</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://cloudhike.dev" target="_blank" rel="noopener">Show HN: CloudHike – A backend your AI coding agent can set up over MCP ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-general">cloudhike.dev</span>
+        <span class="item-date">Nov 13, 2026 • 13:18 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Focuses on Model Context Protocol (MCP) integrations, server tooling, and agent interoperability.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Standardizes how autonomous agents securely query external tools, APIs, and data sources.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Demonstrates the rapid industry convergence around MCP as the unified agent tool interface.</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://mcp-tax.com/" target="_blank" rel="noopener">MCP Tax ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-general">mcp-tax.com</span>
+        <span class="item-date">Nov 13, 2026 • 11:10 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Focuses on Model Context Protocol (MCP) integrations, server tooling, and agent interoperability.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Standardizes how autonomous agents securely query external tools, APIs, and data sources.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Demonstrates the rapid industry convergence around MCP as the unified agent tool interface.</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://github.com/maxxwwim/AetherSAST-150-CWE-MCP" target="_blank" rel="noopener">AetherSAST v2.3 200 CWE MCP ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-github">github.com</span>
+        <span class="item-date">Nov 13, 2026 • 10:19 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Focuses on Model Context Protocol (MCP) integrations, server tooling, and agent interoperability.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Standardizes how autonomous agents securely query external tools, APIs, and data sources.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Demonstrates the rapid industry convergence around MCP as the unified agent tool interface.</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://naftiko.io/blog/put-mcp-next-to-your-api-not-on-top/" target="_blank" rel="noopener">Put MCP next to your API, not on top of it ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-general">naftiko.io</span>
+        <span class="item-date">Nov 13, 2026 • 02:13 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Focuses on Model Context Protocol (MCP) integrations, server tooling, and agent interoperability.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Standardizes how autonomous agents securely query external tools, APIs, and data sources.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Demonstrates the rapid industry convergence around MCP as the unified agent tool interface.</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://github.com/langchain-ai/langgraph/releases/tag/1.2.21" target="_blank" rel="noopener">langgraph==1.2.21 ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-github">GitHub/langchain-ai/langgraph</span>
+        <span class="item-date">Nov 12, 2026 • 18:06 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Changes since 1.2.20 * release(langgraph): 1.2.21 (#9683) * chore(deps): bump the minor-and-patch group across 1 directory with 9 updates (#9530) * fix(langgraph): match whole namespace segments in get_subgraphs (#9615)...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Introduces focused improvements and architectural refinements in agents and automation.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Signals accelerating standard adoption and ecosystem convergence.</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://github.com/langchain-ai/langgraph/releases/tag/cli%3D%3D0.4.43" target="_blank" rel="noopener">langgraph-cli==0.4.43 ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-github">GitHub/langchain-ai/langgraph</span>
+        <span class="item-date">Nov 12, 2026 • 16:20 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Changes since cli==0.4.42 * release(cli): 0.4.43 (#9682) * feat(cli): use Agent Server flags with hidden deployment aliases (#9666) * fix(cli): remove discontinued local debugger image (#8543) * chore(deps): bump the mi...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Introduces focused improvements and architectural refinements in agents and automation.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Signals accelerating standard adoption and ecosystem convergence.</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.16378v1" target="_blank" rel="noopener">Evidence-Governed Adoption of Self-Generated Updates in Autonomous AI Agents ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 06:45 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Autonomous agents modify prompts, memories, tools, workflows, and policies using interaction histories.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Yet a plausible modification is not necessarily suitable for persistent adoption: candidate selection is adaptive, evaluators may be imperfect, and local gains can hide degradation against an earlier baseline.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We introduce Evidence-Governed Evolution (EGE), a framework for governing adoption of self-generated agent modifications. EGE separates candidate generation from confirmatory adoption, evaluates frozen candidates on fre...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.16315v1" target="_blank" rel="noopener">Shared Item-Level Error Limits the Aggregation of Small Language Models in Fermi Estimation ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 12, 2026 • 05:23 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Multi-agent systems of language models are often motivated by an averaging argument: if the agents&#x27; errors are unbiased and independent, the error of an aggregate of N answers falls as 1/sqrt(N).</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Fermi estimation, whose continuous answers are aggregated on the logarithmic scale, permits a direct test.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We decompose the log10 error of each answer into the mean error of its model on the item, common to all its draws on the item, and a residual, and estimate both from 2.51M answers given before any communication by 15 op...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.16082v1" target="_blank" rel="noopener">Gradient-Aware AI Agents for Autonomous Turbulence Model Discovery via Differentiable CFD ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 11, 2026 • 22:50 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Turbulence modeling relies on human choices of closure form, physical inputs, and tunable parameters.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Training closures a posteriori is efficient only with gradients through long chaotic rollouts, which few solvers provide.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Most a posteriori approaches therefore resort to gradient-free optimization, and nearly all fix the closure form in advance, learning only its parameters. In this work, we introduce a gradient-aware agentic framework th...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.15843v1" target="_blank" rel="noopener">Food Critic: An Agentic Visualization System for Auditable Restaurant-Safety Reasoning ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 11, 2026 • 18:57 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Generative AI agents are increasingly being embedded into visualization systems that can search data, invoke tools, summarize evidence, and produce recommendations.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>However, when agents rely solely on their own knowledge, the visualization problem is not only whether the agent provides a useful answer, but also whether users can inspect how that answer is grounded.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We present Food Critic, an agentic visualization system for diners&#x27; restaurant decision support that integrates public health inspection records with crowd review data. The system grounds agents under three conditions:...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.15838v1" target="_blank" rel="noopener">Before AI Agents Negotiate for Us: A Competitive Tournament of Rule-Based, Search, Optimization, Learned, and Language-Model Negotiators Un... ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 11, 2026 • 18:48 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Automated bilateral negotiation underlies two-sided matching markets such as freight brokering, where many shippers and carriers negotiate price before a matching mechanism decides who is paired with whom.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Prior strategy comparisons typically use isolated one-on-one duels or a single fixed market, so they cannot show how a strategy behaves against several live rivals under a changing balance of supply and demand.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We built nine negotiation architectures spanning rule-based, search-based, optimization-based, imitation-learning, and reinforcement-learning families, and ran all nine simultaneously on both sides of a Gale-Shapley mat...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.15754v1" target="_blank" rel="noopener">MULTILOOP: Evolving Multi-Agent Harnesses for Complex Information-Seeking Tasks ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 11, 2026 • 17:34 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>The performance of LLM-based agents depends not only on the underlying model but also on the harness: the prompts, tools, and orchestration logic around it.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Recent works automate harness optimization with coding agents that analyze execution traces, diagnose failures, and edit the harness code; however, those focused on single-agent systems.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Multi-agent harnesses are harder to optimize as fixing them requires changing how agents interact in addition to how each behaves. We study whether automated harness optimization can diagnose and repair failures in mult...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.15521v1" target="_blank" rel="noopener">DecArena: Evaluating Large-Scale Decentralized Multi-Agent Collaboration ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 11, 2026 • 14:13 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Emerging personal AI agents raise fundamental scalability and privacy concerns for centralized multi-agent systems (MASs), which rely on a global orchestrator with broad access to agents, resources, and communication.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>In decentralized environments, global visibility is unavailable.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Agents need to proactively discover non-local resources (e.g. tools, skills), and collaborate with other agents to solve tasks. We study decentralized multi-agent collaboration under graph-constrained communication, a n...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.15515v1" target="_blank" rel="noopener">Incentive-Responsive Agents: A Principal-Agent Framework, Metric Suite, and Runtime Architecture for Long-Lived Personal AI Agents ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 11, 2026 • 14:09 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Personal AI agents now persist: they hold accounts, mailboxes, long-term memory, and open-ended task streams, yet the dominant way to improve them remains capability-side: prompt engineering, larger models, longer think...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>We argue that long-lived agents are missing an incentive layer.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We formalize an incentive not as text in a prompt but as a runtime contract over the agent&#x27;s operating point (model tier, test-time compute, memory budget, tool authority, task priority, verification, and compensation)...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.15309v1" target="_blank" rel="noopener">Where Autonomy Belongs: A Separation of Powers for Agentic Program Evolution ↗</a></div>
+      </div>
+      <div class="item-meta">
+        <span class="badge-source source-arxiv">arXiv</span>
+        <span class="item-date">Nov 11, 2026 • 10:44 UTC</span>
+      </div>
+      <div class="gist-box">
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>LLM-driven program evolution rests on three decisions: govern directs the search from accumulated evidence, propose constructs the next candidate, and judge settles validity and fitness.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>All three appear in every system, and existing work splits into two lines over who makes each.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Controller-centric systems strengthen govern and neglect the autonomy of propose, which caps what evolution can reach. Agent-centric systems let a coding agent take over both govern and propose, at a cognitive and compu...</span></div>
+      </div>
+    </div>
+    <div class="item-card">
+      <div class="item-header">
+        <div class="item-title"><a href="https://github.com/modelcontextprotocol/servers/releases/tag/v2.4.0" target="_blank" rel="noopener">v2.4.0 ↗</a></div>
       </div>
       <div class="item-meta">
         <span class="badge-source source-github">GitHub/modelcontextprotocol/servers</span>
-        <span class="item-date">Nov 04, 2026 • 21:28 UTC</span>
+        <span class="item-date">Nov 11, 2026 • 07:07 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>## Packages | Package | Version | Registry | In this release | | --- | --- | --- | --- | | `@modelcontextprotocol/server-everything` | `2.2.1` | npm | **published** | | `@modelcontextprotocol/server-filesystem` | `2.2.0...</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Introduces focused improvements and architectural refinements in agents and automation.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Signals accelerating standard adoption and ecosystem convergence.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>## Security fixes v2.4.0 fixes six vulnerabilities in three servers.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Upgrade `@modelcontextprotocol/server-filesystem` to 2.3.0, and `mcp-server-git` and `mcp-server-fetch` to 2026.11.11.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>| Package | Affected | Fixed in | | --- | --- | --- | | `@modelcontextprotocol/server-filesystem` | all versions before 2.3.0, and date versions 2025.1.14 through 2026.8.31 | 2.3.0 | | `mcp-server-git` | through 2026.11...</span></div>
       </div>
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.07140v1" target="_blank" rel="noopener">More Agents, More Reliable? System-Level Reliability of Multi-Agent LLMs under Operational-Profile Uncertainty ↗</a></div>
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.15097v1" target="_blank" rel="noopener">GuardianAgentFlow: Multi-Agent Coordination for Web Privacy Protection ↗</a></div>
       </div>
       <div class="item-meta">
         <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 04, 2026 • 21:08 UTC</span>
+        <span class="item-date">Nov 11, 2026 • 06:19 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Teams increasingly build software from cooperating large language model (LLM) agents, often assuming more agents mean more reliability.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Yet the usual evidence, average benchmark accuracy, ignores the input mix a deployed system meets and the rule merging the agents&#x27; answers.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Building on HIP-LLM, a hierarchical imprecise-probability assessment of single LLMs, we propose a framework combining it with a Bayesian network of the system&#x27;s failure logic for multi-agent systems. Agent failure-proba...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Web agents need to use private context without unnecessarily disclosing it.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Effective protection must distinguish between requests that may be sent after sanitization and those that must be withheld, while preserving the information needed for authorized tasks.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We present GuardianAgentFlow, a multi-agent framework that mediates outgoing Web requests through an explicit release contract. A dedicated restriction check grounds permission in the user&#x27;s instruction; a shared protec...</span></div>
       </div>
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.07122v1" target="_blank" rel="noopener">Regulating Autonomous Mobility-on-Demand Operators with Fixed and Adaptive Penalties: A Multi-Agent Reinforcement Learning Approach ↗</a></div>
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.14963v1" target="_blank" rel="noopener">GHA-SmellFix: Taking Action with Agentic LLMs for Detecting and Refactoring GitHub Actions Workflow Smells ↗</a></div>
       </div>
       <div class="item-meta">
         <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 04, 2026 • 20:38 UTC</span>
+        <span class="item-date">Nov 11, 2026 • 03:16 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Profit-maximizing Autonomous Mobility-on-Demand (AMoD) operators may exploit consumer surplus through excessive prices and underserve less profitable regions by relocating vehicles away from them.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>We study how penalty-based regulation of an AMoD operator in a multimodal mobility system can limit surge pricing and improve regional service availability.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We model regulation as an outer control loop that acts on a learning-based operator. Static regulation with fixed penalties is formulated as a Markov Decision Process for an operator that jointly controls pricing and re...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Continuous integration and continuous delivery workflows are key artifacts in software projects.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>In GitHub Actions, they encode build, test, release, deployment, and security automation in YAML.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>These workflows contain configuration smells affecting security, reliability, maintainability, or operational stability. Existing approaches are mostly rule-based, with rules hard to create and evolve, and typically rep...</span></div>
       </div>
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="https://www.uber.com/gb/en/blog/designing-mcp-gateway/" target="_blank" rel="noopener">Designing Uber&#x27;s MCP Gateway ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-general">www.uber.com</span>
-        <span class="item-date">Nov 04, 2026 • 19:39 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Focuses on Model Context Protocol (MCP) integrations, server tooling, and agent interoperability.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Standardizes how autonomous agents securely query external tools, APIs, and data sources.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Demonstrates the rapid industry convergence around MCP as the unified agent tool interface.</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.07066v1" target="_blank" rel="noopener">Cooperative Multi-Agent Reinforcement Learning via Epigraph-Form Guided Exploration ↗</a></div>
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.14846v1" target="_blank" rel="noopener">Open Challenges and Opportunities in Human-Agent Systems ↗</a></div>
       </div>
       <div class="item-meta">
         <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 04, 2026 • 19:24 UTC</span>
+        <span class="item-date">Nov 10, 2026 • 23:55 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Discovering cooperative behavior in multi-agent reinforcement learning (MARL) is challenging due to the combinatorial complexity of joint state-action spaces, which hinders the emergence of coordinated behaviors from tr...</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Intrinsic rewards are often used to aid discovery, but naively combining them with team objectives can distort the learning signal, compromising task performance.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>In this paper, we propose EFXPLORER, a constrained exploration framework that maximizes exploration objectives subject to a constraint that preserves established task performance. We solve the resulting problem using an...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Agentic AI systems increasingly undertake extended tasks and act on people&#x27;s behalf, making human-agent interaction central to their effectiveness.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Successful interaction requires understanding human perspectives, coordinating complementary capabilities, and maintaining productive relationships within socio-technical environments.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>This paper examines how foundations developed by the Autonomous Agents and Multi-Agent Systems (AAMAS) community inform these demands. We consider interactions ranging from individual human-agent partnerships to teams a...</span></div>
       </div>
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.06989v1" target="_blank" rel="noopener">The Two-Ledger Model: Transaction-Grain Cost Accounting for Multi-Agent AI Systems Across Clouds, Models, and Systems of Record ↗</a></div>
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.14492v1" target="_blank" rel="noopener">ReTrace: Distilling Tool-Using Agents into Planner-Free Workflows ↗</a></div>
       </div>
       <div class="item-meta">
         <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 04, 2026 • 17:04 UTC</span>
+        <span class="item-date">Nov 10, 2026 • 18:49 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Enterprises run business transactions through multi-agent AI systems spanning clouds, large language models (LLMs), orchestration harnesses, and systems of record.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Finance receives AI cost only at settlement grain, aggregated by SKU and charge period.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>The business question (what did this order, claim, or case cost in AI?) cannot be answered from billing data, because providers never see enterprise transaction boundaries. The FinOps Open Cost and Usage Specification (...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Business process automation runs the same Standard Operating Procedure (SOP) again and again on new inputs.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Large Language Model (LLM) agents can follow an SOP written in natural language, but they call an LLM to choose every step of every run, which adds latency and cost at scale.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We present ReTrace, which turns an SOP and a few logged agent runs into a reusable workflow in which code, not an LLM, selects the next step. The agent&#x27;s reasoning, the explanation it writes with each tool call, often s...</span></div>
       </div>
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.06727v1" target="_blank" rel="noopener">Airlock: Bounding the Multi-Agent Blast Radius via Selective Online Containment ↗</a></div>
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.14320v1" target="_blank" rel="noopener">Don&#x27;t Just Trust Your Memory: Evidence-Linked Memory Reduces Memory-Induced Degradation in LLM Agents ↗</a></div>
       </div>
       <div class="item-meta">
         <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 04, 2026 • 16:16 UTC</span>
+        <span class="item-date">Nov 10, 2026 • 16:46 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>When multi-agent systems act on the external world, a single agent&#x27;s faulty output can spread across tasks before detection, creating a system-wide blast radius.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Single-agent guardrails are confined to individual harnesses, while existing multi-agent controls either cancel only the faulty source and miss downstream consumers or halt and roll back the entire workflow at the cost...</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We present Airlock, a multi-agent runtime and guardrail for selective post-alert fault containment. Its tree-structured runtime, EdgeCitadel, narrows permissions vertically from parent to child agents to establish node...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>External memory enables LLM agents to improve from experience by distilling trajectories of past tasks into concise lessons for new tasks.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>However, memory can also lead to memory-induced degradation, where an agent fails on tasks it would solve without memory, often because it follows a lesson that is incorrect, or misapplies or misreads a valid one.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>This is because lessons are inferred from trajectories labeled only with task success or failure, yet are typically provided without the trajectories they came from, leaving the agent no way to check them. To address th...</span></div>
       </div>
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.06585v1" target="_blank" rel="noopener">Signed, Sealed, Leaked: Trust Beyond Signature for MCP Toolchains ↗</a></div>
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.14242v1" target="_blank" rel="noopener">PARLEY: Evaluating LLM Collaboration Through Cooperative Asymmetric Puzzles ↗</a></div>
       </div>
       <div class="item-meta">
         <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 04, 2026 • 14:40 UTC</span>
+        <span class="item-date">Nov 10, 2026 • 15:54 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>AI agents rely on third-party tools, such as Model Context Protocol (MCP) servers, whose publishers can be authenticated and whose execution can be restricted by runtime security policies.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Yet authenticity does not guarantee benign behaviour: a legitimately signed tool may perform its advertised function while concealing malicious code that leaks confidential information.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We demonstrate this trust failure with a signed MCP tool that embeds sensitive data in requests to a policy-allowed destination. Meta&#x27;s MCPGuard-Dynamic, a state-of-the-art runtime defence, blocks a direct exfiltration...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>As large language models power autonomous agents, understanding how they collaborate and where they fail becomes critical.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>We introduce PARLEY, an extensible platform for studying LLM agent collaboration through four asymmetric puzzle tasks grounded in cognitive psychology (referential communication, joint coordination, perspective-taking,...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>GPT-4o agent pairs succeeded in 60.5% of conversations (N=400, 100 per task), with task-level variation (34-80%) reflecting distinct collaborative demands. From these conversations, we derived the data-driven PAC taxono...</span></div>
       </div>
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.06374v1" target="_blank" rel="noopener">Corralling AI Risks with Grassroots Contracts ↗</a></div>
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.13927v1" target="_blank" rel="noopener">Safety and Connectivity Certificates for Finite-Time Formation Transitions ↗</a></div>
       </div>
       <div class="item-meta">
         <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 04, 2026 • 11:34 UTC</span>
+        <span class="item-date">Nov 10, 2026 • 11:15 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>AI&#x27;s inflection point is a fountain of alarming risks.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Digital platforms in particular are vulnerable to three major AI risks, as those in control of global platforms cede control to AI, of the algorithms, of membership and of content: (1) AI control of global platforms, so...</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>(2) Unaccountable AI agents operating anonymously on social and economic digital platforms, side-by-side with humans, possibly masquerading as humans, serving unknown masters with unknown goals, operating under unknown...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Finite-time formation transitions are useful for coordinating multi-agent systems in time-critical missions, but convergence to a prescribed formation in finite time does not guarantee collision avoidance or communicati...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Existing approaches address finite-time coordination and safety-constrained formation control, yet explicit connections between disagreement during transitions, formation geometry, and coupling-gain selection need to be...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>This paper develops a disagreement-based framework for certifying transient safety and connectivity during finite-time tracking of arbitrary prescribed formation trajectories. Local feedback guarantees exact finite-time...</span></div>
       </div>
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.05524v1" target="_blank" rel="noopener">MA-SafeDiffuser: Safe Multi-Agent Planning with Diffusion Probabilistic Models ↗</a></div>
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.13651v2" target="_blank" rel="noopener">DrugCoding: A Scientific Programming Agent for Drug Discovery ↗</a></div>
       </div>
       <div class="item-meta">
         <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 03, 2026 • 19:20 UTC</span>
+        <span class="item-date">Nov 10, 2026 • 06:47 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>We propose MA-SafeDiffuser, a multi-agent extension of SafeDiffuser that equips diffusion-based trajectory planners with finite-time diffusion invariance guarantees for joint-agent safety specifications.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Building on the single-agent construction that embeds control barrier function (CBF) constraints into reverse-diffusion updates, we: (i) formalize joint safe sets as intersections of per-agent and pairwise barrier sets;...</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Empirically, MA-SafeDiffuser reduces violation counts relative to unconstrained diffusion baselines, while retaining planning quality. We provide algorithms, proofs, and reference implementations.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Drug discovery involves multiple interconnected research stages, including molecular design, property prediction, and virtual screening.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>These processes are characterized by complex workflows, interdependent computational tasks, and diverse specialized tools, placing substantial demands on the coordination of scientific models and computational resources.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>However, existing large language model (LLM)-based scientific agents still face challenges in autonomous planning of complex tasks, adaptive selection of specialized models, and reliable execution of multi-stage scienti...</span></div>
       </div>
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="https://github.com/langchain-ai/langgraph/releases/tag/sdk%3D%3D0.4.12" target="_blank" rel="noopener">langgraph-sdk==0.4.12 ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-github">GitHub/langchain-ai/langgraph</span>
-        <span class="item-date">Nov 03, 2026 • 18:10 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Changes since sdk==0.4.11 * release(sdk-py): 0.4.12 (#9569) * feat(sdk-py): remove fairness_weight from PrioritySettings (#9441) * fix(sdk-py): rejoin a run stream that closes before the run ends (#9554).</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Introduces focused improvements and architectural refinements in agents and automation.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Signals accelerating standard adoption and ecosystem convergence.</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.05027v1" target="_blank" rel="noopener">Haptic Shared Control for Multi-Robot Systems ↗</a></div>
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.13333v1" target="_blank" rel="noopener">Do AI Agents need Preventive Care? An Epidemiologic Cohort Design for Agentic AI ↗</a></div>
       </div>
       <div class="item-meta">
         <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 03, 2026 • 15:03 UTC</span>
+        <span class="item-date">Nov 09, 2026 • 22:59 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Multi-agent systems offer significant advantages in terms of flexibility and redundancy, enabling the efficient distribution of complex tasks among multiple robots.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>However, their deployment requires advanced control strategies to ensure optimal cooperation between autonomous agents and human operators.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>We propose a modification of the global connectivity maintenance algorithm to incorporate measurements taken in agent&#x27;s local frame, using sensors with limited fields of view. This algorithm, responsible for the autonom...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>As AI agents increasingly perform tasks autonomously across sectors, including healthcare and biomedical research, understanding how their behaviors develop and influence outcomes over time becomes increasingly importan...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Existing evaluations largely focus on model capabilities and performance on predefined tasks.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Here, we propose an epidemiologic cohort design for studying agentic AI, drawing on principles established in human population studies. The framework treats individual agents as members of a cohort, their underlying mod...</span></div>
       </div>
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.04977v1" target="_blank" rel="noopener">GeoFaham: Domain-Specialized Multi-Agent Geospatial Analytics for Disaster Response ↗</a></div>
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.13196v1" target="_blank" rel="noopener">From Process Models to Composable Agentic Workflows: Combining BPMN, Agents and Enterprise Knowledge ↗</a></div>
       </div>
       <div class="item-meta">
         <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 03, 2026 • 14:32 UTC</span>
+        <span class="item-date">Nov 09, 2026 • 20:18 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Real-world geospatial decision support requires more than single-step retrieval or code generation.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Disaster-response questions often involve multi-source workflows that combine spatial databases, map-derived features, satellite imagery, raster products, and reusable geospatial artifacts, where correctness depends on...</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>While large language models and coding agents offer a promising interface for such workflows, they struggle with geospatial-specific failure modes, including handling large artifacts, selecting the wrong evidence source...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>LLM-based agents can reason, use tools and collaborate.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>However, coordinating increasingly complex agentic applications becomes difficult to understand, monitor and improve.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Decisions distributed across prompts, tool calls and application logic make workflows implicit. We introduce **Recursive Capability Composition**, enabling agents to execute business processes and expose them as reusabl...</span></div>
       </div>
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.04944v1" target="_blank" rel="noopener">Local Visibility Roadmaps in Continous Multi-agent Path Finding ↗</a></div>
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.12705v1" target="_blank" rel="noopener">Multi-Agent Screening: What Agreement and Acceptance Cannot Tell You ↗</a></div>
       </div>
       <div class="item-meta">
         <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 03, 2026 • 14:10 UTC</span>
+        <span class="item-date">Nov 09, 2026 • 17:00 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>We address the problem of smooth continuous multi-agent path finding (SC-MAPF), where agents move in a continuous environment along smooth curves in continuous time.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>The paths for individual agents are searched in local visibility roadmaps that consider obstacles and other agents.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>A new algorithm is proposed in this work, which combines the previous algorithm CE-CBS for high-level search with any-angle path finding for local single-agent planning, where agents are to avoid obstacles, both static...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>When AI agents screen items for a costly human assessor, as in agentic search, e-discovery and AI reviewing of papers, only what they pass gets judged.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>We show what each kind of evidence can establish about their errors, even with unlimited data.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>Agreement shows that agents concur, not that they are right, however many there are. Acceptance by the assessor gives precision but only a lower bound on recall. Knowing which agents found which relevant items gives an...</span></div>
       </div>
     </div>
     <div class="item-card">
       <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.04774v1" target="_blank" rel="noopener">Cooperative Multi-Agent Reinforcement Learning with Submodular Trajectory Rewards ↗</a></div>
+        <div class="item-title"><a href="http://arxiv.org/abs/2611.12545v1" target="_blank" rel="noopener">Teamknitt: Configuring, Observing and Intervening in LLM-Agent Teams through the Lens of Dynamical-Systems and Human-Team Theory ↗</a></div>
       </div>
       <div class="item-meta">
         <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 03, 2026 • 12:14 UTC</span>
+        <span class="item-date">Nov 09, 2026 • 15:15 UTC</span>
       </div>
       <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>We study cooperative multi-agent reinforcement learning with decoupled dynamics and a monotone submodular reward function over joint trajectories.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Due to the non-additive reward, an optimal policy may depend on the history of all agents.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>This dependence makes exact optimization exponential in the horizon and the number of agents. To overcome this challenge while retaining theoretical guarantees, we introduce pre-window curvature $c_m$, which quantifies...</span></div>
-      </div>
-    </div>
-    <div class="item-card">
-      <div class="item-header">
-        <div class="item-title"><a href="http://arxiv.org/abs/2611.04590v1" target="_blank" rel="noopener">Can Network Models of Science Do Without Pluralist Agents? ↗</a></div>
-      </div>
-      <div class="item-meta">
-        <span class="badge-source source-arxiv">arXiv</span>
-        <span class="item-date">Nov 03, 2026 • 09:48 UTC</span>
-      </div>
-      <div class="gist-box">
-        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Science is a process of useful models being proven wrong time and again, but despite its many flaws, it somehow works.</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Paul Feyerabend argued that it works because people dare to hold and defend incompatible rival theories against the accepted one, since a theory&#x27;s failures often lead to its abandonment in the presence of a more accurat...</span></div>
-        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>He called this view theoretical pluralism. We introduce a theoretical and experimental model in which this can be examined. It compares communities of pluralist agents, which can hold rival theories side by side and mai...</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-what">What it is</span> <span>Most frameworks for teams of large language model (LLM) agents fix the team&#x27;s shape inside the software: who talks to whom, how much is passed along, and what a human can do once a run has started.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-details">Key details</span> <span>Human-team research has long asked those questions: where team phenomena live (in members or in their interaction), how team-level properties arise, and what separates what a team does from how a team is.</span></div>
+        <div class="gist-line"><span class="gist-label gist-label-impact">Takeaway</span> <span>I propose using that theory as the organizing lens for configuring, observing and intervening in LLM-agent teams, without assuming its findings transfer. I introduce teamknitt, a framework and open reference implementat...</span></div>
       </div>
     </div>
   </div>
